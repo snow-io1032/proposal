@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>原材料マスタ 運用マニュアル</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f6f2; --paper:#ffffff; --ink:#1f2328; --sub:#5b616b; --line:#e3e0d8;
+  --accent:#b4532a; --accent-soft:#f6e7df; --ok:#2f7a4f; --ok-soft:#e3f1e8;
+  --warn:#9a6a00; --warn-soft:#fbf1d6; --code:#f1efe9;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16181b; --paper:#1e2125; --ink:#e8e6e1; --sub:#a3a8b0; --line:#33373d;
+    --accent:#e08a5f; --accent-soft:#3a2a22; --ok:#6cc392; --ok-soft:#1f3328;
+    --warn:#e2b54a; --warn-soft:#352d17; --code:#2a2e33;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Noto Sans JP",system-ui,-apple-system,"Hiragino Sans",sans-serif;
+  line-height:1.8;font-size:16px;-webkit-text-size-adjust:100%}
+.wrap{max-width:880px;margin:0 auto;padding:0 16px 80px}
+header.top{padding:40px 0 24px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.kicker{color:var(--accent);font-weight:700;font-size:13px;letter-spacing:.08em}
+h1{font-size:28px;line-height:1.4;margin:6px 0 10px}
+.lead{color:var(--sub);margin:0}
+nav.toc{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:24px 0 32px}
+nav.toc b{font-size:14px}
+nav.toc ol{margin:8px 0 0;padding-left:1.4em;columns:2;column-gap:32px}
+nav.toc a{color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--sub)}
+nav.toc a:hover{color:var(--accent)}
+@media (max-width:600px){nav.toc ol{columns:1}h1{font-size:23px}}
+section{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:24px 22px;margin:0 0 20px}
+@media (max-width:600px){section{padding:20px 16px}}
+h2{font-size:21px;margin:0 0 14px;display:flex;gap:10px;align-items:baseline}
+h2 .no{color:var(--accent);font-size:15px;font-weight:700;flex:none}
+h3{font-size:17px;margin:24px 0 8px}
+p{margin:0 0 12px}
+.note,.warn,.ok{border-radius:10px;padding:12px 14px;margin:14px 0;font-size:15px}
+.note{background:var(--accent-soft)}
+.warn{background:var(--warn-soft)}
+.ok{background:var(--ok-soft)}
+.note b,.warn b,.ok b{display:block;margin-bottom:2px}
+.tbl{overflow-x:auto;margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:520px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--code);font-weight:700;white-space:nowrap}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+code,.f{background:var(--code);padding:1px 6px;border-radius:5px;font-size:.92em}
+.calc{background:var(--code);border-radius:10px;padding:12px 14px;font-variant-numeric:tabular-nums;margin:10px 0;overflow-x:auto;white-space:nowrap}
+ol.steps{counter-reset:s;list-style:none;padding:0;margin:12px 0}
+ol.steps>li{counter-increment:s;position:relative;padding:2px 0 14px 44px}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;
+  background:var(--accent);color:#fff;font-weight:700;display:grid;place-items:center;font-size:14px}
+ol.steps>li b{display:block}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.flow span{background:var(--code);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:14px;font-weight:500}
+.flow span.hl{background:var(--accent-soft);border-color:var(--accent)}
+.flow i{color:var(--sub);font-style:normal}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:99px;margin-right:4px;vertical-align:2px}
+.t-in{background:var(--accent-soft);color:var(--accent)}
+.t-auto{background:var(--ok-soft);color:var(--ok)}
+dl.faq dt{font-weight:700;margin-top:14px}
+dl.faq dd{margin:4px 0 0}
+footer{color:var(--sub);font-size:13px;text-align:center;margin-top:32px}
+@media print{body{background:#fff}section{break-inside:avoid;border-color:#ccc}nav.toc{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">デリカ部門 原価管理</div>
+  <h1>原材料マスタ 運用マニュアル</h1>
+  <p class="lead">原材料の値上げを、それを使う全商品の原価・粗利率へ自動で反映させるための使い方です。ふだんの作業は「最新の商品台帳を貼り付けて、結果を確認する」だけです。</p>
+</header>
+
+<nav class="toc">
+  <b>目次</b>
+  <ol>
+    <li><a href="#s1">このしくみでできること</a></li>
+    <li><a href="#s2">ファイルの構成</a></li>
+    <li><a href="#s3">いつもの作業（値上げがあったとき）</a></li>
+    <li><a href="#s4">原材料を登録する</a></li>
+    <li><a href="#s5">歩留率の決め方</a></li>
+    <li><a href="#s6">中間品（酢飯・煮物など）を登録する</a></li>
+    <li><a href="#s7">レシピを登録する</a></li>
+    <li><a href="#s8">製造予定から発注数を出す</a></li>
+    <li><a href="#s9">守ってほしいルール</a></li>
+    <li><a href="#s10">困ったとき</a></li>
+  </ol>
+</nav>
+
+<section id="s1">
+  <h2><span class="no">01</span>このしくみでできること</h2>
+  <p>原価の流れを、次の1本の線でつなぎます。</p>
+  <div class="flow">
+    <span>商品台帳（基幹）</span><i>→</i>
+    <span class="hl">原材料マスタ</span><i>→</i>
+    <span class="hl">レシピ</span><i>→</i>
+    <span>商品原価・粗利率</span><i>→</i>
+    <span>取込用ファイル（基幹へ戻す）</span>
+  </div>
+  <ul>
+    <li><b>値上げの反映</b>：原材料の原価が変わると、その材料を使う全商品の原価と粗利率が自動で再計算されます。</li>
+    <li><b>影響商品の一覧</b>：値上げで粗利率が下がった商品だけを抜き出して確認できます。</li>
+    <li><b>実際の使用原価</b>：規格・単位換算・歩留率から「使える1g（1枚・1個）あたりの原価」を自動で出します。</li>
+    <li><b>発注数の算出</b>：製造予定数を入れると、必要な原材料の量と、発注入数で切り上げた発注数が出ます。</li>
+  </ul>
+  <div class="note"><b>いちばん大事な考え方</b>商品の原価は手で入力しません。原材料の単価とレシピから計算します。だから材料が値上がりしても、直すのは材料の1か所だけです。</div>
+</section>
+
+<section id="s2">
+  <h2><span class="no">02</span>ファイルの構成</h2>
+  <p>シートは5つです。<span class="tag t-in">入力</span>は人が触るシート、<span class="tag t-auto">自動</span>は計算結果なので触りません。</p>
+  <div class="tbl"><table>
+    <tr><th>シート名</th><th>区分</th><th>中身</th><th>触る頻度</th></tr>
+    <tr><td>商品台帳</td><td><span class="tag t-in">入力</span></td><td>基幹から出力した商品台帳をそのまま貼り付ける場所</td><td>値上げのたび</td></tr>
+    <tr><td>原材料マスタ</td><td><span class="tag t-in">入力</span></td><td>材料ごとの規格・使用単位・換算数・歩留率</td><td>新しい材料が増えたとき</td></tr>
+    <tr><td>レシピ</td><td><span class="tag t-in">入力</span></td><td>商品（と中間品）ごとの材料と使用量</td><td>新商品・内容変更のとき</td></tr>
+    <tr><td>原価一覧</td><td><span class="tag t-auto">自動</span></td><td>全商品の原価・売価・粗利率、前回からの変化</td><td>見るだけ</td></tr>
+    <tr><td>取込用出力</td><td><span class="tag t-auto">自動</span></td><td>基幹に原価を戻すための取込ファイル</td><td>見るだけ（保存して取り込む）</td></tr>
+  </table></div>
+  <p>製造予定から発注数を出す場合は「製造計画」シートを使います（<a href="#s8">08</a>）。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="no">03</span>いつもの作業（値上げがあったとき）</h2>
+  <p>原価の変更そのものは、これまでどおり基幹システムで行います。このファイルで価格を打ち直す必要はありません。</p>
+  <ol class="steps">
+    <li><b>基幹から最新の商品台帳を出力する</b>いつもの「商品台帳取込用」の形式で出力します。</li>
+    <li><b>「商品台帳」シートに貼り付ける</b>A1セルを選び、前の内容をすべて上書きします。列の並びは変えないでください。</li>
+    <li><b>「原価一覧」を開いて確認する</b>原価が変わった商品に色が付きます。「粗利率 下限割れ」の欄に出た商品が見直し候補です。</li>
+    <li><b>売価を見直すか判断する</b>売価を変える場合は基幹で変更し、次回の台帳に反映させます。</li>
+    <li><b>必要なら取込用ファイルを保存して基幹に取り込む</b>「取込用出力」シートを、指定の形式で保存して取り込みます。</li>
+  </ol>
+  <div class="ok"><b>所要時間の目安</b>貼り付けから確認まで、5〜10分程度です。</div>
+</section>
+
+<section id="s4">
+  <h2><span class="no">04</span>原材料を登録する</h2>
+  <p>「原材料マスタ」に1材料1行で登録します。仕入原価は商品台帳からJANで自動的に引いてきます。</p>
+  <div class="tbl"><table>
+    <tr><th>項目</th><th>区分</th><th>説明</th></tr>
+    <tr><td>原材料ID</td><td><span class="tag t-in">入力</span></td><td><code>ING001</code> のような連番。一度付けたら変えない</td></tr>
+    <tr><td>原材料名</td><td><span class="tag t-in">入力</span></td><td>現場で通じる名前（例：紅鮭 半身）</td></tr>
+    <tr><td>JAN</td><td><span class="tag t-in">入力</span></td><td>商品台帳の商品コード。JANがない材料（市場仕入れなど）は空欄</td></tr>
+    <tr><td>仕入単位の原価</td><td><span class="tag t-auto">自動</span>／<span class="tag t-in">入力</span></td><td>JANがあれば台帳から自動。JANがない材料だけ手入力（税抜き）</td></tr>
+    <tr><td>使用単位</td><td><span class="tag t-in">入力</span></td><td>レシピで使う単位。<code>g</code>・<code>枚</code>・<code>個</code>・<code>ml</code> のどれか</td></tr>
+    <tr><td>換算数</td><td><span class="tag t-in">入力</span></td><td>仕入単位1つが、使用単位でいくつか（例：10kg袋 → 10000）</td></tr>
+    <tr><td>歩留率</td><td><span class="tag t-in">入力</span></td><td>実際に使える割合。捨てる部分がない材料は100%</td></tr>
+    <tr><td>実質単価</td><td><span class="tag t-auto">自動</span></td><td>使用単位1つあたりの本当の原価</td></tr>
+  </table></div>
+
+  <h3>計算式</h3>
+  <div class="calc">実質単価 ＝ 仕入単位の原価 ÷ 換算数 ÷ 歩留率</div>
+
+  <h3>登録例（数字はすべて例です）</h3>
+  <div class="tbl"><table>
+    <tr><th>原材料</th><th>仕入単位</th><th class="n">原価</th><th>使用単位</th><th class="n">換算数</th><th class="n">歩留率</th><th class="n">実質単価</th></tr>
+    <tr><td>白米</td><td>10kg袋</td><td class="n">4,000円</td><td>g</td><td class="n">10,000</td><td class="n">100%</td><td class="n">0.40円/g</td></tr>
+    <tr><td>焼のり 全形</td><td>100枚入</td><td class="n">4,500円</td><td>枚</td><td class="n">100</td><td class="n">100%</td><td class="n">45.00円/枚</td></tr>
+    <tr><td>鮭（ラウンド）</td><td>1尾 約2kg</td><td class="n">2,000円</td><td>g</td><td class="n">2,000</td><td class="n">65%</td><td class="n">1.54円/g</td></tr>
+    <tr><td>おにぎり袋</td><td>1,000枚入</td><td class="n">9,000円</td><td>枚</td><td class="n">1,000</td><td class="n">100%</td><td class="n">9.00円/枚</td></tr>
+  </table></div>
+  <div class="warn"><b>重さが箱ごとに違う材料</b>「1箱8尾」のように重さが一定でない材料は、換算数に<b>1箱の平均重量（g）</b>を入れます。定期的に実測して見直してください。</div>
+</section>
+
+<section id="s5">
+  <h2><span class="no">05</span>歩留率の決め方</h2>
+  <p>歩留率は「仕入れた重さのうち、商品に使える重さの割合」です。骨・皮・端材・解凍時のドリップなど、使わない部分を除いて計ります。</p>
+  <ol class="steps">
+    <li><b>仕入れた状態の重さを量る</b>例：鮭2尾で 4,000g</li>
+    <li><b>下処理して、使える部分だけの重さを量る</b>例：可食部 2,600g</li>
+    <li><b>割り算する</b><span class="f">2,600 ÷ 4,000 ＝ 65%</span></li>
+  </ol>
+  <div class="note"><b>精度を上げるコツ</b>1回だけでなく、2〜3回量った平均を使います。サイズや産地が変わったときは計り直してください。</div>
+</section>
+
+<section id="s6">
+  <h2><span class="no">06</span>中間品（酢飯・煮物など）を登録する</h2>
+  <p>酢飯や煮物のように、まとめて仕込んでから各商品に使うものは「中間品」として登録します。中間品も材料と同じように、レシピの中で使えます。</p>
+  <h3>例：酢飯（数字は例です）</h3>
+  <div class="tbl"><table>
+    <tr><th>材料</th><th class="n">使用量</th><th class="n">原価</th></tr>
+    <tr><td>白米</td><td class="n">3,000g</td><td class="n">1,200円</td></tr>
+    <tr><td>合わせ酢</td><td class="n">450ml</td><td class="n">270円</td></tr>
+    <tr><td colspan="2"><b>仕上がり量 4,200g</b>（炊き上がり＋合わせ酢）</td><td class="n"><b>1,470円</b></td></tr>
+  </table></div>
+  <div class="calc">酢飯の実質単価 ＝ 1,470円 ÷ 4,200g ＝ 0.35円/g</div>
+  <p>煮しめのように「1バットで24食分」と数える場合は、仕上がり量に<b>24（食）</b>、使用単位に<b>食</b>を入れます。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="no">07</span>レシピを登録する</h2>
+  <p>「レシピ」シートに、商品1つにつき材料の数だけ行を作ります。商品はJAN（商品コード）で台帳と結び付きます。</p>
+  <h3>例：鮭おにぎり（数字は例です）</h3>
+  <div class="tbl"><table>
+    <tr><th>商品コード</th><th>材料（ID）</th><th class="n">使用量</th><th>単位</th><th class="n">原価（自動）</th></tr>
+    <tr><td>000xxx</td><td>白米（ING001）</td><td class="n">110</td><td>g</td><td class="n">44.00円</td></tr>
+    <tr><td>000xxx</td><td>鮭（ING003）</td><td class="n">20</td><td>g</td><td class="n">30.77円</td></tr>
+    <tr><td>000xxx</td><td>焼のり 全形（ING002）</td><td class="n">1</td><td>枚</td><td class="n">45.00円</td></tr>
+    <tr><td>000xxx</td><td>おにぎり袋（ING004）</td><td class="n">1</td><td>枚</td><td class="n">9.00円</td></tr>
+    <tr><td colspan="4"><b>商品原価</b></td><td class="n"><b>128.77円</b></td></tr>
+  </table></div>
+  <ul>
+    <li>使用量は、原材料マスタの<b>使用単位</b>で入れます（白米なら g）。</li>
+    <li>包材・シール・調味料など、少額のものも入れてください。積み重なると粗利率が変わります。</li>
+    <li>塩や油など1個あたりの量が量りにくいものは、「1回の仕込み量 ÷ 作った個数」で入れます。</li>
+  </ul>
+</section>
+
+<section id="s8">
+  <h2><span class="no">08</span>製造予定から発注数を出す</h2>
+  <p>「製造計画」シートに、商品と作る数を入れるだけです。</p>
+  <ol class="steps">
+    <li><b>商品と製造予定数を入れる</b>例：鮭おにぎり 50個、ツナマヨおにぎり 40個</li>
+    <li><b>必要量を確認する</b>レシピから材料ごとの必要量が自動で出ます。歩留りで減る分も含まれます。</li>
+    <li><b>発注数を確認する</b>商品台帳の発注入数で切り上げた数が出ます。</li>
+  </ol>
+  <div class="calc">発注数 ＝ 切り上げ（ 必要量 ÷ 1ケースの入数 ）　例：のり 230枚 ÷ 100枚 → 3袋</div>
+  <div class="warn"><b>在庫は差し引いていません</b>表示される発注数は「全部を新しく仕入れる場合」の数です。手元の在庫分は差し引いて発注してください。</div>
+</section>
+
+<section id="s9">
+  <h2><span class="no">09</span>守ってほしいルール</h2>
+  <ol>
+    <li><b>金額はすべて税抜きで入れる。</b>商品台帳が税抜きなので、税込みが混ざると粗利率がずれます。</li>
+    <li><b>商品原価のセルに直接数字を書かない。</b>書くと、材料の値上げが反映されなくなります。</li>
+    <li><b>原価の変更は基幹で行う。</b>JANのある材料の価格をこのファイルで書き換えないでください。次に台帳を貼ると元に戻ります。</li>
+    <li><b>原材料IDは使い回さない。</b>使わなくなった材料は消さずに「廃番」にします。</li>
+    <li><b>新しい材料は先にマスタへ登録してから、レシピで使う。</b></li>
+  </ol>
+</section>
+
+<section id="s10">
+  <h2><span class="no">10</span>困ったとき</h2>
+  <dl class="faq">
+    <dt>原価が「0円」や「#N/A」になる</dt>
+    <dd>JANが商品台帳に見つかっていません。原材料マスタのJANが合っているか、台帳の貼り付けが最新か確認してください。台帳で原価が0円の材料もこう表示されます。</dd>
+    <dt>粗利率が極端に高い・低い</dt>
+    <dd>税込みと税抜きが混ざっていないか、使用量の単位（g と kg、枚と袋）が原材料マスタと合っているかを確認してください。</dd>
+    <dt>JANのない材料（市場仕入れなど）の価格が変わった</dt>
+    <dd>この場合だけ、原材料マスタの「仕入単位の原価」を手で直します。直した日付をメモ欄に残してください。</dd>
+    <dt>新しい商品を追加したい</dt>
+    <dd>基幹で商品を登録 → 台帳を貼り直す → レシピシートにその商品の行を追加、の順です。</dd>
+    <dt>基幹システムが変わったら</dt>
+    <dd>台帳の列の並びが変わるため、「商品台帳」シートの読み取り設定を差し替えます。担当者に連絡してください。原材料マスタとレシピはそのまま使えます。</dd>
+  </dl>
+</section>
+
+<footer>原材料マスタ 運用マニュアル ／ 掲載している数字はすべて説明用の例です</footer>
+</div>
+</body>
+</html>
