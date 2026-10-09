@@ -1,500 +1,302 @@
-<title>小売DX 第1弾計画</title>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>お客様に選ばれ、スタッフが働きやすいお店へ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap">
 <style>
-/* Layout: 資料型の縦長ページ。上部固定ナビ、各章は幅880pxの本文カラムに、表と比較カードだけ広げる。 */
-:root {
-  --bg: #F4F6F8;
-  --surface: #FFFFFF;
-  --fg: #13202C;
-  --muted: #5B6B7A;
-  --line: #D9E0E6;
-  --accent: #0B5C8A;
-  --accent-soft: #E3EFF6;
-  --warn: #A45A06;
-  --warn-soft: #FBEFDD;
-  --ok: #1F7A4D;
-  --font-display: "Zen Kaku Gothic New", "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-  --font-body: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0F1720;
-    --surface: #16212C;
-    --fg: #E6EDF3;
-    --muted: #93A4B4;
-    --line: #263543;
-    --accent: #6DB6E3;
-    --accent-soft: #16303F;
-    --warn: #E3A24F;
-    --warn-soft: #33260F;
-    --ok: #6CC59A;
-    color-scheme: dark;
+  html, body { margin: 0; height: 100%; background: #0B1219; overflow: hidden; font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif; }
+  #viewport { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+  #stage { position: relative; width: 1920px; height: 1080px; flex: none; transform-origin: center center; }
+  #stage > section { position: absolute; inset: 0; width: 1920px; height: 1080px; box-sizing: border-box; overflow: hidden; }
+  #stage > section:not(.active) { display: none !important; }
+  #stage section * { margin: 0; box-sizing: border-box; }
+  #stage section ul, #stage section ol { padding-left: 1.3em; }
+  #stage section li + li { margin-top: 0.1em; }
+  #stage section table { width: 100%; border-collapse: collapse; }
+  #stage section th, #stage section td { padding: 0.35em 0.6em; border-bottom: 1px solid #D9DEE2; vertical-align: top; }
+  #stage section th { border-bottom: 2px solid #0B5C8A; }
+  #stage section b { font-weight: 700; }
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 10px; color: #C7D5DE; font: 500 14px/1 'Zen Kaku Gothic New', sans-serif; background: rgba(11,18,25,.85); opacity: 0; transition: opacity .2s; z-index: 5; }
+  body:hover .bar, .bar:focus-within { opacity: 1; }
+  .bar button { font: inherit; color: #E8EEF2; background: #1B3342; border: 1px solid #2E4A5E; border-radius: 6px; padding: 8px 14px; cursor: pointer; }
+  .bar button:hover, .bar button:focus-visible { background: #0B5C8A; outline: none; }
+  .bar .count { min-width: 64px; text-align: center; font-variant-numeric: tabular-nums; }
+  @media print {
+    html, body { overflow: visible; height: auto; background: #fff; }
+    #viewport { position: static; display: block; }
+    #stage { transform: none !important; width: 1920px; height: auto; }
+    #stage > section, #stage > section:not(.active) { display: flex !important; position: relative; page-break-after: always; break-after: page; }
+    .bar { display: none; }
+    @page { size: 1920px 1080px; margin: 0; }
   }
-}
-:root[data-theme="dark"] {
-  --bg: #0F1720;
-  --surface: #16212C;
-  --fg: #E6EDF3;
-  --muted: #93A4B4;
-  --line: #263543;
-  --accent: #6DB6E3;
-  --accent-soft: #16303F;
-  --warn: #E3A24F;
-  --warn-soft: #33260F;
-  --ok: #6CC59A;
-  color-scheme: dark;
-}
-
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.85;
-  padding-inline: 16px;
-  padding-block: 0 72px;
-}
-a { color: var(--accent); }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-
-.wrap { max-width: 880px; margin-inline: auto; }
-
-/* nav */
-.nav {
-  position: sticky;
-  top: env(safe-area-inset-top, 0px);
-  z-index: 10;
-  background: var(--bg);
-  border-bottom: 1px solid var(--line);
-  margin-inline: -16px;
-  padding-inline: 16px;
-}
-.nav-inner {
-  max-width: 880px;
-  margin-inline: auto;
-  display: flex;
-  gap: 4px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.nav-inner::-webkit-scrollbar { display: none; }
-.nav a {
-  flex: none;
-  padding: 14px 12px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--muted);
-  text-decoration: none;
-  white-space: nowrap;
-  border-bottom: 2px solid transparent;
-}
-.nav a:hover { color: var(--fg); border-bottom-color: var(--accent); }
-
-/* header */
-.hero { padding-block: 56px 40px; }
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  margin: 0 0 16px;
-}
-h1 {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(28px, 6vw, 44px);
-  line-height: 1.35;
-  letter-spacing: 0.01em;
-  margin: 0 0 20px;
-  text-wrap: balance;
-}
-.lead { color: var(--muted); max-width: 40em; margin: 0; }
-
-.pillars {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 12px;
-  margin-top: 36px;
-}
-.pillar {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 18px 20px;
-  min-width: 0;
-}
-.pillar strong {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 18px;
-  line-height: 1.5;
-  margin-bottom: 6px;
-}
-.pillar span { font-size: 14px; color: var(--muted); line-height: 1.7; }
-
-/* sections */
-section { padding-block: 48px 8px; scroll-margin-top: 56px; }
-.sec-label {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  margin: 0 0 8px;
-  text-transform: uppercase;
-}
-h2 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(22px, 4vw, 28px);
-  line-height: 1.5;
-  margin: 0 0 16px;
-  text-wrap: balance;
-}
-h3 {
-  font-family: var(--font-display);
-  font-size: 17px;
-  line-height: 1.6;
-  margin: 28px 0 8px;
-}
-p { margin: 0 0 16px; max-width: 42em; }
-.note { font-size: 14px; color: var(--muted); }
-
-.scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
-table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.7; min-width: 560px; }
-th, td { text-align: left; padding: 12px 16px; vertical-align: top; border-bottom: 1px solid var(--line); }
-th {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: var(--muted);
-  background: var(--accent-soft);
-}
-tr:last-child td { border-bottom: 0; }
-td:first-child { font-weight: 700; white-space: nowrap; }
-td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
-
-/* stats */
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-block: 8px 20px; }
-.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; min-width: 0; }
-.stat .v { font-family: var(--font-mono); font-weight: 700; font-size: 24px; line-height: 1.3; font-variant-numeric: tabular-nums; }
-.stat .v small { font-size: 13px; font-weight: 500; color: var(--muted); margin-left: 2px; }
-.stat .l { font-size: 13px; color: var(--muted); line-height: 1.6; margin-top: 4px; }
-.stat.warn .v { color: var(--warn); }
-
-/* goal box */
-.goal {
-  background: var(--accent-soft);
-  border-radius: 6px;
-  padding: 24px 24px;
-  margin-block: 8px 24px;
-}
-.goal .tag {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  margin: 0 0 8px;
-}
-.goal p { font-family: var(--font-display); font-weight: 700; font-size: clamp(18px, 3.2vw, 22px); line-height: 1.7; margin: 0; max-width: none; }
-
-.defs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
-.def { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; min-width: 0; }
-.def dt { font-family: var(--font-mono); font-size: 12px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 4px; }
-.def dd { margin: 0; font-size: 14px; line-height: 1.7; }
-
-/* formula */
-.formula {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  line-height: 1.9;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 16px 20px;
-  overflow-x: auto;
-}
-.formula b { color: var(--accent); font-weight: 700; }
-.formula .row + .row { margin-top: 8px; }
-
-/* screens */
-.screens { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
-.screen { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px 20px; min-width: 0; }
-.screen .who { font-family: var(--font-mono); font-size: 12px; color: var(--accent); letter-spacing: 0.04em; }
-.screen strong { display: block; font-family: var(--font-display); font-size: 17px; margin: 4px 0 6px; }
-.screen span.d { font-size: 14px; color: var(--muted); line-height: 1.7; display: block; }
-.screen.admin { background: var(--accent-soft); border-style: dashed; }
-
-/* steps (actual sequence) */
-.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: s; }
-.steps li {
-  counter-increment: s;
-  display: grid;
-  grid-template-columns: 56px minmax(0, 1fr);
-  gap: 16px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 18px 20px;
-}
-.steps li::before {
-  content: counter(s);
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 1.2;
-  color: var(--accent);
-}
-.steps .when { font-family: var(--font-mono); font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
-.steps h3 { margin: 0 0 4px; }
-.steps p { margin: 0; font-size: 14px; color: var(--muted); }
-
-/* risks */
-.risks { display: grid; gap: 12px; }
-.risk { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 16px 20px; }
-.risk .level {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  padding: 2px 8px;
-  border-radius: 3px;
-  background: var(--warn-soft);
-  color: var(--warn);
-  margin-bottom: 6px;
-}
-.risk strong { display: block; font-family: var(--font-display); font-size: 16px; line-height: 1.6; margin-bottom: 4px; }
-.risk p { margin: 0; font-size: 14px; color: var(--muted); }
-.risk p b { color: var(--fg); }
-
-/* decide */
-.decide { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-.decide li { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 12px; align-items: start; }
-.decide li::before {
-  content: "";
-  width: 18px; height: 18px; margin-top: 6px;
-  border: 2px solid var(--accent);
-  border-radius: 4px;
-}
-
-footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
-
-@media (max-width: 520px) {
-  .hero { padding-block: 40px 28px; }
-  .steps li { grid-template-columns: 36px minmax(0, 1fr); gap: 12px; padding: 16px; }
-  .goal { padding: 20px; }
-}
 </style>
+</head>
+<body>
+<div id="viewport"><main id="stage" aria-live="polite">
+<section id="cover" data-transition="fade" style="background:#12222E;color:#E8EEF2;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:40px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:4px;color:#7FB8DA">DX SUPPORT PROJECT / 2026.10</p>
+<h1 style="font-size:112px;font-weight:900;line-height:1.2;color:#FFFFFF">お客様に選ばれ、<br>スタッフが働きやすいお店へ</h1>
+<p style="font-size:40px;line-height:1.6;color:#A9BAC6;font-weight:500">その積み重ねの結果として、来年度の売上が前年を上回ることを目指します</p>
 
-<nav class="nav" aria-label="章の移動">
-  <div class="nav-inner">
-    <a href="#policy">方針</a>
-    <a href="#status">現状</a>
-    <a href="#goal">最初のゴール</a>
-    <a href="#redesign">見直し案</a>
-    <a href="#steps">進め方</a>
-    <a href="#risk">リスク</a>
-    <a href="#next">次の一手</a>
-    <a href="#roadmap">1年後まで</a>
-  </div>
-</nav>
-
-<div class="wrap">
-
-<header class="hero">
-  <p class="eyebrow">DX支援プロジェクト / 社内ミーティング資料</p>
-  <h1>既存の原価・発注シートを、現場が迷わず使える形に整える</h1>
-  <p class="lead">商品台帳の実データと、すでに運用中のスプレッドシートを確認しました。要件は既存シートで満たせているため、作り直さずに、現場が触る画面を3つに絞ります。売上5%は目標値にせず、仕組みが回った結果として確認します。</p>
-
-  <div class="pillars">
-    <div class="pillar"><strong>作り直さず、画面を減らす</strong><span>機能は4要件を満たしています。複雑に感じる原因は、見せ方と入力の多さにあります。</span></div>
-    <div class="pillar"><strong>値上げを1か所の入力で反映</strong><span>材料の価格を変えると、使う全商品の原価率までつながります。</span></div>
-    <div class="pillar"><strong>判断は現場、数字は私たち</strong><span>商品の最終判断は統括部長。私たちは根拠の数字と、使いやすい仕組みを整えます。</span></div>
-  </div>
-</header>
-
-<section id="policy">
-  <p class="sec-label">01 / Policy</p>
-  <h2>5%を追わず、動かせる指標を見る</h2>
-  <p>売上5%を直接の目標にすると、値引きで売上だけ上げる動きになりがちです。結果の数字を分解し、現場が動かせる先行指標を見ることで、改善が積み上がる設計にします。</p>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>結果</th><th>先行指標(現場が動かせるもの)</th></tr></thead>
-      <tbody>
-        <tr><td>客数</td><td>欠品率、チラシ・販促への反応</td></tr>
-        <tr><td>客単価</td><td>買い上げ点数、関連陳列、売場の見やすさ</td></tr>
-        <tr><td>粗利率</td><td>部門別の値入、ロス・廃棄、原価の更新漏れ</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="note" style="margin-top:12px">デリカ部門では、原材料の高騰で値上げが続いています。粗利率を守る土台として、原価を最新に保つ仕組みを先に整えます。</p>
 </section>
-
-<section id="status">
-  <p class="sec-label">02 / Current state</p>
-  <h2>現状の把握</h2>
-  <p>商品台帳(1店舗分)と、運用中の「原価・発注管理シート」を確認しました。数値は集計値です。</p>
-
-  <h3>商品台帳の実データ</h3>
-  <div class="stats">
-    <div class="stat"><div class="v">12,823<small>品目</small></div><div class="l">デリカ関連の全部門(27xx台、11部門)</div></div>
-    <div class="stat"><div class="v">6,707<small>件</small></div><div class="l">売価が登録されている品目</div></div>
-    <div class="stat"><div class="v">4,790<small>件</small></div><div class="l">うち原価も登録されている品目</div></div>
-    <div class="stat warn"><div class="v">1,917<small>件</small></div><div class="l">売価はあるが原価が0(自家製の可能性が高い)</div></div>
-    <div class="stat warn"><div class="v">23<small>件</small></div><div class="l">原価が売価より高い(逆ざや)</div></div>
-    <div class="stat warn"><div class="v">44<small>件</small></div><div class="l">原価とPOS原価が不一致</div></div>
-  </div>
-  <p class="note">発注停止フラグが付いた品目も2,451件(全体の約2割)あります。分析の対象は、有効な品目に絞ります。</p>
-
-  <h3>部門別の値入率(登録値ベース)</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>部門コード</th><th>内容(商品名からの推定)</th><th class="num">品目数</th><th class="num">値入率の中央値</th></tr></thead>
-      <tbody>
-        <tr><td>2771</td><td>揚物・惣菜系</td><td class="num">1,681</td><td class="num">45.1%</td></tr>
-        <tr><td>2774</td><td>寿司系</td><td class="num">1,989</td><td class="num">43.8%</td></tr>
-        <tr><td>2770</td><td>弁当・おにぎり系</td><td class="num">2,548</td><td class="num">39.0%</td></tr>
-        <tr><td>2775</td><td>惣菜と外部仕入品の混在</td><td class="num">4,902</td><td class="num">27.6%</td></tr>
-        <tr><td>2772</td><td>おせち</td><td class="num">47</td><td class="num">20.0%</td></tr>
-        <tr><td>2773</td><td>包材・資材(売価なし)</td><td class="num">1,617</td><td class="num">対象外</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="note" style="margin-top:12px">部門の内容は商品名からの推定で、未確認です。値入率は台帳の登録値から計算したもので、最新の原価かどうかは検証していません。台帳には、レシピ・歩留まり・使用量の列がありません。</p>
-
-  <h3>運用中のシートで、すでにできていること</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>要件</th><th>現状</th></tr></thead>
-      <tbody>
-        <tr><td>最新の原価を随時反映</td><td>商品台帳を貼り替えると、全商品の原価が再計算される</td></tr>
-        <tr><td>原材料マスタをJAN等で紐付け</td><td>台帳コードで紐付け。台帳にない材料は独自コードで管理</td></tr>
-        <tr><td>規格・単位単価・歩留率から使用原価</td><td>実質単価(歩留まり込み)で、商品ごとの使用原価を計算</td></tr>
-        <tr><td>製造予定数から必要量と発注数</td><td>必要量から在庫を引き、発注入数で切り上げて発注数を算出</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="formula" style="margin-top:12px">
-    <div class="row"><b>実質単価</b> = 仕入価格 ÷ 内容量 ÷ 歩留率</div>
-    <div class="row"><b>商品の原価</b> = Σ(使用量 × 実質単価)</div>
-    <div class="row"><b>発注数</b> = 切り上げ((必要量 − 在庫) ÷ 内容量 ÷ 発注入数) × 発注入数</div>
-  </div>
-</section>
-
-<section id="goal">
-  <p class="sec-label">03 / First goal</p>
-  <h2>最初の小さなゴール</h2>
-  <div class="goal">
-    <p class="tag">GOAL</p>
-    <p>値上げがあった日に、現場が1か所の入力で、影響する全商品の原価率を確認できる。判断した結果は、翌週に数字で確かめられる。</p>
-  </div>
-  <dl class="defs">
-    <div class="def"><dt>範囲</dt><dd>1店舗、デリカ部門のうち売上上位の製造商品(20品目前後)</dd></div>
-    <div class="def"><dt>現場が触る画面</dt><dd>3つ(値上げ入力、製造・発注、原価一覧)</dd></div>
-    <div class="def"><dt>成果物</dt><dd>見直した原価・発注シートと、1枚の操作手順</dd></div>
-    <div class="def"><dt>完了の定義</dt><dd>実際の値上げ1回分を現場の入力で反映し、原価率の変化を確認した</dd></div>
-  </dl>
-  <p class="note" style="margin-top:16px">部門構成の再定義や棚番別の利益管理は、原価の仕組みが回ってから着手します。</p>
-</section>
-
-<section id="redesign">
-  <p class="sec-label">04 / Redesign</p>
-  <h2>現場が迷わない形への見直し案</h2>
-
-  <h3>複雑に感じる原因(マニュアルと台帳から読み取れたもの)</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>原因</th><th>現状</th><th>見直し案</th></tr></thead>
-      <tbody>
-        <tr><td>画面が多い</td><td>シートが8枚、番号も飛んでいる</td><td>現場の画面を3つに絞り、残りは管理者用に非表示・保護</td></tr>
-        <tr><td>コード入力</td><td>14桁のコードや独自コードを手で入力</td><td>名前をプルダウンで選ぶ。コードは裏で自動的に引く</td></tr>
-        <tr><td>入力項目</td><td>原材料マスタが22列で、入力が10項目超。在庫もここに入力</td><td>現場の入力は、価格・日付・在庫・製造数に絞る</td></tr>
-        <tr><td>発注後の片付け</td><td>製造計画を手で消す。忘れると次回が二重計上</td><td>「発注確定」で自動クリア(実機で検証してから導入)</td></tr>
-        <tr><td>運用パターン</td><td>日々の運用が6パターン(中間品、基幹への書き戻しを含む)</td><td>中間品と書き戻しは第2段階にし、まず台帳品と市場仕入れ材料に集中</td></tr>
-        <tr><td>台帳の貼り替え</td><td>全件・50列をA1から貼る</td><td>必要な列だけの取込シートにし、管理者の作業に分ける</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h3>現場が触る3つの画面</h3>
-  <div class="screens">
-    <div class="screen"><span class="who">現場</span><strong>1. 値上げ入力</strong><span class="d">材料を名前で選び、新しい仕入価格と日付を入れる。1行で完了。</span></div>
-    <div class="screen"><span class="who">現場</span><strong>2. 製造・発注</strong><span class="d">商品を選んで製造数と在庫を入れると、必要量と発注数、発注金額が出る。</span></div>
-    <div class="screen"><span class="who">現場</span><strong>3. 原価一覧</strong><span class="d">見るだけ。原価率、台帳との差、入力不足の品目を確認する。判定は3種類(OK / 要確認 / 入力不足)。</span></div>
-    <div class="screen admin"><span class="who">管理者のみ</span><strong>台帳・マスタ・レシピ</strong><span class="d">台帳の貼り替え、材料とレシピの登録、基幹への取り込み。非表示にして保護する。</span></div>
-  </div>
-</section>
-
-<section id="steps">
-  <p class="sec-label">05 / Process</p>
-  <h2>進め方</h2>
-  <ol class="steps">
-    <li><div><span class="when">1週目</span><h3>現場のつまずきを特定する</h3><p>値上げの反映、レシピ登録、発注計算、コード入力のうち、どこで手が止まるかを担当者に確認します。直す順番が決まります。</p></div></li>
-    <li><div><span class="when">1〜2週目</span><h3>データを整える</h3><p>台帳にない材料の価格を実際の仕入れ値に更新し、対象の約20品目のレシピと歩留まりを現場で確認します。仮値を置き換えます。</p></div></li>
-    <li><div><span class="when">2週目</span><h3>画面を整理する</h3><p>現場の画面を3つに絞り、プルダウン化と在庫入力の移動を行います。実機で数式の動作と速度を確認します。</p></div></li>
-    <li><div><span class="when">2〜3週目</span><h3>現場で試して手順を直す</h3><p>1店舗・1部門で、実際の値上げ1回分を現場の入力で反映します。手が止まった箇所を、その場で直します。</p></div></li>
-    <li><div><span class="when">3週目以降</span><h3>次部門への展開判断</h3><p>回った実感を見て、次の部門・店舗へ広げるかを決めます。</p></div></li>
-  </ol>
-</section>
-
-<section id="risk">
-  <p class="sec-label">06 / Risks</p>
-  <h2>先に共有しておくリスク</h2>
-  <div class="risks">
-    <div class="risk"><span class="level">最重要</span><strong>台帳にない材料の価格更新が止まる</strong><p>市場仕入れなどの材料は、手入力の価格が更新されないと、値上げが反映されません。<b>誰が、どの頻度で更新するか</b>を決める必要があります。</p></div>
-    <div class="risk"><span class="level">要確認</span><strong>自家製品のレシピが未登録</strong><p>売価はあって原価が0の品目が1,917件あります。登録は売上上位から段階的に行い、現場への聞き取りが必要です。</p></div>
-    <div class="risk"><span class="level">要確認</span><strong>仮値のまま使われる</strong><p>シートには、仕入先が「仮」の価格が入っています。実際の価格に置き換えるまで、原価率は参考値です。</p></div>
-    <div class="risk"><span class="level">未検証</span><strong>数式の動作と速度</strong><p>確認できたのは、シートの値とマニュアルです。実データ約1.3万行を載せたときの速度と、見直し後の動作は、実機で検証します。</p></div>
-    <div class="risk"><span class="level">役割</span><strong>支援範囲の線引き</strong><p>商品の判断は統括部長、私たちは仕組みと可視化を担う、と最初に合意します。期待値のずれを防ぐためです。</p></div>
-  </div>
-</section>
-
-<section id="next">
-  <p class="sec-label">07 / Next</p>
-  <h2>次の一手</h2>
-  <h3>ミーティングで決めたいこと</h3>
-  <ul class="decide">
-    <li>第1弾の対象店舗と、レシピを整える約20品目</li>
-    <li>台帳にない材料の価格を、誰が・どの頻度で更新するか</li>
-    <li>現場の画面は3つで進めてよいか(管理者の担当者も決める)</li>
-    <li>週次レビューの担当と、30分の定例の曜日・時間</li>
-  </ul>
-
-  <h3>入手が必要なデータ(1店舗分、Excel出力)</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>内容</th><th>期間</th><th>使い道</th></tr></thead>
-      <tbody>
-        <tr><td>デリカ部門の商品別売上(点数・売上金額・できれば粗利)</td><td>直近4週間</td><td>値上げ後の点数と粗利額の確認</td></tr>
-        <tr><td>デリカ関連の仕入明細(仕入単価が分かるもの)</td><td>直近2〜3か月</td><td>材料価格の更新と、値上がりの把握</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<section id="roadmap">
-  <p class="sec-label">08 / Roadmap</p>
-  <h2>1年後に目指す状態</h2>
-  <p>第1弾は、次の3ステップの入口です。</p>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>ステップ</th><th>内容</th></tr></thead>
-      <tbody>
-        <tr><td>STEP 1</td><td>現場の状況と既存データを把握し、課題を洗い出す(今回の原価管理が該当)</td></tr>
-        <tr><td>STEP 2</td><td>売上分析の指標(部門構成・棚割りなど)を定義し、データを見える化する仕組みを導入準備する</td></tr>
-        <tr><td>STEP 3</td><td>現場オペレーションを評価し、非効率な業務を削減する基本手順(ドラフト)を作る</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p style="margin-top:20px">1年後は、売上分析の仕組みが定着して根拠のある販売計画を立てられ、現場オペレーションが標準化されて社内にノウハウが蓄積されている状態を目指します。売上5%は、この仕組みが回った結果として確認します。</p>
-</section>
-
-<footer>DX支援プロジェクト / 2026年10月更新</footer>
-
+<section id="policy" data-transition="fade" style="background:#F5F6F4;color:#14202A;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#0B5C8A">01 / 方針</p>
+<h2 style="font-size:80px;font-weight:900;line-height:1.15">数字を目標にせず、2つを良くする</h2>
 </div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:44px;border:1px solid #D9DEE2;border-radius:16px">
+<h3 style="font-size:52px;font-weight:700;color:#0B5C8A">お客様の満足</h3>
+<p style="font-size:32px;line-height:1.6">欲しいものがあり、選びやすく、納得して買える売場にする</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:44px;border:1px solid #D9DEE2;border-radius:16px">
+<h3 style="font-size:52px;font-weight:700;color:#0B5C8A">スタッフの作業環境</h3>
+<p style="font-size:32px;line-height:1.6">手作業や迷いを減らし、自動化で、お客様に向き合う時間をつくる</p>
+</div>
+</div>
+<p style="font-size:34px;line-height:1.7;font-weight:700">売上前年比+5%は「結果の目安」です。現場のノルマにはしません。</p>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7782">DX支援プロジェクト</p>
+
+</section>
+<section id="trap" data-transition="fade" style="background:#12222E;color:#E8EEF2;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#7FB8DA">02 / 理由</p>
+<h2 style="font-size:80px;font-weight:900;line-height:1.15;color:#FFFFFF">数字を目標にすると、現場が縛られる</h2>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#1B3342;padding:40px;border-radius:16px">
+<h3 style="font-size:40px;font-weight:700;color:#FFFFFF">数字を作りにいく</h3>
+<p style="font-size:30px;line-height:1.6;color:#C7D5DE">値引きや押し込みで、売上の数字だけを合わせてしまう</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#1B3342;padding:40px;border-radius:16px">
+<h3 style="font-size:40px;font-weight:700;color:#FFFFFF">負担が増える</h3>
+<p style="font-size:30px;line-height:1.6;color:#C7D5DE">報告や入力が増え、お客様と向き合う時間が減る</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#1B3342;padding:40px;border-radius:16px">
+<h3 style="font-size:40px;font-weight:700;color:#FFFFFF">実態が見えなくなる</h3>
+<p style="font-size:30px;line-height:1.6;color:#C7D5DE">値上げの影響で、金額だけが上がっても、実力の伸びは分からない</p>
+</div>
+</div>
+<p style="font-size:34px;line-height:1.7;font-weight:700;color:#FFFFFF">だから、目標は「お客様の満足」と「スタッフの作業環境」に置きます。</p>
+
+</section>
+<section id="chain" data-transition="fade" style="background:#F5F6F4;color:#14202A;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#0B5C8A">03 / 考え方</p>
+<h2 style="font-size:80px;font-weight:900;line-height:1.15">良くした結果として、数字がついてくる</h2>
+</div>
+<div style="display:flex;align-items:center;gap:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px 24px;border:1px solid #D9DEE2;border-radius:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#0B5C8A">1</p>
+<h3 style="font-size:34px;font-weight:700">手間が減る</h3>
+<p style="font-size:28px;line-height:1.5;color:#3A4651">発注・原価の作業を自動化する</p>
+</div>
+<div aria-hidden="true" style="background:#0B5C8A;width:56px;height:36px;clip-path:polygon(0 28%,58% 28%,58% 0,100% 50%,58% 100%,58% 72%,0 72%)"></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px 24px;border:1px solid #D9DEE2;border-radius:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#0B5C8A">2</p>
+<h3 style="font-size:34px;font-weight:700">時間が生まれる</h3>
+<p style="font-size:28px;line-height:1.5;color:#3A4651">売場づくりと接客に回せる</p>
+</div>
+<div aria-hidden="true" style="background:#0B5C8A;width:56px;height:36px;clip-path:polygon(0 28%,58% 28%,58% 0,100% 50%,58% 100%,58% 72%,0 72%)"></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px 24px;border:1px solid #D9DEE2;border-radius:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#0B5C8A">3</p>
+<h3 style="font-size:34px;font-weight:700">満足が高まる</h3>
+<p style="font-size:28px;line-height:1.5;color:#3A4651">欠品が減り、選びやすくなる</p>
+</div>
+<div aria-hidden="true" style="background:#0B5C8A;width:56px;height:36px;clip-path:polygon(0 28%,58% 28%,58% 0,100% 50%,58% 100%,58% 72%,0 72%)"></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#E1EDF4;padding:32px 24px;border:1px solid #0B5C8A;border-radius:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#0B5C8A">4</p>
+<h3 style="font-size:34px;font-weight:700">結果として</h3>
+<p style="font-size:28px;line-height:1.5;color:#14202A">客数・買い上げが増え、売上が伸びる</p>
+</div>
+</div>
+<p style="font-size:32px;line-height:1.7;color:#3A4651">4の「売上」は結果です。現場が直接追いかけるのは、1から3です。</p>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7782">DX支援プロジェクト</p>
+
+</section>
+<section id="pillars" data-transition="fade" style="background:#F5F6F4;color:#14202A;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#0B5C8A">04 / 取り組みの柱</p>
+<h2 style="font-size:80px;font-weight:900;line-height:1.15">お客様のために、スタッフのために</h2>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFFFF;padding:40px;border:1px solid #D9DEE2;border-radius:16px">
+<h3 style="font-size:44px;font-weight:700;color:#0B5C8A">お客様のために</h3>
+<ul style="font-size:32px;line-height:1.8;color:#3A4651">
+<li>欠品を減らす</li>
+<li>選びやすく、買いやすい売場にする</li>
+<li>価格の変化を、分かりやすく伝える</li>
+</ul>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFFFF;padding:40px;border:1px solid #D9DEE2;border-radius:16px">
+<h3 style="font-size:44px;font-weight:700;color:#0B5C8A">スタッフのために</h3>
+<ul style="font-size:32px;line-height:1.8;color:#3A4651">
+<li>発注・原価の手作業を自動化する</li>
+<li>迷わず、続けられる手順にする</li>
+<li>空いた時間を、売場と接客に回す</li>
+</ul>
+</div>
+</div>
+<p style="font-size:32px;line-height:1.7;font-weight:700">第1弾は、スタッフの手間が大きい「発注・原価」から始めます。</p>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7782">DX支援プロジェクト</p>
+
+</section>
+<section id="watch" data-transition="fade" style="background:#F5F6F4;color:#14202A;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#0B5C8A">05 / 振り返り</p>
+<h2 style="font-size:80px;font-weight:900;line-height:1.15">数字は、振り返りのために見る</h2>
+</div>
+<table style="font-size:30px;color:#14202A">
+<tr><th style="width:20%;text-align:left;font-weight:700;color:#0B5C8A">見るもの</th><th style="width:46%;text-align:left;font-weight:700;color:#0B5C8A">例</th><th style="width:34%;text-align:left;font-weight:700;color:#0B5C8A">使い方</th></tr>
+<tr><td style="font-weight:700">お客様の反応</td><td>欠品の状況、買い上げ点数、お客様の声</td><td>売場の改善に使う</td></tr>
+<tr><td style="font-weight:700">スタッフの負担</td><td>作業時間、入力の手間、現場の声</td><td>自動化・手順の改善に使う</td></tr>
+<tr><td style="font-weight:700">結果の確認</td><td>売上の前年比（目安+5%）、粗利</td><td>評価やノルマには使わない</td></tr>
+</table>
+<p style="font-size:30px;line-height:1.6;color:#566573">売上は、値上げの影響を除いた見方も添えて、実態が分かるようにします。毎月、現場の声と一緒に振り返ります。</p>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7782">DX支援プロジェクト</p>
+
+</section>
+<section id="deli" data-transition="fade" style="background:#12222E;color:#E8EEF2;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#7FB8DA">06 / 第1弾</p>
+<h2 style="font-size:80px;font-weight:900;line-height:1.15;color:#FFFFFF">スタッフの発注・原価の手間を減らす</h2>
+</div>
+<p style="font-size:34px;line-height:1.6;color:#C7D5DE">デリカ部門の原価・発注管理で、試作が動いています。値上げのたびの確認と、発注数の計算を、シートで自動化します。</p>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#1B3342;padding:36px;border-radius:16px">
+<h3 style="font-size:40px;font-weight:700;color:#FFFFFF">値上げ入力</h3>
+<p style="font-size:30px;line-height:1.6;color:#C7D5DE">材料の新しい価格を1行入れる。履歴も残る</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#1B3342;padding:36px;border-radius:16px">
+<h3 style="font-size:40px;font-weight:700;color:#FFFFFF">製造・発注</h3>
+<p style="font-size:30px;line-height:1.6;color:#C7D5DE">製造数と在庫から、発注数と金額を出す</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#1B3342;padding:36px;border-radius:16px">
+<h3 style="font-size:40px;font-weight:700;color:#FFFFFF">原価一覧</h3>
+<p style="font-size:30px;line-height:1.6;color:#C7D5DE">原価率を、OK・要確認・入力不足で知らせる</p>
+</div>
+</div>
+<p style="font-size:30px;line-height:1.7;color:#E8EEF2">次は、実際の価格とレシピに置き換え、現場で使いやすいかを確かめます。</p>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#8FA3B1">DX支援プロジェクト</p>
+
+</section>
+<section id="roadmap" data-transition="fade" style="background:#F5F6F4;color:#14202A;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#0B5C8A">07 / 1年の道筋(案)</p>
+<h2 style="font-size:80px;font-weight:900;line-height:1.15">現場の声を聞きながら、一歩ずつ</h2>
+</div>
+<div style="display:flex;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px;border:1px solid #D9DEE2;border-radius:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:28px;color:#0B5C8A">STEP 1</p>
+<h3 style="font-size:36px;font-weight:700">手間を洗い出す</h3>
+<p style="font-size:28px;line-height:1.6;color:#3A4651">現場の声を聞く。第1弾のデリカ原価・発注管理</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px;border:1px solid #D9DEE2;border-radius:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:28px;color:#0B5C8A">STEP 2</p>
+<h3 style="font-size:36px;font-weight:700">自動化を広げる</h3>
+<p style="font-size:28px;line-height:1.6;color:#3A4651">売場の状況が分かる仕組みを整え、他の部門にも広げる</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px;border:1px solid #D9DEE2;border-radius:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:28px;color:#0B5C8A">STEP 3</p>
+<h3 style="font-size:36px;font-weight:700">手順を標準化する</h3>
+<p style="font-size:28px;line-height:1.6;color:#3A4651">無理なく続く基本手順を作り、時間を売場と接客に回す</p>
+</div>
+</div>
+<p style="font-size:32px;line-height:1.7;font-weight:700">毎月、現場の声と数字を一緒に振り返り、次の改善を決めます。</p>
+<p style="font-size:28px;line-height:1.6;color:#566573">時期は案です。来年度の開始時期と、現場の状況に合わせて決めます。</p>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7782">DX支援プロジェクト</p>
+
+</section>
+<section id="risks" data-transition="fade" style="background:#F5F6F4;color:#14202A;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#0B5C8A">08 / リスク</p>
+<h2 style="font-size:80px;font-weight:900;line-height:1.15">先に共有しておくリスク</h2>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:24px">
+<div style="display:flex;flex-direction:column;gap:8px;background:#FFFFFF;padding:28px 32px;border:1px solid #D9DEE2;border-radius:16px">
+<h3 style="font-size:34px;font-weight:700;color:#B45309">数字がノルマになる</h3>
+<p style="font-size:28px;line-height:1.5;color:#3A4651">目安のつもりが、現場には目標として伝わってしまう</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#FFFFFF;padding:28px 32px;border:1px solid #D9DEE2;border-radius:16px">
+<h3 style="font-size:34px;font-weight:700;color:#B45309">現場の負担が増える</h3>
+<p style="font-size:28px;line-height:1.5;color:#3A4651">入力が増えると続かない。入力は最小限にする</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#FFFFFF;padding:28px 32px;border:1px solid #D9DEE2;border-radius:16px">
+<h3 style="font-size:34px;font-weight:700;color:#B45309">材料価格の更新が止まる</h3>
+<p style="font-size:28px;line-height:1.5;color:#3A4651">台帳にない材料は手入力。更新の担当と頻度が必要</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#FFFFFF;padding:28px 32px;border:1px solid #D9DEE2;border-radius:16px">
+<h3 style="font-size:34px;font-weight:700;color:#B45309">値上げで数字だけが上がる</h3>
+<p style="font-size:28px;line-height:1.5;color:#3A4651">金額だけでは実態が分からない。実質の見方も添える</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#FFFFFF;padding:28px 32px;border:1px solid #D9DEE2;border-radius:16px">
+<h3 style="font-size:34px;font-weight:700;color:#B45309">前年データが未入手</h3>
+<p style="font-size:28px;line-height:1.5;color:#3A4651">目安の+5%が妥当かを、数字で確認できていない</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7782">DX支援プロジェクト</p>
+
+</section>
+<section id="decide" data-transition="fade" style="background:#0B5C8A;color:#FFFFFF;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#CDE4F2">09 / 決めたいこと</p>
+<h2 style="font-size:80px;font-weight:900;line-height:1.15">次回のミーティングで決めること</h2>
+</div>
+<ol style="font-size:38px;line-height:1.9;font-weight:500">
+<li>目標の伝え方(売上前年比+5%は目安で、ノルマにしない)</li>
+<li>前年同期の売上データの提供(目安を確認するため)</li>
+<li>第1弾の対象店舗と、レシピを整える約20品目</li>
+<li>台帳にない材料の価格を、誰が・どの頻度で更新するか</li>
+<li>月次の振り返りの担当と、現場の声の集め方</li>
+</ol>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#CDE4F2">DX支援プロジェクト</p>
+
+</section>
+</main></div>
+<nav class="bar" aria-label="スライド操作">
+  <button id="prev" type="button" aria-label="前のスライド">← 前へ</button>
+  <span class="count" id="count">1 / 10</span>
+  <button id="next" type="button" aria-label="次のスライド">次へ →</button>
+</nav>
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('#stage > section'));
+  var stage = document.getElementById('stage');
+  var count = document.getElementById('count');
+  var i = 0;
+  function fit() {
+    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    stage.style.transform = 'scale(' + s + ')';
+  }
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function (el, k) { el.classList.toggle('active', k === i); });
+    count.textContent = (i + 1) + ' / ' + slides.length;
+    try { history.replaceState(null, '', '#' + (i + 1)); } catch (e) {}
+  }
+  document.getElementById('prev').addEventListener('click', function () { show(i - 1); });
+  document.getElementById('next').addEventListener('click', function () { show(i + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(i + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(i - 1); }
+    else if (e.key === 'Home') show(0);
+    else if (e.key === 'End') show(slides.length - 1);
+  });
+  var x0 = null;
+  document.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
+  });
+  window.addEventListener('resize', fit);
+  var start = parseInt((location.hash || '').replace('#', ''), 10);
+  fit();
+  show(isNaN(start) ? 0 : start - 1);
+})();
+</script>
+</body>
+</html>
