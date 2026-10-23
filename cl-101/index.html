@@ -1,302 +1,500 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>お客様に選ばれ、スタッフが働きやすいお店へ</title>
+<meta name="robots" content="noindex, nofollow">
+<title>前年比+5% 成長戦略</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  html, body { margin: 0; height: 100%; background: #0B1219; overflow: hidden; font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif; }
-  #viewport { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
-  #stage { position: relative; width: 1920px; height: 1080px; flex: none; transform-origin: center center; }
-  #stage > section { position: absolute; inset: 0; width: 1920px; height: 1080px; box-sizing: border-box; overflow: hidden; }
-  #stage > section:not(.active) { display: none !important; }
-  #stage section * { margin: 0; box-sizing: border-box; }
-  #stage section ul, #stage section ol { padding-left: 1.3em; }
-  #stage section li + li { margin-top: 0.1em; }
-  #stage section table { width: 100%; border-collapse: collapse; }
-  #stage section th, #stage section td { padding: 0.35em 0.6em; border-bottom: 1px solid #D9DEE2; vertical-align: top; }
-  #stage section th { border-bottom: 2px solid #0B5C8A; }
-  #stage section b { font-weight: 700; }
-  .bar { position: fixed; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 10px; color: #C7D5DE; font: 500 14px/1 'Zen Kaku Gothic New', sans-serif; background: rgba(11,18,25,.85); opacity: 0; transition: opacity .2s; z-index: 5; }
-  body:hover .bar, .bar:focus-within { opacity: 1; }
-  .bar button { font: inherit; color: #E8EEF2; background: #1B3342; border: 1px solid #2E4A5E; border-radius: 6px; padding: 8px 14px; cursor: pointer; }
-  .bar button:hover, .bar button:focus-visible { background: #0B5C8A; outline: none; }
-  .bar .count { min-width: 64px; text-align: center; font-variant-numeric: tabular-nums; }
-  @media print {
-    html, body { overflow: visible; height: auto; background: #fff; }
-    #viewport { position: static; display: block; }
-    #stage { transform: none !important; width: 1920px; height: auto; }
-    #stage > section, #stage > section:not(.active) { display: flex !important; position: relative; page-break-after: always; break-after: page; }
-    .bar { display: none; }
-    @page { size: 1920px 1080px; margin: 0; }
-  }
+:root{--bg:#fbfaf7;--paper:#ffffff;--ink:#1f2328;--quiet:#5f6670;--edge:#b9b6ab;--grid:#e6e3da;--accent:#2f6fd0;--accent-bg:rgba(47,111,208,.12);--good:#3fa65a;--bad:#d2584f;--muted:#c2c0b4;--tint:#efede6;--rule:#e6e3da;--th:#f4f2ec}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#17191c;--paper:#1e2125;--ink:#e8e6e1;--quiet:#a3a8b0;--edge:#5c5f66;--grid:#33363c;--accent:#6ea1ee;--accent-bg:rgba(110,161,238,.16);--good:#5cc177;--bad:#e5766d;--muted:#5d5f63;--tint:#2a2d32;--rule:#33363c;--th:#24272b}}
+:root[data-theme="dark"]{--bg:#17191c;--paper:#1e2125;--ink:#e8e6e1;--quiet:#a3a8b0;--edge:#5c5f66;--grid:#33363c;--accent:#6ea1ee;--accent-bg:rgba(110,161,238,.16);--good:#5cc177;--bad:#e5766d;--muted:#5d5f63;--tint:#2a2d32;--rule:#33363c;--th:#24272b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans JP",system-ui,-apple-system,"Hiragino Sans",sans-serif;font-size:16px;line-height:1.8;font-feature-settings:"palt"}
+.wrap{max-width:820px;margin:0 auto;padding:48px 16px 96px}
+header{border-bottom:2px solid var(--ink);padding-bottom:20px;margin-bottom:28px}
+.kicker{font-size:13px;color:var(--quiet);letter-spacing:.08em}
+h1{font-size:30px;line-height:1.35;margin:6px 0 10px;font-weight:700}
+.meta{font-size:13px;color:var(--quiet)}
+nav.toc{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:16px 20px;margin:0 0 40px}
+nav.toc strong{font-size:13px;color:var(--quiet);font-weight:600}
+nav.toc ol{margin:8px 0 0;padding-left:1.4em;columns:2;column-gap:32px;font-size:14px}
+nav.toc a{color:var(--ink);text-decoration:none}
+nav.toc a:hover{color:var(--accent)}
+h2{font-size:22px;margin:56px 0 14px;padding-top:8px;border-top:1px solid var(--rule);font-weight:700}
+h3{font-size:17px;margin:32px 0 10px;font-weight:600}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 16px;padding-left:1.4em}
+li{margin:4px 0}
+a{color:var(--accent)}
+strong{font-weight:600}
+table{width:100%;border-collapse:collapse;margin:8px 0 20px;font-size:14px;background:var(--paper)}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+th,td{border:1px solid var(--rule);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--th);font-weight:600;white-space:nowrap}
+.note{font-size:13px;color:var(--quiet)}
+.formula{background:var(--paper);border:1px solid var(--rule);border-left:3px solid var(--accent);padding:12px 16px;margin:8px 0 18px;font-weight:600}
+figure.viz{margin:20px 0 24px;background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:12px 8px 8px}
+figure.viz{overflow-x:auto;-webkit-overflow-scrolling:touch}
+figure.viz svg{display:block;width:100%;min-width:640px;height:auto;font-family:inherit}
+figcaption{font-size:12px;color:var(--quiet);padding:4px 12px 0}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:0}
+.dot.red{background:#d2584f}.dot.yellow{background:#e0b53a}.dot.green{background:#3fa65a}.dot.blue{background:#2f6fd0}
+ul.checks{list-style:none;padding-left:0}
+ul.checks li::before{content:"";display:inline-block;width:14px;height:14px;border:1.5px solid var(--quiet);border-radius:3px;margin-right:10px;vertical-align:-2px}
+footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--rule);font-size:12px;color:var(--quiet)}
+@media (max-width:640px){h1{font-size:24px}nav.toc ol{columns:1}body{font-size:15px}}
+@media print{body{background:#fff}nav.toc{display:none}h2{break-after:avoid}figure,table{break-inside:avoid}}
 </style>
 </head>
 <body>
-<div id="viewport"><main id="stage" aria-live="polite">
-<section id="cover" data-transition="fade" style="background:#12222E;color:#E8EEF2;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:40px">
-<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:4px;color:#7FB8DA">DX SUPPORT PROJECT / 2026.10</p>
-<h1 style="font-size:112px;font-weight:900;line-height:1.2;color:#FFFFFF">お客様に選ばれ、<br>スタッフが働きやすいお店へ</h1>
-<p style="font-size:40px;line-height:1.6;color:#A9BAC6;font-weight:500">その積み重ねの結果として、来年度の売上が前年を上回ることを目指します</p>
-
-</section>
-<section id="policy" data-transition="fade" style="background:#F5F6F4;color:#14202A;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
-<div style="display:flex;flex-direction:column;gap:16px">
-<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#0B5C8A">01 / 方針</p>
-<h2 style="font-size:80px;font-weight:900;line-height:1.15">数字を目標にせず、2つを良くする</h2>
-</div>
-<div style="display:flex;gap:32px">
-<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:44px;border:1px solid #D9DEE2;border-radius:16px">
-<h3 style="font-size:52px;font-weight:700;color:#0B5C8A">お客様の満足</h3>
-<p style="font-size:32px;line-height:1.6">欲しいものがあり、選びやすく、納得して買える売場にする</p>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:44px;border:1px solid #D9DEE2;border-radius:16px">
-<h3 style="font-size:52px;font-weight:700;color:#0B5C8A">スタッフの作業環境</h3>
-<p style="font-size:32px;line-height:1.6">手作業や迷いを減らし、自動化で、お客様に向き合う時間をつくる</p>
-</div>
-</div>
-<p style="font-size:34px;line-height:1.7;font-weight:700">売上前年比+5%は「結果の目安」です。現場のノルマにはしません。</p>
-<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7782">DX支援プロジェクト</p>
-
-</section>
-<section id="trap" data-transition="fade" style="background:#12222E;color:#E8EEF2;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
-<div style="display:flex;flex-direction:column;gap:16px">
-<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#7FB8DA">02 / 理由</p>
-<h2 style="font-size:80px;font-weight:900;line-height:1.15;color:#FFFFFF">数字を目標にすると、現場が縛られる</h2>
-</div>
-<div style="display:flex;gap:32px">
-<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#1B3342;padding:40px;border-radius:16px">
-<h3 style="font-size:40px;font-weight:700;color:#FFFFFF">数字を作りにいく</h3>
-<p style="font-size:30px;line-height:1.6;color:#C7D5DE">値引きや押し込みで、売上の数字だけを合わせてしまう</p>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#1B3342;padding:40px;border-radius:16px">
-<h3 style="font-size:40px;font-weight:700;color:#FFFFFF">負担が増える</h3>
-<p style="font-size:30px;line-height:1.6;color:#C7D5DE">報告や入力が増え、お客様と向き合う時間が減る</p>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#1B3342;padding:40px;border-radius:16px">
-<h3 style="font-size:40px;font-weight:700;color:#FFFFFF">実態が見えなくなる</h3>
-<p style="font-size:30px;line-height:1.6;color:#C7D5DE">値上げの影響で、金額だけが上がっても、実力の伸びは分からない</p>
-</div>
-</div>
-<p style="font-size:34px;line-height:1.7;font-weight:700;color:#FFFFFF">だから、目標は「お客様の満足」と「スタッフの作業環境」に置きます。</p>
-
-</section>
-<section id="chain" data-transition="fade" style="background:#F5F6F4;color:#14202A;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
-<div style="display:flex;flex-direction:column;gap:16px">
-<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#0B5C8A">03 / 考え方</p>
-<h2 style="font-size:80px;font-weight:900;line-height:1.15">良くした結果として、数字がついてくる</h2>
-</div>
-<div style="display:flex;align-items:center;gap:16px">
-<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px 24px;border:1px solid #D9DEE2;border-radius:16px">
-<p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#0B5C8A">1</p>
-<h3 style="font-size:34px;font-weight:700">手間が減る</h3>
-<p style="font-size:28px;line-height:1.5;color:#3A4651">発注・原価の作業を自動化する</p>
-</div>
-<div aria-hidden="true" style="background:#0B5C8A;width:56px;height:36px;clip-path:polygon(0 28%,58% 28%,58% 0,100% 50%,58% 100%,58% 72%,0 72%)"></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px 24px;border:1px solid #D9DEE2;border-radius:16px">
-<p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#0B5C8A">2</p>
-<h3 style="font-size:34px;font-weight:700">時間が生まれる</h3>
-<p style="font-size:28px;line-height:1.5;color:#3A4651">売場づくりと接客に回せる</p>
-</div>
-<div aria-hidden="true" style="background:#0B5C8A;width:56px;height:36px;clip-path:polygon(0 28%,58% 28%,58% 0,100% 50%,58% 100%,58% 72%,0 72%)"></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px 24px;border:1px solid #D9DEE2;border-radius:16px">
-<p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#0B5C8A">3</p>
-<h3 style="font-size:34px;font-weight:700">満足が高まる</h3>
-<p style="font-size:28px;line-height:1.5;color:#3A4651">欠品が減り、選びやすくなる</p>
-</div>
-<div aria-hidden="true" style="background:#0B5C8A;width:56px;height:36px;clip-path:polygon(0 28%,58% 28%,58% 0,100% 50%,58% 100%,58% 72%,0 72%)"></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#E1EDF4;padding:32px 24px;border:1px solid #0B5C8A;border-radius:16px">
-<p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#0B5C8A">4</p>
-<h3 style="font-size:34px;font-weight:700">結果として</h3>
-<p style="font-size:28px;line-height:1.5;color:#14202A">客数・買い上げが増え、売上が伸びる</p>
-</div>
-</div>
-<p style="font-size:32px;line-height:1.7;color:#3A4651">4の「売上」は結果です。現場が直接追いかけるのは、1から3です。</p>
-<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7782">DX支援プロジェクト</p>
-
-</section>
-<section id="pillars" data-transition="fade" style="background:#F5F6F4;color:#14202A;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
-<div style="display:flex;flex-direction:column;gap:16px">
-<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#0B5C8A">04 / 取り組みの柱</p>
-<h2 style="font-size:80px;font-weight:900;line-height:1.15">お客様のために、スタッフのために</h2>
-</div>
-<div style="display:flex;gap:32px">
-<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFFFF;padding:40px;border:1px solid #D9DEE2;border-radius:16px">
-<h3 style="font-size:44px;font-weight:700;color:#0B5C8A">お客様のために</h3>
-<ul style="font-size:32px;line-height:1.8;color:#3A4651">
-<li>欠品を減らす</li>
-<li>選びやすく、買いやすい売場にする</li>
-<li>価格の変化を、分かりやすく伝える</li>
+<div class="wrap">
+<header>
+<div class="kicker">スーパー案件 ／ 相談用ドラフト</div>
+<h1>前年比+5% 成長戦略とデータ経営基盤</h1>
+<div class="meta">2026年10月23日 ／ 数値は公開統計と仮定にもとづく試算です</div>
+</header>
+<nav class="toc"><strong>目次</strong><ol><li><a href="#s1">エグゼクティブサマリー</a></li><li><a href="#s2">+5%目標の意味と現状認識</a></li><li><a href="#s3">合格ライン（年・月・日）の考え方</a></li><li><a href="#s4">ネットスーパー採算ライン</a></li><li><a href="#s5">+5%の施策ポートフォリオ</a></li><li><a href="#s6">経営ダッシュボード設計</a></li><li><a href="#s7">DX開発ロードマップと費用対効果</a></li><li><a href="#s8">発信・採用戦略</a></li><li><a href="#s9">リスクと前提</a></li><li><a href="#s10">金庫役員との相談論点</a></li><li><a href="#s11">出典</a></li></ol></nav>
+<main>
+<h2 id="s1">エグゼクティブサマリー</h2>
+<p>前年比+5%はノルマではなく目安です。前回提案の方針どおり「お客様の満足」と「スタッフの作業環境」を良くした結果として売上を伸ばし、その進み具合を毎日・毎月の前年比で全員が感じられる仕組みを作ります。地域平均（北海道・東北の既存店 +1.9%）を3ポイント上回る水準で、施策の実行率75%なら届く設計にしています。</p>
+<p><strong>考え方の流れ</strong>：手間が減る → 時間が生まれる → お客様の満足が高まる → 売上が伸びる。現場が直接追うのは前の3つで、売上は結果として確認します。第1弾のデリカ部門の原価・発注の自動化はすでに試作が稼働しており、この流れの起点です。</p>
+<ul>
+<li><strong>土台はデータ</strong>：POSの毎時の時報は各部署マネージャーに届いているが、店全体で集約・分析されていない。まず日報・月報を自動化し、前年同曜日比を全員が毎日見る状態を作る。</li>
+<li><strong>前年比を色で知らせる</strong>：前年割れ（赤）／前年超え（黄）／地域平均+1.9%以上（緑）／+5%ペース（青）。色は気づきのためで、個人や部門の評価・ノルマには使わない。値上げの影響を除いた見方（買上点数）と粗利も並べる。人口から逆算する市場規模は、シェアの妥当性を確認する補助線として使う。</li>
+<li><strong>ネットスーパーは採算ラインを月報に載せる</strong>：月額200万円の固定費を回収するには、仮定次第で月商およそ1,200万〜2,200万円が必要。交渉後150万円、自社化30万円の場合も並べて経営判断の材料にする。</li>
+<li><strong>DXは売上→コスト→発信の順</strong>：AI・自動化は①売上増、②コスト削減に効くものから優先し、③食品ロスや先進的な取り組みをSNSで発信して採用につなげる。</li>
+<li><strong>ダッシュボード1枚で全部が見える</strong>：売上の前年比、現場の負担と満足、ネットスーパー採算、自動化の費用対効果、開発の進捗を同じ画面で追う。</li>
 </ul>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFFFF;padding:40px;border:1px solid #D9DEE2;border-radius:16px">
-<h3 style="font-size:44px;font-weight:700;color:#0B5C8A">スタッフのために</h3>
-<ul style="font-size:32px;line-height:1.8;color:#3A4651">
-<li>発注・原価の手作業を自動化する</li>
-<li>迷わず、続けられる手順にする</li>
-<li>空いた時間を、売場と接客に回す</li>
-</ul>
-</div>
-</div>
-<p style="font-size:32px;line-height:1.7;font-weight:700">第1弾は、スタッフの手間が大きい「発注・原価」から始めます。</p>
-<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7782">DX支援プロジェクト</p>
-
-</section>
-<section id="watch" data-transition="fade" style="background:#F5F6F4;color:#14202A;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
-<div style="display:flex;flex-direction:column;gap:16px">
-<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#0B5C8A">05 / 振り返り</p>
-<h2 style="font-size:80px;font-weight:900;line-height:1.15">数字は、振り返りのために見る</h2>
-</div>
-<table style="font-size:30px;color:#14202A">
-<tr><th style="width:20%;text-align:left;font-weight:700;color:#0B5C8A">見るもの</th><th style="width:46%;text-align:left;font-weight:700;color:#0B5C8A">例</th><th style="width:34%;text-align:left;font-weight:700;color:#0B5C8A">使い方</th></tr>
-<tr><td style="font-weight:700">お客様の反応</td><td>欠品の状況、買い上げ点数、お客様の声</td><td>売場の改善に使う</td></tr>
-<tr><td style="font-weight:700">スタッフの負担</td><td>作業時間、入力の手間、現場の声</td><td>自動化・手順の改善に使う</td></tr>
-<tr><td style="font-weight:700">結果の確認</td><td>売上の前年比（目安+5%）、粗利</td><td>評価やノルマには使わない</td></tr>
+<h2 id="s2">+5%目標の意味と現状認識</h2>
+<p>+5%は地域平均の約2.6倍の伸びで、しかも人口が毎年約1%減る中での数字です。市場が縮む分を取り返したうえで、他店からシェアを取る必要があります。</p>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>数値</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>スーパー既存店 前年比（全国、2025年）</td>
+<td>+2.8%</td>
+<td>業界全体の平均点</td>
+</tr>
+<tr>
+<td>スーパー既存店 前年比（北海道・東北、2025年）</td>
+<td>+1.9%</td>
+<td>この地域の平均点＝合格ライン</td>
+</tr>
+<tr>
+<td>食料支出 実質前年比（全国、2025年）</td>
+<td>−1.2%</td>
+<td>名目は+5.5%。伸びの大半は値上げ分</td>
+</tr>
+<tr>
+<td>中標津町の人口（住民基本台帳）</td>
+<td>2021年 23,216人 → 2025年 22,067人</td>
+<td>年約1%の減少</td>
+</tr>
+<tr>
+<td>根室管内の近隣町人口（2025年1月）</td>
+<td>別海13,964人・標津4,798人・羅臼4,267人</td>
+<td>広域の商圏</td>
+</tr>
+</tbody>
 </table>
-<p style="font-size:30px;line-height:1.6;color:#566573">売上は、値上げの影響を除いた見方も添えて、実態が分かるようにします。毎月、現場の声と一緒に振り返ります。</p>
-<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7782">DX支援プロジェクト</p>
+<p><strong>読み方の注意</strong>：業界の伸びは主に値上げによる名目の伸びです。物価の上昇が止まれば「平均点」も下がります。実際、2026年1月の北海道・東北の既存店は前年比−0.2%でした。+5%は、値上げの追い風が弱まっても施策で届く設計にする必要があります。</p>
+<p><strong>強み</strong>：中標津は根室管内の買い物拠点で、近隣町の住民が集まる地域です。週末型の大型店とゲームセンターは、この「広域の目的地」としての役割と相性が良い資産です。</p>
+<h2 id="s3">合格ライン（年・月・日）の考え方</h2>
+<p>合格ラインは「人口から逆算した金額」ではなく「前年の同じ曜日・同じ月の実績×係数」で引きます。人口と競合から出す市場規模は誤差が大きく、毎日の判定には使えないためです。市場規模は、シェアが現実的かを確かめる補助線にします。</p>
+<h3>判定の4段階（毎日・毎月・年間で同じ物差し）</h3>
+<table>
+<thead>
+<tr>
+<th>判定</th>
+<th>前年比</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="dot red"></span>赤（要対策）</td>
+<td>100%未満</td>
+<td>前年割れ。翌日の朝礼で原因を確認</td>
+</tr>
+<tr>
+<td><span class="dot yellow"></span>黄（合格）</td>
+<td>100%〜101.9%</td>
+<td>前年は超えたが地域平均以下</td>
+</tr>
+<tr>
+<td><span class="dot green"></span>緑（合格）</td>
+<td>101.9%〜105%</td>
+<td>地域平均（+1.9%）以上</td>
+</tr>
+<tr>
+<td><span class="dot blue"></span>青（目標達成）</td>
+<td>105%以上</td>
+<td>+5%目標の達成ペース</td>
+</tr>
+</tbody>
+</table>
+<p><strong>色の使い方</strong>：色は「どこを見に行くか」の気づきのための信号で、個人や部門の評価・ノルマには使いません。数字合わせの値引きや押し込み、報告作業の増加を防ぐためです。赤が出たら責めるのではなく、欠品や品出しの遅れなど売場の原因を一緒に探します。</p>
+<p><strong>値上げを除いた見方</strong>：売上の前年比は値上げだけでも上がります。実態を見るため、買上点数の前年比と粗利を必ず並べて表示します。</p>
+<ul>
+<li><strong>日</strong>：前年の同じ曜日と比べる（例：今年の第3土曜日は前年の第3土曜日と）。日付で比べると曜日のずれで最大2割近くぶれるため。</li>
+<li><strong>月</strong>：前年同月比に加え、累計（年度初めから）の前年比を並べる。1日の赤は気にせず、累計の色で判断する。</li>
+<li><strong>年</strong>：月次の累計が105%ペースか。雪や連休の暦の差は注記で残す。</li>
+<li><strong>部署別</strong>：同じ物差しを部署ごとに当てる。どの部署が全体の足を引っ張っているかが一目でわかる。</li>
+</ul>
+<h3>補助線：商圏の市場規模からの確認</h3>
+<p>家計調査（全国・二人以上世帯）の食料費から1人あたりの内食・中食の支出を月約2.6万円と置くと、商圏の食品市場は次の規模です。</p>
+<table>
+<thead>
+<tr>
+<th>範囲</th>
+<th>実効人口</th>
+<th>食品市場（年）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中標津町内のみ</td>
+<td>22,067人</td>
+<td>約68億円</td>
+</tr>
+<tr>
+<td>広域商圏（近隣町の一部を含む）</td>
+<td>約29,500人</td>
+<td>約92億円</td>
+</tr>
+</tbody>
+</table>
+<p>クライアント企業の食品売上をこの92億円で割った値が推定シェアです。例えばシェア35%なら年32億円、月2.7億円、1日あたり約880万円が「市場から見て妥当な水準」です。実際の売上がこれを大きく上回る場合は商圏がもっと広い、下回る場合は伸びしろがあると読みます。</p>
+<p class="note">※仮定：1世帯人員2.88人、外食比率17%、近隣町からの来店カバー率（別海30%・標津40%・羅臼30%）。会員データで町別の来店比率が取れれば、この仮定を実数に置き換えます。</p>
 
-</section>
-<section id="deli" data-transition="fade" style="background:#12222E;color:#E8EEF2;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
-<div style="display:flex;flex-direction:column;gap:16px">
-<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#7FB8DA">06 / 第1弾</p>
-<h2 style="font-size:80px;font-weight:900;line-height:1.15;color:#FFFFFF">スタッフの発注・原価の手間を減らす</h2>
-</div>
-<p style="font-size:34px;line-height:1.6;color:#C7D5DE">デリカ部門の原価・発注管理で、試作が動いています。値上げのたびの確認と、発注数の計算を、シートで自動化します。</p>
-<div style="display:flex;gap:32px">
-<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#1B3342;padding:36px;border-radius:16px">
-<h3 style="font-size:40px;font-weight:700;color:#FFFFFF">値上げ入力</h3>
-<p style="font-size:30px;line-height:1.6;color:#C7D5DE">材料の新しい価格を1行入れる。履歴も残る</p>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#1B3342;padding:36px;border-radius:16px">
-<h3 style="font-size:40px;font-weight:700;color:#FFFFFF">製造・発注</h3>
-<p style="font-size:30px;line-height:1.6;color:#C7D5DE">製造数と在庫から、発注数と金額を出す</p>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#1B3342;padding:36px;border-radius:16px">
-<h3 style="font-size:40px;font-weight:700;color:#FFFFFF">原価一覧</h3>
-<p style="font-size:30px;line-height:1.6;color:#C7D5DE">原価率を、OK・要確認・入力不足で知らせる</p>
-</div>
-</div>
-<p style="font-size:30px;line-height:1.7;color:#E8EEF2">次は、実際の価格とレシピに置き換え、現場で使いやすいかを確かめます。</p>
-<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#8FA3B1">DX支援プロジェクト</p>
+<h2 id="s4">ネットスーパー採算ライン</h2>
+<p>月額200万円の固定費を回収するには、変動費率12%の想定で月商約1,540万円（1日約85件）が必要です。店頭で買っていた客が移っただけの注文が3割あると、必要月商は約2,200万円に上がります。</p>
+<p>損益分岐の月商は次の式で出します。</p>
+<div class="formula">損益分岐月商 ＝ 月額システム費 ÷（粗利率 − 変動費率）</div>
 
-</section>
-<section id="roadmap" data-transition="fade" style="background:#F5F6F4;color:#14202A;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
-<div style="display:flex;flex-direction:column;gap:16px">
-<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#0B5C8A">07 / 1年の道筋(案)</p>
-<h2 style="font-size:80px;font-weight:900;line-height:1.15">現場の声を聞きながら、一歩ずつ</h2>
-</div>
-<div style="display:flex;gap:24px">
-<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px;border:1px solid #D9DEE2;border-radius:16px">
-<p style="font-family:'JetBrains Mono', monospace;font-size:28px;color:#0B5C8A">STEP 1</p>
-<h3 style="font-size:36px;font-weight:700">手間を洗い出す</h3>
-<p style="font-size:28px;line-height:1.6;color:#3A4651">現場の声を聞く。第1弾のデリカ原価・発注管理</p>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px;border:1px solid #D9DEE2;border-radius:16px">
-<p style="font-family:'JetBrains Mono', monospace;font-size:28px;color:#0B5C8A">STEP 2</p>
-<h3 style="font-size:36px;font-weight:700">自動化を広げる</h3>
-<p style="font-size:28px;line-height:1.6;color:#3A4651">売場の状況が分かる仕組みを整え、他の部門にも広げる</p>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px;border:1px solid #D9DEE2;border-radius:16px">
-<p style="font-family:'JetBrains Mono', monospace;font-size:28px;color:#0B5C8A">STEP 3</p>
-<h3 style="font-size:36px;font-weight:700">手順を標準化する</h3>
-<p style="font-size:28px;line-height:1.6;color:#3A4651">無理なく続く基本手順を作り、時間を売場と接客に回す</p>
-</div>
-</div>
-<p style="font-size:32px;line-height:1.7;font-weight:700">毎月、現場の声と数字を一緒に振り返り、次の改善を決めます。</p>
-<p style="font-size:28px;line-height:1.6;color:#566573">時期は案です。来年度の開始時期と、現場の状況に合わせて決めます。</p>
-<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7782">DX支援プロジェクト</p>
+<table>
+<thead>
+<tr>
+<th>システム費（月）</th>
+<th>変動費8%</th>
+<th>変動費12%</th>
+<th>変動費16%</th>
+<th>12%・共食い3割</th>
+<th>必要件数/日（12%）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>現行 200万円</td>
+<td>1,176万円</td>
+<td>1,538万円</td>
+<td>2,222万円</td>
+<td>2,198万円</td>
+<td>約85件</td>
+</tr>
+<tr>
+<td>交渉後 150万円</td>
+<td>882万円</td>
+<td>1,154万円</td>
+<td>1,667万円</td>
+<td>1,648万円</td>
+<td>約64件</td>
+</tr>
+<tr>
+<td>自社化 30万円</td>
+<td>176万円</td>
+<td>231万円</td>
+<td>333万円</td>
+<td>330万円</td>
+<td>約13件</td>
+</tr>
+</tbody>
+</table>
+<p class="note">※仮定：粗利率25%、客単価6,000円、変動費＝ピッキング人件費・配送・資材・決済手数料。配送料収入があれば変動費から差し引く。</p>
 
-</section>
-<section id="risks" data-transition="fade" style="background:#F5F6F4;color:#14202A;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
-<div style="display:flex;flex-direction:column;gap:16px">
-<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#0B5C8A">08 / リスク</p>
-<h2 style="font-size:80px;font-weight:900;line-height:1.15">先に共有しておくリスク</h2>
-</div>
-<div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:24px">
-<div style="display:flex;flex-direction:column;gap:8px;background:#FFFFFF;padding:28px 32px;border:1px solid #D9DEE2;border-radius:16px">
-<h3 style="font-size:34px;font-weight:700;color:#B45309">数字がノルマになる</h3>
-<p style="font-size:28px;line-height:1.5;color:#3A4651">目安のつもりが、現場には目標として伝わってしまう</p>
-</div>
-<div style="display:flex;flex-direction:column;gap:8px;background:#FFFFFF;padding:28px 32px;border:1px solid #D9DEE2;border-radius:16px">
-<h3 style="font-size:34px;font-weight:700;color:#B45309">現場の負担が増える</h3>
-<p style="font-size:28px;line-height:1.5;color:#3A4651">入力が増えると続かない。入力は最小限にする</p>
-</div>
-<div style="display:flex;flex-direction:column;gap:8px;background:#FFFFFF;padding:28px 32px;border:1px solid #D9DEE2;border-radius:16px">
-<h3 style="font-size:34px;font-weight:700;color:#B45309">材料価格の更新が止まる</h3>
-<p style="font-size:28px;line-height:1.5;color:#3A4651">台帳にない材料は手入力。更新の担当と頻度が必要</p>
-</div>
-<div style="display:flex;flex-direction:column;gap:8px;background:#FFFFFF;padding:28px 32px;border:1px solid #D9DEE2;border-radius:16px">
-<h3 style="font-size:34px;font-weight:700;color:#B45309">値上げで数字だけが上がる</h3>
-<p style="font-size:28px;line-height:1.5;color:#3A4651">金額だけでは実態が分からない。実質の見方も添える</p>
-</div>
-<div style="display:flex;flex-direction:column;gap:8px;background:#FFFFFF;padding:28px 32px;border:1px solid #D9DEE2;border-radius:16px">
-<h3 style="font-size:34px;font-weight:700;color:#B45309">前年データが未入手</h3>
-<p style="font-size:28px;line-height:1.5;color:#3A4651">目安の+5%が妥当かを、数字で確認できていない</p>
-</div>
-</div>
-<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7782">DX支援プロジェクト</p>
+<p><strong>月報への載せ方</strong>：毎月「ネットスーパー月商」と「損益分岐ライン」を同じグラフに描き、差額（赤字額）を経営陣とエリアマネージャーが毎月確認します。サンシとの交渉材料にもなり、自社化（月30万円）を検討する根拠にもなります。</p>
+<p><strong>確認が必要な実数</strong>：現在の月商と注文件数、ピッキングと配送にかかる人時、配送料収入、店頭からの移行比率（会員IDで店頭とネットの両方で買う客を見れば推定できる）。</p>
+<h2 id="s5">+5%の施策ポートフォリオ</h2>
+<p>7つの施策で計画上+4.0ポイントを積み、実行率75%（+3.0pt）と地域平均+1.9%で+4.9%、ほぼ+5%に届く設計です。地域平均が0%に落ちた場合でも+3.0%は残ります。</p>
+<figure class="viz"><svg viewBox="0 0 760 430" role="img" aria-label="実行率75%でも+4.9%、目標+5%にほぼ届く" font-size="12"><text x="24" y="30" font-size="15" font-weight="600" fill="var(--ink)">実行率75%でも+4.9%、目標+5%にほぼ届く</text><text x="24" y="50" font-size="11.5" fill="var(--quiet)">前年比の積み上げ（ポイント）　緑＝上積み、赤＝実行率による減額、灰＝見込み合計</text><line x1="260.0" x2="260.0" y1="80" y2="384" stroke="var(--grid)"/><text x="260.0" y="402" text-anchor="middle" font-size="11.5" fill="var(--quiet)">0%</text><line x1="333.3" x2="333.3" y1="80" y2="384" stroke="var(--grid)"/><text x="333.3" y="402" text-anchor="middle" font-size="11.5" fill="var(--quiet)">1%</text><line x1="406.7" x2="406.7" y1="80" y2="384" stroke="var(--grid)"/><text x="406.7" y="402" text-anchor="middle" font-size="11.5" fill="var(--quiet)">2%</text><line x1="480.0" x2="480.0" y1="80" y2="384" stroke="var(--grid)"/><text x="480.0" y="402" text-anchor="middle" font-size="11.5" fill="var(--quiet)">3%</text><line x1="553.3" x2="553.3" y1="80" y2="384" stroke="var(--grid)"/><text x="553.3" y="402" text-anchor="middle" font-size="11.5" fill="var(--quiet)">4%</text><line x1="626.7" x2="626.7" y1="80" y2="384" stroke="var(--grid)"/><text x="626.7" y="402" text-anchor="middle" font-size="11.5" fill="var(--quiet)">5%</text><line x1="700.0" x2="700.0" y1="80" y2="384" stroke="var(--grid)"/><text x="700.0" y="402" text-anchor="middle" font-size="11.5" fill="var(--quiet)">6%</text><line x1="260.0" x2="260.0" y1="80" y2="384" stroke="var(--edge)" stroke-width="1.25"/><line x1="626.7" x2="626.7" y1="70" y2="384" stroke="var(--quiet)" stroke-width="1.25" stroke-dasharray="4 4"/><text x="626.7" y="66" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--ink)">目標 +5%</text><text x="250" y="105" text-anchor="end" fill="var(--ink)">地域平均（北海道・東北 既存店）</text><rect x="260.0" y="92" width="139.3" height="18" fill="var(--good)" fill-opacity="0.45"><title>地域平均（北海道・東北 既存店）: +1.9pt</title></rect><line x1="399.3" x2="399.3" y1="110" y2="122" stroke="var(--edge)"/><text x="405.3" y="105" fill="var(--quiet)">+1.9</text><text x="250" y="135" text-anchor="end" fill="var(--ink)">近隣町からの週末広域集客</text><rect x="399.3" y="122" width="58.7" height="18" fill="var(--good)" fill-opacity="0.45"><title>近隣町からの週末広域集客: +0.8pt</title></rect><line x1="458.0" x2="458.0" y1="140" y2="152" stroke="var(--edge)"/><text x="464.0" y="135" fill="var(--quiet)">+0.8</text><text x="250" y="165" text-anchor="end" fill="var(--ink)">部門別の日次PDCA</text><rect x="458.0" y="152" width="44.0" height="18" fill="var(--good)" fill-opacity="0.45"><title>部門別の日次PDCA: +0.6pt</title></rect><line x1="502.0" x2="502.0" y1="170" y2="182" stroke="var(--edge)"/><text x="508.0" y="165" fill="var(--quiet)">+0.6</text><text x="250" y="195" text-anchor="end" fill="var(--ink)">インスタ購買クラブ</text><rect x="502.0" y="182" width="44.0" height="18" fill="var(--good)" fill-opacity="0.45"><title>インスタ購買クラブ: +0.6pt</title></rect><line x1="546.0" x2="546.0" y1="200" y2="212" stroke="var(--edge)"/><text x="552.0" y="195" fill="var(--quiet)">+0.6</text><text x="250" y="225" text-anchor="end" fill="var(--ink)">牛乳・卵起点の関連陳列</text><rect x="546.0" y="212" width="44.0" height="18" fill="var(--good)" fill-opacity="0.45"><title>牛乳・卵起点の関連陳列: +0.6pt</title></rect><line x1="590.0" x2="590.0" y1="230" y2="242" stroke="var(--edge)"/><text x="596.0" y="225" fill="var(--quiet)">+0.6</text><text x="250" y="255" text-anchor="end" fill="var(--ink)">ネットスーパー強化</text><rect x="590.0" y="242" width="36.7" height="18" fill="var(--good)" fill-opacity="0.45"><title>ネットスーパー強化: +0.5pt</title></rect><line x1="626.7" x2="626.7" y1="260" y2="272" stroke="var(--edge)"/><text x="632.7" y="255" fill="var(--quiet)">+0.5</text><text x="250" y="285" text-anchor="end" fill="var(--ink)">週末の購入額連動チケット</text><rect x="626.7" y="272" width="36.7" height="18" fill="var(--good)" fill-opacity="0.45"><title>週末の購入額連動チケット: +0.5pt</title></rect><line x1="663.3" x2="663.3" y1="290" y2="302" stroke="var(--edge)"/><text x="669.3" y="285" fill="var(--quiet)">+0.5</text><text x="250" y="315" text-anchor="end" fill="var(--ink)">QR付き動画POP</text><rect x="663.3" y="302" width="29.3" height="18" fill="var(--good)" fill-opacity="0.45"><title>QR付き動画POP: +0.4pt</title></rect><line x1="692.7" x2="692.7" y1="320" y2="332" stroke="var(--edge)"/><text x="698.7" y="315" fill="var(--quiet)">+0.4</text><text x="250" y="345" text-anchor="end" fill="var(--ink)">実行率75%での減額</text><rect x="619.3" y="332" width="73.3" height="18" fill="var(--bad)" fill-opacity="0.45"><title>施策計画 +4.0pt × 25% = −1.0pt</title></rect><line x1="619.3" x2="619.3" y1="350" y2="362" stroke="var(--edge)"/><text x="698.7" y="345" fill="var(--quiet)">−1.0</text><text x="250" y="375" text-anchor="end" font-weight="600" fill="var(--ink)">見込み合計</text><rect x="260.0" y="362" width="359.3" height="18" fill="var(--muted)"><title>見込み合計 +4.9%</title></rect><text x="613.3" y="375" text-anchor="end" font-weight="600" fill="var(--ink)">+4.9%</text></svg><figcaption>試算 · 地域平均は2025年 北海道・東北 既存店実績、施策寄与は仮置き</figcaption></figure>
+<table>
+<thead>
+<tr>
+<th>施策</th>
+<th>効く指標</th>
+<th>毎日見るKPI</th>
+<th>主な担当</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>近隣町からの週末広域集客（冬季の屋内レジャー）</td>
+<td>客数</td>
+<td>週末客数、町別来店比率</td>
+<td>店長・イベント担当</td>
+</tr>
+<tr>
+<td>部門別の日次PDCA（欠品・売り逃し削減）</td>
+<td>客単価・客数</td>
+<td>部門別前年同曜日比、時間帯別売上</td>
+<td>各部門マネージャー</td>
+</tr>
+<tr>
+<td>インスタ購買クラブ（季節予約、店頭受取）</td>
+<td>客数・客単価</td>
+<td>予約件数、受取時の追加購入額</td>
+<td>デジタル担当・バイヤー</td>
+</tr>
+<tr>
+<td>牛乳・卵を起点にした関連陳列</td>
+<td>客単価</td>
+<td>併買率、対象商品の販売数</td>
+<td>日配・グロサリー</td>
+</tr>
+<tr>
+<td>ネットスーパー強化（近隣町・高齢者・荒天時）</td>
+<td>客数</td>
+<td>注文件数、新規会員数</td>
+<td>ネットスーパー担当</td>
+</tr>
+<tr>
+<td>週末の購入額連動チケット</td>
+<td>客単価</td>
+<td>週末の客単価、発券枚数</td>
+<td>レジ・アミューズメント</td>
+</tr>
+<tr>
+<td>QR付き動画POP</td>
+<td>客単価</td>
+<td>QR読取数、対象商品の販売数</td>
+<td>各部門＋デジタル担当</td>
+</tr>
+</tbody>
+</table>
+<p><strong>新しく加えた柱「部門別の日次PDCA」</strong>：毎時の時報を集約し、前年同曜日比と時間帯別売上を毎朝マネージャーに届けます。夕方の欠品や、売れる時間帯の品出し遅れが数字で見えれば、追加の投資なしで売り逃しを減らせます。他の施策の効果測定もこの仕組みに乗ります。</p>
+<p><strong>土台になる第1弾「デリカの原価・発注の自動化」</strong>：前回提案で着手し、試作が稼働中です（値上げ入力、製造数と在庫からの発注計算、原価率の一覧）。売上の寄与には数えず、作業時間の削減と粗利の改善として測ります。ここで浮いた時間を売場と接客に回すことが、上の施策を現場が無理なく続けられる前提になります。</p>
+<h2 id="s6">経営ダッシュボード設計</h2>
+<p>POSの毎時の時報を自動で集約し、1つのダッシュボードと自動作成の日報・月報に流します。今は時報が各部署に届くだけで、店全体の数字を一枚で見る仕組みがありません。</p>
+<figure class="viz"><svg viewBox="0 0 760 340" role="img" aria-label="毎時の時報を1か所に集め、画面と日報に自動で流す" font-size="13"><defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--edge)"/></marker></defs><text x="24" y="30" font-size="15" font-weight="600" fill="var(--ink)">毎時の時報を1か所に集め、画面と日報に自動で流す</text><text x="24" y="66" font-size="11.5" fill="var(--quiet)">入力</text><text x="290" y="66" font-size="11.5" fill="var(--quiet)">集約・計算（自動）</text><text x="566" y="66" font-size="11.5" fill="var(--quiet)">出力と読み手</text><path d="M224 106.0H290" fill="none" stroke="var(--edge)" stroke-width="1.25" marker-end="url(#flow-arrow)"/><path d="M224 166.0H290" fill="none" stroke="var(--edge)" stroke-width="1.25" marker-end="url(#flow-arrow)"/><path d="M224 226.0H290" fill="none" stroke="var(--edge)" stroke-width="1.25" marker-end="url(#flow-arrow)"/><path d="M224 286.0H290" fill="none" stroke="var(--edge)" stroke-width="1.25" marker-end="url(#flow-arrow)"/><path d="M500 134H566" fill="none" stroke="var(--edge)" stroke-width="1.25" marker-end="url(#flow-arrow)"/><path d="M500 258H566" fill="none" stroke="var(--edge)" stroke-width="1.25" marker-end="url(#flow-arrow)"/><rect x="24" y="84" width="200" height="44" rx="8" fill="var(--accent-bg)" stroke="var(--accent)" stroke-width="2"/><text x="124.0" y="111" text-anchor="middle" font-weight="600" fill="var(--ink)">POS 毎時の時報</text><rect x="24" y="144" width="200" height="44" rx="8" fill="none" stroke="var(--edge)" stroke-width="1.25"/><text x="124.0" y="171" text-anchor="middle" fill="var(--ink)">前年の売上実績</text><rect x="24" y="204" width="200" height="44" rx="8" fill="none" stroke="var(--edge)" stroke-width="1.25"/><text x="124.0" y="231" text-anchor="middle" fill="var(--ink)">ネットスーパーの注文</text><rect x="24" y="264" width="200" height="44" rx="8" fill="none" stroke="var(--edge)" stroke-width="1.25"/><text x="124.0" y="291" text-anchor="middle" fill="var(--ink)">ロス・SNS・求人の記録</text><rect x="290" y="84" width="210" height="224" rx="8" fill="none" stroke="var(--edge)" stroke-width="1.25"/><text x="306" y="112" font-weight="600" fill="var(--ink)">自動集約と計算</text><text x="306" y="146" font-size="12" fill="var(--ink)">前年同曜日比・累計の算出</text><text x="306" y="176" font-size="12" fill="var(--ink)">4段階の色判定</text><text x="306" y="206" font-size="12" fill="var(--ink)">ネットスーパー採算ライン</text><text x="306" y="236" font-size="12" fill="var(--ink)">自動化の削減時間と効果</text><text x="306" y="266" font-size="12" fill="var(--ink)">部門×時間帯の分解</text><rect x="566" y="84" width="170" height="100" rx="8" fill="var(--accent-bg)" stroke="var(--accent)" stroke-width="2"/><text x="580" y="110" font-weight="600" fill="var(--ink)">ダッシュボード</text><text x="580" y="134" font-size="11.5" fill="var(--ink)">5画面・毎時更新</text><text x="580" y="154" font-size="11.5" fill="var(--quiet)">経営陣・金庫</text><text x="580" y="172" font-size="11.5" fill="var(--quiet)">エリアマネージャー</text><rect x="566" y="208" width="170" height="100" rx="8" fill="none" stroke="var(--edge)" stroke-width="1.25"/><text x="580" y="234" font-weight="600" fill="var(--ink)">日報・月報</text><text x="580" y="258" font-size="11.5" fill="var(--ink)">AIが所見を下書き</text><text x="580" y="278" font-size="11.5" fill="var(--quiet)">マネージャーが確認</text><text x="580" y="296" font-size="11.5" fill="var(--quiet)">朝礼で1分共有</text></svg><figcaption>データの流れ · 入力4種、集約・計算、出力2種</figcaption></figure>
+<table>
+<thead>
+<tr>
+<th>画面</th>
+<th>誰が見る</th>
+<th>主な表示</th>
+<th>更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. 経営サマリー</td>
+<td>経営陣・金庫</td>
+<td>日・月・年の売上前年比と色、買上点数の前年比（値上げを除いた見方）、粗利、+5%の進み具合</td>
+<td>毎時</td>
+</tr>
+<tr>
+<td>2. 部門別</td>
+<td>エリアマネージャー</td>
+<td>部門×時間帯の前年同曜日比、客数×客単価の分解、欠品の発生状況</td>
+<td>毎時</td>
+</tr>
+<tr>
+<td>3. ネットスーパー採算</td>
+<td>経営陣</td>
+<td>月商と損益分岐ライン、注文件数、赤字額の推移、交渉後・自社化の試算</td>
+<td>日次</td>
+</tr>
+<tr>
+<td>4. 現場の負担とDX効果</td>
+<td>経営陣・金庫</td>
+<td>業務ごとの作業時間と入力の手間、自動化による削減時間×時給、開発費と回収月数、開発の進捗</td>
+<td>月次</td>
+</tr>
+<tr>
+<td>5. お客様・ロス・採用</td>
+<td>経営陣・広報</td>
+<td>お客様の声、現場の声、食品ロス率、フォロワー数、求人の応募数</td>
+<td>週次</td>
+</tr>
+</tbody>
+</table>
+<p><strong>日報・月報は「人が作る」から「AIが下書きする」へ</strong>：数字の集計と前年比の計算は自動化し、AIが「本日は青果が前年同曜日比−6%、16時以降の売上が落ちている」といった所見を下書きします。マネージャーは確認して一言加えるだけにします。</p>
+<p><strong>最初の一歩</strong>：時報の実物（形式・送信方法）と、今の日報・月報の作成にかかっている時間を確認します。この時間が、自動化の効果を測る基準値になります。</p>
+<h2 id="s7">DX開発ロードマップと費用対効果</h2>
+<p>開発は「売上を見える化する仕組み」から始め、効果が数字で確認できたものから次に進みます。進行中のWebアプリ・サイト構築とHACCP対応も、この全体計画の中に位置づけます。</p>
+<figure class="viz"><svg viewBox="0 0 760 500" role="img" aria-label="まず見える化、効果を確かめてから次へ進む" font-size="12"><defs><marker id="rm-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--edge)"/></marker></defs><text x="24" y="30" font-size="15" font-weight="600" fill="var(--ink)">まず見える化、効果を確かめてから次へ進む</text><text x="24" y="62" font-size="11.5" fill="var(--quiet)">フェーズ</text><text x="204" y="62" font-size="11.5" fill="var(--quiet)">やること</text><text x="564" y="62" font-size="11.5" fill="var(--quiet)">次へ進む条件</text><path d="M104.0 136V152" fill="none" stroke="var(--edge)" stroke-width="1.25" marker-end="url(#rm-arrow)"/><line x1="204" x2="736" y1="144" y2="144" stroke="var(--grid)"/><path d="M104.0 212V228" fill="none" stroke="var(--edge)" stroke-width="1.25" marker-end="url(#rm-arrow)"/><line x1="204" x2="736" y1="220" y2="220" stroke="var(--grid)"/><path d="M104.0 288V304" fill="none" stroke="var(--edge)" stroke-width="1.25" marker-end="url(#rm-arrow)"/><line x1="204" x2="736" y1="296" y2="296" stroke="var(--grid)"/><path d="M104.0 364V380" fill="none" stroke="var(--edge)" stroke-width="1.25" marker-end="url(#rm-arrow)"/><line x1="204" x2="736" y1="372" y2="372" stroke="var(--grid)"/><rect x="24" y="76" width="160" height="60" rx="8" fill="none" stroke="var(--edge)" stroke-width="1.25"/><text x="38" y="101" font-size="13" font-weight="600" fill="var(--ink)">Phase 0 現状把握</text><text x="38" y="121" font-size="11.5" fill="var(--quiet)">2026/11</text><text x="204" y="101" fill="var(--ink)">時報・帳票の実物確認、前年データ受領、作業時間の実測</text><text x="204" y="121" fill="var(--ink)">デリカ原価・発注の試作を実価格・約20品目で検証</text><path d="M572 98l8 8l-8 8l-8 -8z" fill="none" stroke="var(--edge)" stroke-width="1.25"/><text x="588" y="110" font-size="11.5" fill="var(--ink)">基準値がそろう</text><rect x="24" y="152" width="160" height="60" rx="8" fill="var(--accent-bg)" stroke="var(--accent)" stroke-width="2"/><text x="38" y="177" font-size="13" font-weight="600" fill="var(--ink)">Phase 1 見える化</text><text x="38" y="197" font-size="11.5" fill="var(--quiet)">2026/12〜2027/1</text><text x="204" y="177" fill="var(--ink)">日報の自動化、ダッシュボード試作（画面1・2）</text><text x="204" y="197" fill="var(--ink)">年末予約で効果測定の仕組みを試す</text><path d="M572 174l8 8l-8 8l-8 -8z" fill="none" stroke="var(--edge)" stroke-width="1.25"/><text x="588" y="186" font-size="11.5" fill="var(--ink)">毎朝見る習慣ができた</text><rect x="24" y="228" width="160" height="60" rx="8" fill="none" stroke="var(--edge)" stroke-width="1.25"/><text x="38" y="253" font-size="13" font-weight="600" fill="var(--ink)">Phase 2 採算と月報</text><text x="38" y="273" font-size="11.5" fill="var(--quiet)">2027/2〜4</text><text x="204" y="253" fill="var(--ink)">月報の自動化、ネットスーパー採算（画面3）</text><text x="204" y="273" fill="var(--ink)">サンシ交渉の材料化、冬季の週末施策</text><path d="M572 250l8 8l-8 8l-8 -8z" fill="none" stroke="var(--edge)" stroke-width="1.25"/><text x="588" y="262" font-size="11.5" fill="var(--ink)">効果が開発費を上回る</text><rect x="24" y="304" width="160" height="60" rx="8" fill="none" stroke="var(--edge)" stroke-width="1.25"/><text x="38" y="329" font-size="13" font-weight="600" fill="var(--ink)">Phase 3 AI活用</text><text x="38" y="349" font-size="11.5" fill="var(--quiet)">2027/5〜9</text><text x="204" y="329" fill="var(--ink)">惣菜でAI値引き・需要予測を小さく検証</text><text x="204" y="349" fill="var(--ink)">画面4・5、取り組みの発信と採用</text><path d="M572 326l8 8l-8 8l-8 -8z" fill="none" stroke="var(--edge)" stroke-width="1.25"/><text x="588" y="338" font-size="11.5" fill="var(--ink)">ロスと粗利の改善を確認</text><rect x="24" y="380" width="160" height="60" rx="8" fill="none" stroke="var(--edge)" stroke-width="1.25"/><text x="38" y="405" font-size="13" font-weight="600" fill="var(--ink)">Phase 4 自社化判断</text><text x="38" y="425" font-size="11.5" fill="var(--quiet)">2027/10〜</text><text x="204" y="405" fill="var(--ink)">ネットスーパー自社化（月30万円水準）の判断</text><text x="204" y="425" fill="var(--ink)">管内の他の取引先への横展開</text><rect x="24" y="456" width="712" height="32" rx="8" fill="var(--tint)" stroke="var(--edge)" stroke-width="1.25"/><text x="380" y="476" text-anchor="middle" fill="var(--ink)">並行して進行中：Webアプリ・サイト構築、HACCP対応</text></svg><figcaption>開発ロードマップ案 · 5フェーズ、4つの判断ゲート</figcaption></figure>
+<h3>費用対効果の測り方</h3>
+<p>自動化の効果は、削減できた作業時間を金額に換算して開発費と比べます。</p>
+<div class="formula">月間効果 ＝ 削減時間（時間/月）× 時給 ＋ ロス削減額 ＋ 売上増による粗利増</div>
 
-</section>
-<section id="decide" data-transition="fade" style="background:#0B5C8A;color:#FFFFFF;font-family:'Zen Kaku Gothic New', sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
-<div style="display:flex;flex-direction:column;gap:16px">
-<p style="font-family:'JetBrains Mono', monospace;font-size:28px;letter-spacing:3px;color:#CDE4F2">09 / 決めたいこと</p>
-<h2 style="font-size:80px;font-weight:900;line-height:1.15">次回のミーティングで決めること</h2>
-</div>
-<ol style="font-size:38px;line-height:1.9;font-weight:500">
-<li>目標の伝え方(売上前年比+5%は目安で、ノルマにしない)</li>
-<li>前年同期の売上データの提供(目安を確認するため)</li>
-<li>第1弾の対象店舗と、レシピを整える約20品目</li>
-<li>台帳にない材料の価格を、誰が・どの頻度で更新するか</li>
-<li>月次の振り返りの担当と、現場の声の集め方</li>
+<p>例えば、10部門それぞれ30分かかっている日報作成がほぼなくなると、1日約5時間、時給1,300円なら月約19.5万円分の時間が売場に戻ります（時給と作業時間は仮定。Phase 0で実測します）。</p>
+<h3>先行事例（公表数値）</h3>
+<table>
+<thead>
+<tr>
+<th>企業</th>
+<th>取り組み</th>
+<th>公表された効果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ヤオコー</td>
+<td>需要予測型の自動発注（日立）</td>
+<td>実証店の発注時間を3時間から25分に短縮</td>
+</tr>
+<tr>
+<td>バロー（中部フーズ）</td>
+<td>惣菜のAI自動発注</td>
+<td>事前検証で利益約5%増、発注作業時間27%減</td>
+</tr>
+<tr>
+<td>バロー（日本気象協会・ソフトバンク）</td>
+<td>気象・人流データによるAI値引き</td>
+<td>惣菜の廃棄量約13%減、作業時間約37%短縮</td>
+</tr>
+</tbody>
+</table>
+<p>いずれも大手の事例ですが、仕組みの中身（前年比の自動集計、需要予測、値引きの最適化）は単店でも小さく始められます。</p>
+<h2 id="s8">発信・採用戦略</h2>
+<p>取り組みそのものを発信し、「田舎でも先進的な職場」として採用につなげます。町は若者、特に若い女性の町外流出を人口減少の主な要因に挙げており、魅力ある職場づくりは町の課題とも重なります。</p>
+<table>
+<thead>
+<tr>
+<th>発信テーマ</th>
+<th>中身の例</th>
+<th>つながる成果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>食品ロス削減</td>
+<td>毎月のロス削減量を公開、見切り品の告知</td>
+<td>ロス率の低下、来店動機</td>
+</tr>
+<tr>
+<td>データで動く売場</td>
+<td>部門が前年比を見て売場を変えた事例</td>
+<td>社員の誇り、現場の参加</td>
+</tr>
+<tr>
+<td>こだわり素材の裏側</td>
+<td>各部門のリール動画（QR動画POPと共用）</td>
+<td>客単価、高価格の納得感</td>
+</tr>
+<tr>
+<td>地域の先進事例</td>
+<td>AI・自動化の導入と効果を数字で紹介</td>
+<td>採用の応募、取材、取引先の信頼</td>
+</tr>
+</tbody>
+</table>
+<p><strong>優先順位は変えない</strong>：AIで効率化ツールを作ること自体は目的にしません。判断の順番は①売上増、②コスト削減、③発信と採用です。発信は①②の成果を伝える手段として位置づけます。</p>
+<p><strong>採用KPI</strong>：求人への応募数と、応募者が「SNSや取り組みを見て」と答えた割合を、ダッシュボードの画面5で追います。</p>
+<h2 id="s9">リスクと前提</h2>
+<p>最大のリスクは、値上げの追い風が止まって地域平均が0%付近に落ちることです。その場合、施策の実行率75%でも+3.0%にとどまり、+5%には施策の上積み（計画で+5ポイント規模）が必要になります。</p>
+<table>
+<thead>
+<tr>
+<th>リスク</th>
+<th>影響</th>
+<th>対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+5%や色判定がノルマとして伝わる</td>
+<td>値引き・押し込みの数字合わせ、報告の増加</td>
+<td>「目安」と明言し、評価には使わない。赤は原因探しの合図として扱う</td>
+</tr>
+<tr>
+<td>物価上昇の鈍化</td>
+<td>地域平均の+1.9%が消える</td>
+<td>月次で地域平均を更新し、買上点数の前年比で実態を見る</td>
+</tr>
+<tr>
+<td>時報の形式が自動取込に向かない</td>
+<td>ダッシュボードが遅れる</td>
+<td>Phase 0で実物を確認。紙・PDFなら読取の工程を足す</td>
+</tr>
+<tr>
+<td>入力が増えて現場負担が増す</td>
+<td>続かなくなる</td>
+<td>入力は最小限。自動化で浮いた時間の範囲で施策を足す</td>
+</tr>
+<tr>
+<td>台帳にない材料の価格更新が止まる</td>
+<td>原価率が実態とずれる</td>
+<td>手入力の担当と頻度を決める</td>
+</tr>
+<tr>
+<td>現場が数字を見ない</td>
+<td>日次の振り返りが回らない</td>
+<td>画面は色と一言の所見に絞り、朝礼で1分確認</td>
+</tr>
+<tr>
+<td>購入額連動チケット</td>
+<td>景品表示法・ゲームセンターの規制</td>
+<td>景品の上限（取引額の20%）と運営主体を確認してから実施</td>
+</tr>
+<tr>
+<td>ネットスーパーの共食い</td>
+<td>採算ラインが上がる</td>
+<td>会員IDで店頭からの移行比率を測る</td>
+</tr>
+<tr>
+<td>個人情報の扱い</td>
+<td>会員データの目的外利用</td>
+<td>町名・年代など集計単位で扱い、利用目的を明示</td>
+</tr>
+</tbody>
+</table>
+<p><strong>この資料の数値の前提</strong>：市場規模、採算ライン、施策の寄与はすべて仮定にもとづく試算です。前年の部門別・曜日別の実績、ネットスーパーの月商、会員データを受け取りしだい置き換えます。</p>
+<h2 id="s10">金庫役員との相談論点</h2>
+<p>相談で決めたいのは、金庫がこの取り組みにどう関わるか（資金・伴走・横展開）の3点です。前提として「+5%は目安でノルマにしない」という前回提案の方針を、金庫側とも共有します。</p>
+<ol>
+<li><strong>伴走の形</strong>：金庫の取引先支援として位置づけるか。月次のダッシュボード（画面1と4）を金庫とも共有し、成果を一緒に確認する形が取れるか。</li>
+<li><strong>資金</strong>：ダッシュボード開発、将来のネットスーパー自社化（月30万円水準）への投資に、融資や国のIT・AI導入系の補助金をどう組み合わせるか。補助金は年度ごとに名称・要件が変わるため、公募時点で確認する。</li>
+<li><strong>成果の物差し</strong>：金庫として見たい指標は何か。案は「売上と買上点数の前年比」「現場の作業時間の削減（DX投資の回収月数）」「ネットスーパーの月次赤字額」の3つ。</li>
+<li><strong>横展開</strong>：この仕組み（時報の自動集約、前年比の色判定、採算ライン）を、管内の他の小売・飲食の取引先にも展開できるか。</li>
+<li><strong>情報の取り扱い</strong>：クライアント企業の売上・会員データを金庫と共有する範囲と、守秘のルール。</li>
 </ol>
-<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#CDE4F2">DX支援プロジェクト</p>
+<ul class="checks">
+<li>金庫としての関与の形を決める</li>
+<li>共有するダッシュボード画面と頻度を決める</li>
+<li>資金・補助金の検討担当を決める</li>
+</ul>
 
-</section>
-</main></div>
-<nav class="bar" aria-label="スライド操作">
-  <button id="prev" type="button" aria-label="前のスライド">← 前へ</button>
-  <span class="count" id="count">1 / 10</span>
-  <button id="next" type="button" aria-label="次のスライド">次へ →</button>
-</nav>
+<h2 id="s11">出典</h2>
+<ul>
+<li><a href="https://www.super.or.jp/wp/wp-content/uploads/2026/02/tokei-20260224hrr.pdf">スーパーマーケット販売統計調査 2025年年間実績 確報版（全国スーパーマーケット協会ほか、2026年2月公表）</a></li>
+<li><a href="https://www.pref.hokkaido.lg.jp/ss/tuk/056fes/246009.html">家計調査 2025年平均 北海道分（北海道庁）</a></li>
+<li><a href="https://www.sakigake.jp/news/article/20260206CO0033/">食費割合44年ぶりの高水準（秋田魁新報、2026年2月）</a></li>
+<li><a href="https://news.nissyoku.co.jp/news/shido20260209024626039">2025年の消費支出 食料実質−1.2%（日本食糧新聞）</a></li>
+<li><a href="https://www.nakashibetsu.jp/file/contents/2639/53236/r6koukakensyou.pdf">中標津町 総合戦略 効果検証報告書（2026年1月）</a></li>
+<li><a href="https://www.nakashibetsu.jp/file/contents/6182/52490/gaiyouban.pdf">中標津町 第3期総合戦略 概要版</a></li>
+<li><a href="https://www.chisou.go.jp/tiiki/tiikisaisei/nintei_furusato/plan/01692.pdf">中標津町 地域再生計画（内閣府）</a></li>
+<li><a href="https://www.mlit.go.jp/hkb/hoppo-data.html">北方領土隣接地域の人口（国土交通省 北海道局）</a></li>
+<li><a href="https://www.hitachi.com/ja-jp/insights/articles/automatic-ordering/">ヤオコーの自動発注（日立）</a></li>
+<li><a href="https://aismiley.co.jp/ai_news/valor-softbank-ai-order-forecast/">バロー 惣菜AI自動発注（AIsmiley）</a></li>
+<li><a href="https://www.softbank.jp/business/news/2026/0819-01">気象・人流データとAIによる値引き最適化の実証（ソフトバンク、2026年8月）</a></li>
+</ul>
+</main>
+<footer>この資料の市場規模・採算ライン・施策寄与は試算です。実データの受領後に更新します。</footer>
+</div>
 <script>
-(function () {
-  var slides = Array.prototype.slice.call(document.querySelectorAll('#stage > section'));
-  var stage = document.getElementById('stage');
-  var count = document.getElementById('count');
-  var i = 0;
-  function fit() {
-    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-    stage.style.transform = 'scale(' + s + ')';
-  }
-  function show(n) {
-    i = Math.max(0, Math.min(slides.length - 1, n));
-    slides.forEach(function (el, k) { el.classList.toggle('active', k === i); });
-    count.textContent = (i + 1) + ' / ' + slides.length;
-    try { history.replaceState(null, '', '#' + (i + 1)); } catch (e) {}
-  }
-  document.getElementById('prev').addEventListener('click', function () { show(i - 1); });
-  document.getElementById('next').addEventListener('click', function () { show(i + 1); });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(i + 1); }
-    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(i - 1); }
-    else if (e.key === 'Home') show(0);
-    else if (e.key === 'End') show(slides.length - 1);
-  });
-  var x0 = null;
-  document.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
-  document.addEventListener('touchend', function (e) {
-    if (x0 === null) return;
-    var dx = e.changedTouches[0].clientX - x0; x0 = null;
-    if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
-  });
-  window.addEventListener('resize', fit);
-  var start = parseInt((location.hash || '').replace('#', ''), 10);
-  fit();
-  show(isNaN(start) ? 0 : start - 1);
-})();
+document.querySelectorAll('main table').forEach(function(t){var d=document.createElement('div');d.className='tscroll';t.parentNode.insertBefore(d,t);d.appendChild(t);});
 </script>
 </body>
 </html>
