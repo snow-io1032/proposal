@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>サイトメンテナンスのお知らせ | 金子建設工業 株式会社</title>
+    <title>Webサイト メンテナンスのお知らせ | 金子建設工業 株式会社</title>
     <style>
+        /* ベース設定 */
         :root {
-            --primary-color: #004b87; /* 建設会社らしい信頼感のあるネイビー */
-            --bg-color: #f4f7f6;
-            --text-color: #333333;
-            --box-bg: #ffffff;
-            --border-color: #e0e0e0;
+            --corp-blue: #0A2B56;  /* 信頼と誠実さを表すネイビー */
+            --corp-gold: #B38C44;  /* 高級感と品質を表す落ち着いたゴールド */
+            --bg-gray: #F0F3F5;
+            --text-main: #333333;
+            --text-light: #555555;
+            --line-color: #E2E6EA;
         }
 
         body {
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+            background: linear-gradient(135deg, #F8FAFB 0%, #E6EAEF 100%);
+            color: var(--text-main);
             margin: 0;
             padding: 20px;
             display: flex;
@@ -27,143 +28,211 @@
             box-sizing: border-box;
         }
 
-        .maintenance-container {
-            background-color: var(--box-bg);
-            max-width: 650px;
+        /* メインコンテナ */
+        .container {
+            background-color: #ffffff;
+            max-width: 700px;
             width: 100%;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            border-top: 6px solid var(--primary-color);
+            padding: 50px 60px;
+            border-radius: 2px;
+            box-shadow: 0 15px 35px rgba(10, 43, 86, 0.08);
+            position: relative;
+            box-sizing: border-box;
         }
 
-        .header {
+        /* 上部の堅牢なライン */
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: var(--corp-blue);
+        }
+
+        /* 企業名（ロゴ風） */
+        .corp-name {
             text-align: center;
-            margin-bottom: 30px;
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--corp-blue);
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
         }
 
-        .header h1 {
-            color: var(--primary-color);
+        /* 見出し */
+        h1 {
+            text-align: center;
             font-size: 24px;
-            margin: 0 0 15px;
+            color: var(--text-main);
+            margin: 0 0 25px;
             letter-spacing: 1px;
+            border-bottom: 1px solid var(--line-color);
+            padding-bottom: 20px;
         }
 
+        /* メッセージ文 */
         .message {
-            text-align: center;
-            margin-bottom: 30px;
             font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 40px;
+            font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
         }
 
+        /* 連絡先ボックス */
         .contact-box {
-            background-color: #f8fbfd;
-            border: 1px solid #cce0f5;
-            border-radius: 6px;
-            padding: 25px;
-            margin-top: 20px;
+            background-color: #FAFCFD;
+            border: 1px solid var(--line-color);
+            border-left: 6px solid var(--corp-gold);
+            padding: 35px 40px;
+            margin-top: 30px;
+            font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
         }
 
         .contact-box h2 {
             font-size: 16px;
-            color: #d84315; /* 注意を引く落ち着いたオレンジ */
-            margin-top: 0;
-            margin-bottom: 20px;
-            text-align: center;
-            border-bottom: 1px dashed #cce0f5;
+            color: var(--corp-blue);
+            margin: 0 0 20px;
             padding-bottom: 15px;
+            border-bottom: 1px dashed #d0d7de;
+            text-align: center;
+            letter-spacing: 1px;
         }
 
-        .company-info {
-            font-size: 15px;
+        /* 連絡先詳細のレイアウト */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
-        .company-name {
+        .info-name {
             font-size: 18px;
             font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 10px;
+            color: var(--corp-blue);
+            margin-bottom: 5px;
         }
 
-        .department {
-            font-size: 16px;
+        .info-dept {
+            font-size: 15px;
+            font-weight: bold;
+            color: var(--text-main);
             margin-bottom: 15px;
         }
 
-        .address {
-            margin-bottom: 15px;
+        .info-row {
+            display: flex;
+            font-size: 14px;
+            line-height: 1.6;
         }
 
-        .tel-fax-email p {
-            margin: 5px 0;
+        .info-label {
+            width: 70px;
+            color: var(--text-light);
         }
 
-        .tel-fax-email a {
-            color: var(--primary-color);
+        .info-data {
+            flex: 1;
+            color: var(--text-main);
+        }
+
+        .info-data a {
+            color: var(--corp-blue);
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s ease;
         }
 
-        .tel-fax-email a:hover {
+        .info-data a:hover {
+            color: var(--corp-gold);
             text-decoration: underline;
         }
 
+        /* フッター */
         .footer {
             text-align: center;
-            margin-top: 30px;
-            font-size: 13px;
-            color: #777;
+            margin-top: 40px;
+            font-size: 12px;
+            color: #999;
+            font-family: Arial, sans-serif;
+            letter-spacing: 1px;
         }
 
         /* スマートフォン向け調整 */
         @media (max-width: 600px) {
-            .maintenance-container {
-                padding: 25px 20px;
+            .container {
+                padding: 40px 25px;
             }
-            .header h1 {
+            .corp-name {
+                font-size: 18px;
+            }
+            h1 {
                 font-size: 20px;
             }
-            .company-name {
-                font-size: 16px;
+            .contact-box {
+                padding: 25px 20px;
+            }
+            .info-row {
+                flex-direction: column;
+                margin-bottom: 10px;
+            }
+            .info-label {
+                font-size: 12px;
+                color: var(--corp-gold);
+                margin-bottom: 2px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="maintenance-container">
-        <div class="header">
-            <h1>ただいまサイトメンテナンス中です</h1>
-        </div>
+    <div class="container">
+        <div class="corp-name">金子建設工業 株式会社</div>
+        
+        <h1>Webサイト メンテナンスのお知らせ</h1>
         
         <div class="message">
-            <p>いつも金子建設工業株式会社のホームページをご覧いただき、誠にありがとうございます。</p>
-            <p>現在、システムアップデートに伴うメンテナンス作業のため、Webサイトの公開を一時休止しております。<br>
-            お客様には多大なるご不便をおかけいたしますが、何卒ご理解賜りますようお願い申し上げます。</p>
+            <p>平素は格別のお引き立てを賜り、厚く御礼申し上げます。</p>
+            <p>現在、システムアップデートに伴うメンテナンス作業のため、<br>
+            Webサイトの公開を一時休止しております。<br>
+            お客様には多大なるご不便をおかけいたしますが、<br>
+            何卒ご理解賜りますようお願い申し上げます。</p>
         </div>
 
         <div class="contact-box">
-            <h2>お急ぎの場合は、下記までご連絡をお願いいたします</h2>
+            <h2>お急ぎのご用件・お問い合わせ先</h2>
             
-            <div class="company-info">
-                <div class="company-name">金子建設工業 株式会社</div>
-                <div class="department">監理部 北郷 充</div>
+            <div class="contact-info">
+                <div class="info-name">金子建設工業 株式会社</div>
                 
-                <div class="address">
-                    〒992-0051<br>
-                    山形県米沢市城北二丁目1-17
+                <div class="info-row">
+                    <div class="info-label">所在</div>
+                    <div class="info-data">〒992-0051<br>山形県米沢市城北二丁目1-17</div>
                 </div>
                 
-                <div class="tel-fax-email">
-                    <!-- スマホ閲覧時はタップで電話がかけられます -->
-                    <p>TEL：<a href="tel:0238-23-7337">0238-23-7337</a></p>
-                    <p>FAX：0238-24-7333</p>
-                    <p>E-mail：<a href="mailto:xxxx@kaneko-kenko.co.jp">xxxx@kaneko-kenko.co.jp</a></p>
+                <div class="info-row">
+                    <div class="info-label">TEL</div>
+                    <div class="info-data"><a href="tel:0238-23-7337">0238-23-7337</a></div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-label">FAX</div>
+                    <div class="info-data">0238-24-7333</div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-label">E-mail</div>
+                    <div class="info-data"><a href="mailto:xxxx@kaneko-kenko.co.jp">xxxx@kaneko-kenko.co.jp</a></div>
                 </div>
             </div>
         </div>
 
         <div class="footer">
-            &copy; Kaneko Construction Industry Co., Ltd.
+            &copy; Kaneko Construction Industry Co., Ltd. All Rights Reserved.
         </div>
     </div>
 
