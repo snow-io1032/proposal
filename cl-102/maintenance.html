@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サイトメンテナンスのお知らせ | 金子建設工業 株式会社</title>
+    <style>
+        :root {
+            --primary-color: #004b87; /* 建設会社らしい信頼感のあるネイビー */
+            --bg-color: #f4f7f6;
+            --text-color: #333333;
+            --box-bg: #ffffff;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .maintenance-container {
+            background-color: var(--box-bg);
+            max-width: 650px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-top: 6px solid var(--primary-color);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 24px;
+            margin: 0 0 15px;
+            letter-spacing: 1px;
+        }
+
+        .message {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .contact-box {
+            background-color: #f8fbfd;
+            border: 1px solid #cce0f5;
+            border-radius: 6px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .contact-box h2 {
+            font-size: 16px;
+            color: #d84315; /* 注意を引く落ち着いたオレンジ */
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 1px dashed #cce0f5;
+            padding-bottom: 15px;
+        }
+
+        .company-info {
+            font-size: 15px;
+        }
+
+        .company-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .department {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .address {
+            margin-bottom: 15px;
+        }
+
+        .tel-fax-email p {
+            margin: 5px 0;
+        }
+
+        .tel-fax-email a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .tel-fax-email a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 13px;
+            color: #777;
+        }
+
+        /* スマートフォン向け調整 */
+        @media (max-width: 600px) {
+            .maintenance-container {
+                padding: 25px 20px;
+            }
+            .header h1 {
+                font-size: 20px;
+            }
+            .company-name {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="maintenance-container">
+        <div class="header">
+            <h1>ただいまサイトメンテナンス中です</h1>
+        </div>
+        
+        <div class="message">
+            <p>いつも金子建設工業株式会社のホームページをご覧いただき、誠にありがとうございます。</p>
+            <p>現在、システムアップデートに伴うメンテナンス作業のため、Webサイトの公開を一時休止しております。<br>
+            お客様には多大なるご不便をおかけいたしますが、何卒ご理解賜りますようお願い申し上げます。</p>
+        </div>
+
+        <div class="contact-box">
+            <h2>お急ぎの場合は、下記までご連絡をお願いいたします</h2>
+            
+            <div class="company-info">
+                <div class="company-name">金子建設工業 株式会社</div>
+                <div class="department">監理部 北郷 充</div>
+                
+                <div class="address">
+                    〒992-0051<br>
+                    山形県米沢市城北二丁目1-17
+                </div>
+                
+                <div class="tel-fax-email">
+                    <!-- スマホ閲覧時はタップで電話がかけられます -->
+                    <p>TEL：<a href="tel:0238-23-7337">0238-23-7337</a></p>
+                    <p>FAX：0238-24-7333</p>
+                    <p>E-mail：<a href="mailto:xxxx@kaneko-kenko.co.jp">xxxx@kaneko-kenko.co.jp</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            &copy; Kaneko Construction Industry Co., Ltd.
+        </div>
+    </div>
+
+</body>
+</html>
