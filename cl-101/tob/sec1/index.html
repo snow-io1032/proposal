@@ -123,6 +123,21 @@
             border-left: 3px solid var(--secondary-color);
         }
 
+        .rule-box {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--secondary-color);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 8px;
+        }
+
         table.compare-table {
             width: 100%;
             border-collapse: collapse;
@@ -247,8 +262,30 @@
     </section>
 
     <section>
-        <h2>｜ 2. 最低限のセキュリティ要件を満たす構築案の比較</h2>
-        <p>現状のOS標準機能に依存した運用と、外部の専門ベンダーが提供する法人向けセキュリティサービスとの比較です。</p>
+        <h2>｜ 2. 既存環境（Windows Defenderのみ）で運用を継続する場合の必須対策</h2>
+        <p>専門のセキュリティシステムを導入せず、現状のWindows Defenderのみで運用を継続する場合、システム的な防御力の不足を「人による厳格な運用ルール」でカバーする必要があります。最低限、以下の対策の徹底が不可欠となります。</p>
+
+        <div class="rule-box">
+            <div class="rule-title">対策1：用途の限定とネットワーク制限</div>
+            <p style="margin: 0; font-size: 14px;">マルウェアの侵入経路を絶つため、共有サーバーやデータ連携用PCでのWebブラウジング、および外部からのメール受信・開封・リンクのクリックを運用ルールとして完全に禁止します。</p>
+        </div>
+
+        <div class="rule-box">
+            <div class="rule-title">対策2：物理的なオフラインバックアップの徹底</div>
+            <p style="margin: 0; font-size: 14px;">ランサムウェアはネットワーク上の接続先（常時接続のHDD等）も同時に暗号化します。これを防ぐため、毎日の業務終了後にバックアップ用HDDへデータをコピーし、完了後は必ずケーブルを抜いて物理的に隔離（オフライン化）する手作業を毎日欠かさず行います。</p>
+        </div>
+
+        <div class="rule-box">
+            <div class="rule-title">対策3：アップデート確認と有事の緊急連絡網</div>
+            <p style="margin: 0; font-size: 14px;">OSおよびWindows Defenderの定義ファイルが最新になっているかを毎日目視で確認します。また、万が一不審な挙動があった際、即座にLANケーブルを抜き、弊社を含む関係各所へ通報する緊急マニュアルを現場に周知徹底します。</p>
+        </div>
+        
+        <p style="font-size: 13px; color: var(--accent-color); margin-top: 10px;">※上記の手動運用は、担当者の作業忘れや形骸化といった「ヒューマンエラー」が発生しやすいため、管理者による日々のチェック体制が前提となります。</p>
+    </section>
+
+    <section>
+        <h2>｜ 3. 最低限のセキュリティ要件を満たす構築案の比較</h2>
+        <p>前項の手動運用（現状）と、外部の専門ベンダーが提供する法人向けセキュリティサービスとの比較です。</p>
 
         <table class="compare-table">
             <thead>
@@ -266,7 +303,7 @@
                 </tr>
                 <tr>
                     <td class="left-align">不審メール等のブロック</td>
-                    <td class="ng-text">△ 標準機能のみでは限界あり</td>
+                    <td class="ng-text">△ 担当者の注意力に依存</td>
                     <td class="ok-text">⭕ システムによる自動検知・遮断</td>
                 </tr>
                 <tr>
@@ -276,7 +313,7 @@
                 </tr>
                 <tr>
                     <td class="left-align">バックアップ管理</td>
-                    <td class="ng-text">△ 毎日の手動運用に依存</td>
+                    <td class="ng-text">△ 毎日の手動でのケーブル抜き差し</td>
                     <td class="ok-text">⭕ クラウド等への自動バックアップ</td>
                 </tr>
                 <tr>
@@ -294,7 +331,7 @@
     </section>
 
     <section>
-        <h2>｜ 3. サプライチェーンの責任を果たすための推奨ステップ</h2>
+        <h2>｜ 4. サプライチェーンの責任を果たすための推奨ステップ</h2>
         <p>弊社が直接システム構築や運用を請け負うものではございませんが、双方が安全に取引を継続するためのステップとして、以下のアプローチを推奨いたします。</p>
         
         <div class="step-box">
@@ -314,8 +351,8 @@
     </section>
 
     <section>
-        <h2>｜ 4. 結び</h2>
-        <p>企業間のデータ連携において、過剰な自社投資を避けつつも最低限守るべきセキュリティ基準をクリアすることが不可欠です。データ連携を担うパートナーとして、現在の運用リスクを回避し、安全かつ円滑な取引を継続するために、専門ベンダーが提供するセキュリティサービスの導入をご検討いただくことを強く推奨いたします。</p>
+        <h2>｜ 5. 結び</h2>
+        <p>企業間のデータ連携において、過剰な自社投資を避けつつも最低限守るべきセキュリティ基準をクリアすることが不可欠です。データ連携を担うパートナーとして、手動運用のリスクと負担を回避し、安全かつ円滑な取引を継続するために、専門ベンダーが提供するセキュリティサービスの導入をご検討いただくことを強く推奨いたします。</p>
     </section>
 
     <footer>
