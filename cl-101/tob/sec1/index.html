@@ -167,6 +167,31 @@
         .product-link:hover {
             color: #1d4ed8;
         }
+        
+        .step-box {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .step-number {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 10px;
+        }
 
         footer {
             margin-top: 50px;
@@ -200,97 +225,4 @@
         <div class="case-grid">
             <div class="case-card">
                 <span class="case-badge">事例 1：フィッシングメール</span>
-                <div class="case-title">取引先を騙るメールによるアカウント乗っ取り</div>
-                <p style="font-size: 13px; margin: 0;">偽メールのクリックにより認証情報が奪われ、貴社へウイルスメールが自動配信されるリスクがあります。</p>
-                <div class="case-impact">💥 貴社への影響：業務の混乱、信頼関係への重大な損害</div>
-            </div>
-
-            <div class="case-card">
-                <span class="case-badge">事例 2：サプライチェーン攻撃</span>
-                <div class="case-title">自社が踏み台となり取引先システムが停止</div>
-                <p style="font-size: 13px; margin: 0;">ランサムウェア感染により、ネットワークを経由して貴社の基幹システムへウイルスが拡散する懸念があります。</p>
-                <div class="case-impact">💥 貴社への影響：流通の寸断・数千万円規模の経済적損失</div>
-            </div>
-
-            <div class="case-card">
-                <span class="case-badge">事例 3：新種ランサムウェア</span>
-                <div class="case-title">共有サーバーの感染とデータ暗号化</div>
-                <p style="font-size: 13px; margin: 0;">新型ウイルスによりバックアップ用HDDも含めて暗号化され、過去の取引データが消失する危険性があります。</p>
-                <div class="case-impact">💥 貴社への影響：お取引業務の停止、過去データの完全消失</div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <h2>｜ 2. 2つのセキュリティ構築案の比較</h2>
-        <p>無料の自社運用案と、外部専門サービスによる対策の比較は以下の通りです。</p>
-
-        <table class="compare-table">
-            <thead>
-                <tr>
-                    <th>対策項目</th>
-                    <th style="width: 35%;">【A案】予算ゼロ円プラン<br><small>（Windows Defender＋手動ルール）</small></th>
-                    <th style="width: 40%; background-color: #eff6ff;">【B案】外部委託プラン（推奨）<br><small>（AXIS総合セキュリティパック）</small></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="left-align">初期費用 / 月額</td>
-                    <td class="ok-text">0円 / 0円</td>
-                    <td>初期 0円 / 月額 1,800円<br><span class="ok-text">（補助金適用で実質月額 約600円）</span></td>
-                </tr>
-                <tr>
-                    <td class="left-align">フィッシングメール対策</td>
-                    <td class="ng-text">❌ 防げない</td>
-                    <td class="ok-text">⭕ AIが強制ブロック</td>
-                </tr>
-                <tr>
-                    <td class="left-align">新種ランサムウェア対策</td>
-                    <td class="ng-text">❌ すり抜ける確率高</td>
-                    <td class="ok-text">⭕ 挙動検知で自動隔離</td>
-                </tr>
-                <tr>
-                    <td class="left-align">バックアップ管理</td>
-                    <td class="ng-text">⚠️ 毎日の手動運用</td>
-                    <td class="ok-text">⭕ プロによる遠隔保護</td>
-                </tr>
-                <tr>
-                    <td class="left-align">緊急対応体制</td>
-                    <td class="ng-text">❌ 自力で対応（不可能）</td>
-                    <td class="ok-text">⭕ 24時間365日のプロ監視</td>
-                </tr>
-                <tr>
-                    <td class="left-align">損害賠償・復旧費用</td>
-                    <td class="ng-text">⚠️ すべて自社負担</td>
-                    <td class="ok-text">⭕ 最高500万円の保険付帯</td>
-                </tr>
-                <tr>
-                    <td class="left-align">詳細情報</td>
-                    <td>-</td>
-                    <td><a href="https://axisjp.co.jp" target="_blank" class="product-link">製品案内ページを開く ↗</a></td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section>
-        <h2>｜ 3. サプライチェーンの責任を果たすための今後の進め方</h2>
-        <p>安全確保のため、暫定対策の徹底と次世代AI防衛システムの導入を段階的に進めます。</p>
-        <ul>
-            <li><strong>第1段階（即時実施の暫定対策）：</strong> 共有サーバーでのWeb閲覧およびメール送受信を禁止し、バックアップ後は物理的にケーブルを抜いて隔離する運用を徹底します。</li>
-            <li><strong>第2段階（本格的なシステム導入）：</strong> ヒューマンエラーを排除するため、次世代AI防衛システム（B案：<a href="https://axisjp.co.jp" target="_blank" class="product-link">AXIS総合セキュリティパック</a>）の導入を進めます。</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>｜ 4. 結論</h2>
-        <p>お取引先としてのサプライチェーン責任を最優先し、24時間プロ監視とサイバー保険を備えたB案の導入により、強固なセキュリティ体制を早急に確立します。</p>
-    </section>
-
-    <footer>
-        <p>© 2026 サプライチェーン安全確保プロジェクト</p>
-    </footer>
-</div>
-
-</body>
-</html>
+                <div class="case-title
