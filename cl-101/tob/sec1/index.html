@@ -43,7 +43,7 @@
 
         h1 {
             color: var(--primary-color);
-            font-size: 24px;
+            font-size: 26px;
             margin: 0 0 10px 0;
             font-weight: 700;
         }
@@ -54,26 +54,23 @@
             margin: 0;
         }
 
+        /* 画像を完全に再現した見出しスタイル */
         h2 {
             color: var(--primary-color);
-            font-size: 18px;
+            font-size: 19px;
             border-left: 5px solid var(--primary-color);
             padding-left: 12px;
             margin-top: 40px;
             margin-bottom: 15px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
         }
 
-        .info-box {
-            background-color: #f1f5f9;
-            padding: 15px 20px;
-            border-radius: 6px;
-            font-size: 14px;
-            margin-bottom: 25px;
-        }
-
+        /* ピンク色の警告ボックス */
         .warning-box {
             background-color: #fff5f5;
-            border: 2px solid #feb2b2;
+            border: 1px solid #feb2b2;
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 30px;
@@ -82,10 +79,11 @@
         .warning-title {
             color: var(--accent-color);
             font-weight: bold;
-            font-size: 16px;
+            font-size: 15px;
             margin-bottom: 10px;
         }
 
+        /* 3列の被害事例グリッド */
         .case-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -98,6 +96,7 @@
             border: 1px solid #feebc8;
             padding: 20px;
             border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
         .case-badge {
@@ -108,7 +107,7 @@
             padding: 3px 8px;
             border-radius: 4px;
             display: inline-block;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .case-title {
@@ -125,10 +124,11 @@
             padding: 8px;
             border-radius: 4px;
             font-size: 13px;
-            margin-top: 10px;
+            margin-top: 12px;
             border-left: 3px solid var(--accent-color);
         }
 
+        /* 比較表 */
         table.compare-table {
             width: 100%;
             border-collapse: collapse;
@@ -188,52 +188,47 @@
 <div class="container">
     <header>
         <h1>情報セキュリティ体制の構築・強化に関するご提案</h1>
-        <p class="subtitle">お取引先様向け：サプライチェーン全体の安全確保に向けた弊社の取り組みと対策比較</p>
+        <p class="subtitle">【お取引先様向け】サプライチェーン全体の安全確保に向けた、弊社のリスク認識と対策状況</p>
     </header>
 
-    <div class="info-box">
-        <strong>対象：</strong> 大手スーパー（貴社） 御担当者様<br>
-        <strong>目的：</strong> 貴社情報資産およびサプライチェーンの安全を担保するための、弊社のセキュリティ対策ロードマップのご共有
-    </div>
-
-    <p>平素は格別のご高配を賜り、厚く御礼申し上げます。現在、弊社では貴社とのデータ連携および業務運用において、共有サーバー（PCベース）を活用しております。昨今、サプライチェーンを狙ったサイバー脅威が深刻化する中、貴社に安心してお取引を継続いただけるよう、弊社のセキュリティ体制を根本から見直し、強固な防衛策を構築するための提言・ご報告として本書を提出いたします。</p>
+    <p>平素は格別のご高配を賜り、厚く御礼申し上げます。現在、弊社では貴社（大手スーパー様）との業務連携において、共有サーバー（PCベース）を活用しております。昨今、サプライチェーンを狙ったサイバー攻撃が深刻化する中、貴社に安心してお取引を継続いただけるよう、現在のセキュリティ脆弱性を打破し、強固な防衛体制を確立するためのロードマップをご報告・ご提案いたします。</p>
 
     <div class="warning-box">
-        <div class="warning-title">🚨 現状認識：Windows Defender（標準機能のみ）運用の脆弱性と限界</div>
-        <p style="margin: 0; font-size: 14px;">現在、弊社の共有サーバーはOS標準の「Windows Defender」に依存しております。しかし、これは既知のウイルスには対応できるものの、<b>巧妙なフィッシングメールや新種のランサムウェア（未知の脅威）を完全に防ぐことは技術的に不可能です。</b>万が一、弊社が感染を踏み台とされ、貴社の基幹システムや情報資産に二次被害を及ぼすリスクを排除するため、速やかな対策強化が必要であると認識しております。</p>
+        <div class="warning-title">🚨 【重要】現状のセキュリティ（Windows Defenderのみ）における致命的な限界</div>
+        <p style="margin: 0; font-size: 14px;">現在の弊社サーバーはWindows標準機能のみに依存しており、既知のウイルスには対応可能です。しかし、<b>人間の心理を突くフィッシングメールや、日々作られる「新種のランサムウェア」のすり抜けを完全に防ぐことはできず、</b>これらを踏み台とした貴社（大手スーパー様）への二次被害（ネットワーク侵入やデータ汚染）のリスクを完全に排除できていないのが実状です。</p>
     </div>
 
     <section>
-        <h2>1. 近年の中小企業・サプライチェーンを狙ったサイバー被害実例</h2>
-        <p>ハッカーがセキュリティの甘い「お取引先企業（中小企業）」を最初の標的とし、そこを踏み台にして「大手企業（貴社など）」の本部や工場へ侵入する事例が多発しております。</p>
+        <h2>1. 他人事ではない：中小企業を襲った「実際のサイバー被害事例」と貴社へのリスク</h2>
+        <p>ハッカーがセキュリティの甘い取引先（中小企業）を最初の標的とし、そこを踏み台にして大企業（大手スーパーなど）の本部や工場へ侵入する「サプライチェーン攻撃」が主流となっています。</p>
         
         <div class="case-grid">
             <div class="case-card">
-                <span class="case-badge">事例 1：偽メールの巧妙化</span>
-                <div class="case-title">お取引先を装うフィッシングにより、アカウント乗っ取り</div>
-                <p style="font-size: 13px; margin: 0;">従業員が巧妙なビジネスメールの偽URLをクリックし、IDを盗まれる。乗っ取られた自社メールから、**主要なお取引先（大企業）へ大量の標的型ウイルスメールが自動配信**されてしまった例。</p>
-                <div class="case-impact">💥 被害：お取引先企業の業務混乱・一時取引停止</div>
+                <span class="case-badge">事例 1：フィッシングメール</span>
+                <div class="case-title">取引先を騙るメールに騙され、アカウント乗っ取り</div>
+                <p style="font-size: 13px; margin: 0;">従業員が巧妙なビジネスメールの偽URLをクリックし、IDを盗まれる。乗っ取られた弊社アカウントから、**貴社（大手スーパー様）へ大量のウイルスメールが自動送信**されてしまう危険性。</p>
+                <div class="case-impact">💥 貴社への影響：業務の混乱・一時取引停止リスク</div>
             </div>
 
             <div class="case-card">
-                <span class="case-badge">事例 2：システム経由の侵入</span>
-                <div class="case-title">サプライヤーが感染し、大手企業の工場・ラインが停止</div>
-                <p style="font-size: 13px; margin: 0;">サプライチェーンを構成する企業がランサムウェアに感染。VPNや共有ネットワークを経由して**お取引先（大企業）の全工場システムがストップ**し、甚大な経済的損失を与えた例。</p>
-                <div class="case-impact">💥 被害：数千万円以上の損害賠償・サプライチェーンの寸断</div>
+                <span class="case-badge">事例 2：サプライチェーン攻撃</span>
+                <div class="case-title">自社が踏み台にされ、取引先の工場・システムが停止</div>
+                <p style="font-size: 13px; margin: 0;">弊社がランサムウェアに感染。VPNやデータ連携用ネットワークを経由して、**貴社の基幹システムや店舗発注システムへウイルスが拡散・ストップ**させてしまう最大の懸念。</p>
+                <div class="case-impact">💥 貴社への影響：流通の寸断・数千万円規模の損害賠償</div>
             </div>
 
             <div class="case-card">
                 <span class="case-badge">事例 3：新種ランサムウェア</span>
-                <div class="case-title">一般的な共有PCが狙われ、バックアップ含め全面破壊</div>
-                <p style="font-size: 13px; margin: 0;">標準的なセキュリティ設定のみの共有PCが新型ウイルスに感染。常時接続されていたバックアップ用HDDも同時に暗号化され、**お取引関連データ（売上・配送履歴等）が完全消失**した例。</p>
-                <div class="case-impact">💥 被害：業務復旧に2週間以上、データ完全喪失</div>
+                <div class="case-title">一般PCを共有したサーバーが感染、取引データ全面暗号化</div>
+                <p style="font-size: 13px; margin: 0;">セキュリティ設定のみの共有PCが新型ウイルスに感染。常時接続されていたバックアップ用HDDも同時に暗号化され、**貴社との過去の売上履歴・納品データ・配送履歴が完全喪失**する危険性。</p>
+                <div class="case-impact">💥 貴社への影響：業務停止、取引データの完全消失</div>
             </div>
         </div>
     </section>
 
     <section>
-        <h2>2. 弊社が検討する2つのセキュリティ強化案の比較</h2>
-        <p>貴社に対する安全性を早期に担保するため、弊社内で実施・検討している2つの対策案の比較です。</p>
+        <h2>2. 貴社への安全性を担保する「2つのセキュリティ構築案」の比較</h2>
+        <p>弊社内で現在検討・実施している、無料の自社運用案と、国の安全基準を満たした外部委託プランの比較表です。</p>
 
         <table class="compare-table">
             <thead>
@@ -246,34 +241,35 @@
             <tbody>
                 <tr>
                     <td class="left-align">貴社（スーパー様）への<br>安全性担保</td>
-                    <td class="ng-text">⚠️ 非常に低い（リスク残存）<br><small style="color:#64748b; font-weight:normal;">ヒューマンエラーが1回でもあると破綻し、貴社に影響が及ぶ</small></td>
-                    <td class="ok-text">🛡️ 極めて高い（推奨水準）<br><small style="color:#64748b; font-weight:normal;">国の安全ガイドライン（IPAお助け隊）に準拠した最高水準の防衛</small></td>
+                    <td class="ng-text">⚠️ 低い（リスク残存）<br><small style="color:#64748b; font-weight:normal;">1回の人的ミスで貴社へ被害が波及する恐れ</small></td>
+                    <td class="ok-text">🛡️ 極めて高い（推奨水準）<br><small style="color:#64748b; font-weight:normal;">経済産業省・IPA認定の「お助け隊サービス」基準</small></td>
                 </tr>
                 <tr>
                     <td class="left-align">フィッシングメール<br>（詐欺サイト誘導）</td>
-                    <td class="ng-text">❌ 検知・防御不可<br><small style="color:#64748b; font-weight:normal;">従業員の目視に頼るため、巧妙な偽装URLを素通りさせる</small></td>
-                    <td class="ok-text">⭕ AIによる強制ブロック<br><small style="color:#64748b; font-weight:normal;">クリックの瞬間にAIが危険を察知し、接続を強制遮断</small></td>
+                    <td class="ng-text">❌ 防御不可<br><small style="color:#64748b; font-weight:normal;">従業員の目視に頼るため、巧妙な偽URLを見抜けない</small></td>
+                    <td class="ok-text">⭕ AIによる強制ブロック<br><small style="color:#64748b; font-weight:normal;">クリックの瞬間にAIが危険を察知し接続遮断</small></td>
                 </tr>
                 <tr>
                     <td class="left-align">新種ランサムウェア<br>（未知のウイルス）</td>
-                    <td class="ng-text">❌ すり抜ける確率高<br><small style="color:#64748b; font-weight:normal;">過去のデータベースにない「新種」の暗号化攻撃は防げない</small></td>
-                    <td class="ok-text">⭕ 振る舞い検知で自動隔離<br><small style="color:#64748b; font-weight:normal;">AI（EDR）が「不審な挙動」を察知し、発病前にウイルスを強制終了</small></td>
+                    <td class="ng-text">❌ すり抜ける確率高<br><small style="color:#64748b; font-weight:normal;">過去のデータベースにない「新型」は防げない</small></td>
+                    <td class="ok-text">⭕ 振る舞い検知で自動隔離<br><small style="color:#64748b; font-weight:normal;">AI（EDR）が「怪しい動き」を察知し暗号化前に強制終了</small></td>
                 </tr>
                 <tr>
-                    <td class="left-align">アクシデント発生時の<br>緊急対応（夜間・休日）</td>
-                    <td class="ng-text">❌ 迅速な対応は不可能<br><small style="color:#64748b; font-weight:normal;">社内に専門家がいないため、感染拡大防止（隔離）が遅れる</small></td>
-                    <td class="ok-text">⭕ 24時間365日のプロ監視<br><small style="color:#64748b; font-weight:normal;">世界大手の専門家チーム（MDR）が夜間でもリモートで自動対処</small></td>
+                    <td class="left-align">夜間・休日の緊急対応</td>
+                    <td class="ng-text">❌ 自力対応（不可能）<br><small style="color:#64748b; font-weight:normal;">夜間や休日等、無人時間帯の感染拡大を止められない</small></td>
+                    <td class="ok-text">⭕ 24時間365日のプロ監視<br><small style="color:#64748b; font-weight:normal;">世界大手の専門家チームが夜間でもリモートで自動対処</small></td>
                 </tr>
                 <tr>
                     <td class="left-align">万が一の事故時の<br>補償・賠償体制</td>
-                    <td class="ng-text">⚠️ 補償なし<br><small style="color:#64748b; font-weight:normal;">自己資本のみでの対応となり、事業継続および賠償の履行に懸念</small></td>
-                    <td class="ok-text">⭕ サイバー保険自動付帯<br><small style="color:#64748b; font-weight:normal;">三井住友海上のサイバー保険（最高500万円）により賠償資力を担保</small></td>
+                    <td class="ng-text">⚠️ 補償なし<br><small style="color:#64748b; font-weight:normal;">自己資本のみでの対応となり、賠償の履行に懸念</small></td>
+                    <td class="ok-text">⭕ サイバー保険自動付帯<br><small style="color:#64748b; font-weight:normal;">三井住友海上の保険（最高500万円）で資力を担保</small></td>
                 </tr>
             </tbody>
         </table>
     </section>
 
     <section>
-        <h2>3. 具体的なロードマップと実施内容</h2>
-        <p>弊社は貴社のサプライチェーンとしての責任を果たすため、以下の2段階でセキュリティを強化してまいります。</p>
-        
+        <h2>3. サプライチェーン責任を果たすための今後の進め方</h2>
+        <p>弊社は貴社の確固たるパートナーとして、以下の2段階でセキュリティ強化を推進し、絶対的な安全を確保いたします。</p>
+        <ul>
+            <li><strong>第1段階（即時実施の暫定対策）：</strong> 共有サーバーPCでのWeb閲覧・メール送受信を「完全禁止」に設定。また、日替わりでバックアップを取得し、終了後は<b>物理的にケーブルを抜いて隔離保管</b>する運用ルールを本日より徹底します。</li>
