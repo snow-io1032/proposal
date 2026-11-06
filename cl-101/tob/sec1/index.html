@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>セキュリティ体制構築プラン（予算ゼロ円・自社運用案）</title>
+    <style>
+        :root {
+            --primary-color: #334155;
+            --secondary-color: #475569;
+            --accent-color: #d97706;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --border-color: #cbd5e1;
+            --rule-bg: #f0fdf4;
+            --rule-border: #16a34a;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 26px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 15px;
+            margin: 0;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 18px;
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 12px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+        }
+
+        .cost-box {
+            background-color: #eff6ff;
+            border: 1px solid #bfdbfe;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-weight: bold;
+            color: #1e40af;
+        }
+
+        .rule-card {
+            background-color: var(--rule-bg);
+            border-left: 5px solid var(--rule-border);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+        }
+
+        .rule-title {
+            color: var(--rule-border);
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .warning-text {
+            background-color: #fffaf0;
+            border: 1px solid #feebc8;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        ol, ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>情報セキュリティ体制構築に関するご提案</h1>
+        <p class="subtitle">【予算ゼロ円プラン】Windows標準機能の最大活用と社内運用の統制案</p>
+    </header>
+
+    <div class="cost-box">
+        💰 対策費用：初期費用 0円 / 月額費用 0円（完全無料）
+    </div>
+
+    <p>外部の有料セキュリティ製品を導入せず、現有リソース（Windowsの標準機能）の徹底的な最適化と、全社的な運用ルールの厳格化によって、最低限必要な防御力を自社で構築するプランです。本日より即時実施が可能です。</p>
+
+    <section>
+        <h2>1. サーバーPC（共有PC）の要塞化（今すぐ実施する技術対策）</h2>
+        <p>社内サーバーとして使用している一般PCについて、設定を以下のように変更・固定します。</p>
+        
+        <div class="rule-card">
+            <div class="rule-title">① サーバーPCでのWeb閲覧・メール利用の「絶対禁止」</div>
+            <p style="margin: 0; font-size: 14px;">サイバーウイルスの侵入経路の9割は「不審なWebサイト」か「メールの添付ファイル」です。サーバーPCはファイル共有の機能だけに徹し、人間が直接操作してインターネットサーフィンやメールチェックを行う行為を禁止します。</p>
+        </div>
+
+        <div class="rule-card">
+            <div class="rule-title">② 接続中バックアップの廃止と「手動オフライン管理」</div>
+            <p style="margin: 0; font-size: 14px;">ランサムウェア（身代金要求ウイルス）に感染すると、PCに繋がっている外付けHDDも同時にすべて暗号化（破壊）されます。外付けHDDを2台用意し、日替わりでバックアップを取得。<strong>バックアップ終了後は必ず物理的にケーブルを抜いて隔離保管</strong>します。</p>
+        </div>
+
+        <div class="rule-card">
+            <div class="rule-title">③ Windows UpdateおよびDefenderの強制自動更新</div>
+            <p style="margin: 0; font-size: 14px;">Windows標準の「Windows Defender」は、OSが最新状態に保たれて初めて本来の防御力を発揮します。自動更新スケジュールを毎週末に強制設定し、アップデートの未適用状態を無くします。</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. 社内運用ルールの統一と統制（人的対策）</h2>
+        <p>セキュリティソフトを購入しない代わりに、社員一人ひとりの運用の厳格化でカバーします。</p>
+        
+        <ul>
+            <li><strong>「個人持ち込みセキュリティソフト」の利用禁止</strong><br>
+            <span style="font-size: 14px; color: var(--text-light);">現在、善意で個人のソフトを入れている社員がいますが、Windows Defenderと競合して動作異常を起こしたり、保護がすり抜ける原因になります。全社で「Windows Defenderのみ」に統一します。</span></li>
+            
+            <li><strong>パスワードの総見直し（使い回し・初期設定の禁止）</strong><br>
+            <span style="font-size: 14px; color: var(--text-light);">共有ファイルへのアクセスパスワードやPCログインパスワードについて、推測されやすい単純なもの（例: 1234、password、会社名など）を禁止し、英数字・記号を組み合わせた12桁以上に変更を義務付けます。</span></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>3. 自社運用プラン（無料）における限界と懸念点</h2>
+        <p>本プランは費用がかからない反面、以下の重大なデメリット・運用負荷が残ることを予め留意する必要があります。</p>
+        
+        <div class="warning-text">
+            <strong style="color: var(--accent-color);">⚠️ 自社運用の限界とリスク</strong>
+            <ol style="margin-top: 5px; margin-bottom: 0; font-size: 14px;">
+                <li><strong>ウイルス検知後の「対処」はすべて手探り：</strong> Windows Defenderはウイルスを検知・隔離するだけです。ネットワーク内のどこまで感染が広がったかの調査や、感染端末の安全な復旧は自力で行う必要があり、長期間の業務停止に陥るリスクがあります。</li>
+                <li><strong>人的ミスによる破綻：</strong> 「バックアップのケーブルを抜き忘れた日に感染する」「社員が不審なメールを開いてしまう」といった1つの人間ミスで、全社データが損失する脆さがあります。</li>
+                <li><strong>サイバー事故時の全額自己負担：</strong> 万が一、取引先（大手スーパー様）へ被害を及ぼして損害賠償を求められた場合、あるいはシステム復旧に専門業者を呼ぶ場合、<b>すべての費用（数百万円〜）が会社の自己負担</b>となります。</li>
+            </ol>
+        </div>
+    </section>
+
+    <section>
+        <h2>4. 結論とおすすめの進め方</h2>
+        <p>まずは<strong>「費用0円」でできる本プランのルール作り（サーバーPCでのネット禁止、バックアップの物理隔離）を本日より即座にスタート</strong>させます。</p>
+        <p>その運用を行いながら、やはり毎日の手動バックアップの手間や、万が一の損害賠償リスク（保険の有無）が経営上の懸念として残る場合は、先に提案いたしました「国の補助金を活用した月額実質600円の外部委託プラン」への切り替えを再検討することを推奨いたします。</p>
+    </section>
+
+    <footer>
+        <p>© 2026 セキュリティ体制構築プロジェクト</p>
+    </footer>
+</div>
+
+</body>
+</html>
