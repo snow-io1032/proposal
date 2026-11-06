@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>セキュリティ体制構築に関する比較提案書</title>
+    <title>情報セキュリティ体制の構築・強化に関するご提案</title>
     <style>
         :root {
             --primary-color: #1e3a8a;
@@ -43,7 +43,7 @@
 
         h1 {
             color: var(--primary-color);
-            font-size: 26px;
+            font-size: 24px;
             margin: 0 0 10px 0;
             font-weight: 700;
         }
@@ -63,6 +63,14 @@
             margin-bottom: 15px;
         }
 
+        .info-box {
+            background-color: #f1f5f9;
+            padding: 15px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
         .warning-box {
             background-color: #fff5f5;
             border: 2px solid #feb2b2;
@@ -78,7 +86,6 @@
             margin-bottom: 10px;
         }
 
-        /* 被害事例のスタイル */
         .case-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -91,7 +98,6 @@
             border: 1px solid #feebc8;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
         .case-badge {
@@ -167,13 +173,6 @@
             text-align: center;
         }
 
-        .price-large {
-            font-size: 32px;
-            color: var(--success-color);
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
         footer {
             margin-top: 50px;
             text-align: center;
@@ -188,94 +187,93 @@
 
 <div class="container">
     <header>
-        <h1>情報セキュリティ体制構築に関するご提案</h1>
-        <p class="subtitle">【経営判断用】予算ゼロ円（自社運用）プランの限界と、外部委託プランの比較</p>
+        <h1>情報セキュリティ体制の構築・強化に関するご提案</h1>
+        <p class="subtitle">お取引先様向け：サプライチェーン全体の安全確保に向けた弊社の取り組みと対策比較</p>
     </header>
 
-    <p>現在、弊社は大手スーパー様との取引を行っていますが、社内サーバーPCのセキュリティは「Windows Defenderのみ」の運用となっております。本提案は、コストを一切かけない「予算ゼロ円案」の致命的な限界（すり抜けリスク）を明記し、実際の被害事例を基に最適な対策を比較検討するためのものです。</p>
+    <div class="info-box">
+        <strong>対象：</strong> 大手スーパー（貴社） 御担当者様<br>
+        <strong>目的：</strong> 貴社情報資産およびサプライチェーンの安全を担保するための、弊社のセキュリティ対策ロードマップのご共有
+    </div>
+
+    <p>平素は格別のご高配を賜り、厚く御礼申し上げます。現在、弊社では貴社とのデータ連携および業務運用において、共有サーバー（PCベース）を活用しております。昨今、サプライチェーンを狙ったサイバー脅威が深刻化する中、貴社に安心してお取引を継続いただけるよう、弊社のセキュリティ体制を根本から見直し、強固な防衛策を構築するための提言・ご報告として本書を提出いたします。</p>
 
     <div class="warning-box">
-        <div class="warning-title">🚨 【重要】予算ゼロ円（Windows Defenderのみ）の致命的な限界</div>
-        <p style="margin: 0; font-size: 14px;">Windows Defenderは過去に発見された既知のウイルスには強いですが、<b>人間の心理を突くフィッシングメールや、日々作られる「新種のランサムウェア（未知の脅威）」には無力</b>であり、これらを踏み台にした大手スーパー様への二次被害（取引停止リスク）を防ぐことができません。</p>
+        <div class="warning-title">🚨 現状認識：Windows Defender（標準機能のみ）運用の脆弱性と限界</div>
+        <p style="margin: 0; font-size: 14px;">現在、弊社の共有サーバーはOS標準の「Windows Defender」に依存しております。しかし、これは既知のウイルスには対応できるものの、<b>巧妙なフィッシングメールや新種のランサムウェア（未知の脅威）を完全に防ぐことは技術的に不可能です。</b>万が一、弊社が感染を踏み台とされ、貴社の基幹システムや情報資産に二次被害を及ぼすリスクを排除するため、速やかな対策強化が必要であると認識しております。</p>
     </div>
 
     <section>
-        <h2>1. 他人事ではない：中小企業を襲った「実際のサイバー被害事例」</h2>
-        <p>「うちのような規模の会社が狙われるわけがない」という認識は非常に危険です。近年、ハッカーはセキュリティの甘い<b>取引先（中小企業）を踏み台にして、大企業（大手スーパーなど）を攻撃する「サプライチェーン攻撃」</b>を主流にしています[1]。</p>
+        <h2>1. 近年の中小企業・サプライチェーンを狙ったサイバー被害実例</h2>
+        <p>ハッカーがセキュリティの甘い「お取引先企業（中小企業）」を最初の標的とし、そこを踏み台にして「大手企業（貴社など）」の本部や工場へ侵入する事例が多発しております。</p>
         
         <div class="case-grid">
             <div class="case-card">
-                <span class="case-badge">事例 1：フィッシングメール</span>
-                <div class="case-title">取引先を騙るメールに騙され、アカウント乗っ取り</div>
-                <p style="font-size: 13px; margin: 0;">社員が本物そっくりの偽メールのURLをクリックし、ログイン情報を入力。乗っ取られた自社アカウントから、**大口の取引先へ大量のウイルスメールが自動配信**されてしまった。</p>
-                <div class="case-impact">💥 影響：取引先からの信用失墜・一時取引停止</div>
+                <span class="case-badge">事例 1：偽メールの巧妙化</span>
+                <div class="case-title">お取引先を装うフィッシングにより、アカウント乗っ取り</div>
+                <p style="font-size: 13px; margin: 0;">従業員が巧妙なビジネスメールの偽URLをクリックし、IDを盗まれる。乗っ取られた自社メールから、**主要なお取引先（大企業）へ大量の標的型ウイルスメールが自動配信**されてしまった例。</p>
+                <div class="case-impact">💥 被害：お取引先企業の業務混乱・一時取引停止</div>
             </div>
 
             <div class="case-card">
-                <span class="case-badge">事例 2：サプライチェーン攻撃</span>
-                <div class="case-title">自社が踏み台にされ、親会社・取引先の工場が停止</div>
-                <p style="font-size: 13px; margin: 0;">部品製造の中小企業がランサムウェアに感染。繋がっていたネットワーク経由で**取引先（大企業）の全工場がストップ**する事態に発展[1]。自社の対策不足が原因となった[1]。</p>
-                <div class="case-impact">💥 影響：数千万円の損害賠償・サプライチェーン破綻</div>
+                <span class="case-badge">事例 2：システム経由の侵入</span>
+                <div class="case-title">サプライヤーが感染し、大手企業の工場・ラインが停止</div>
+                <p style="font-size: 13px; margin: 0;">サプライチェーンを構成する企業がランサムウェアに感染。VPNや共有ネットワークを経由して**お取引先（大企業）の全工場システムがストップ**し、甚大な経済的損失を与えた例。</p>
+                <div class="case-impact">💥 被害：数千万円以上の損害賠償・サプライチェーンの寸断</div>
             </div>
 
             <div class="case-card">
                 <span class="case-badge">事例 3：新種ランサムウェア</span>
-                <div class="case-title">一般PCを共有したサーバーが感染、全データ暗号化</div>
-                <p style="font-size: 13px; margin: 0;">セキュリティソフト未導入の共有PCが新型ウイルスに感染。繋ぎっぱなしだったバックアップ用の外付けHDDも同時に暗号化され破壊。**過去の顧客データや売上履歴がすべて消失**した。</p>
-                <div class="case-impact">💥 影響：復旧費用に数百万円、業務停止2週間</div>
+                <div class="case-title">一般的な共有PCが狙われ、バックアップ含め全面破壊</div>
+                <p style="font-size: 13px; margin: 0;">標準的なセキュリティ設定のみの共有PCが新型ウイルスに感染。常時接続されていたバックアップ用HDDも同時に暗号化され、**お取引関連データ（売上・配送履歴等）が完全消失**した例。</p>
+                <div class="case-impact">💥 被害：業務復旧に2週間以上、データ完全喪失</div>
             </div>
         </div>
     </section>
 
     <section>
-        <h2>2. 2つのセキュリティ構築案の比較</h2>
-        <p>無料で行う自社運用と、国の補助金を活用した外部サービス（AXIS総合セキュリティパック）の比較表です。</p>
+        <h2>2. 弊社が検討する2つのセキュリティ強化案の比較</h2>
+        <p>貴社に対する安全性を早期に担保するため、弊社内で実施・検討している2つの対策案の比較です。</p>
 
         <table class="compare-table">
             <thead>
                 <tr>
-                    <th>対策項目</th>
-                    <th style="width: 35%;">【A案】予算ゼロ円プラン<br><small>（Windows Defender＋手動ルール）</small></th>
-                    <th style="width: 40%; background-color: #eff6ff;">【B案】外部委託プラン（推奨）<br><small>（AXIS総合セキュリティパック）</small></th>
+                    <th>対策・評価項目</th>
+                    <th style="width: 35%;">【A案】自社運用（予算ゼロ円）<br><small>（Windows Defender＋手動隔離）</small></th>
+                    <th style="width: 40%; background-color: #eff6ff;">【B案】外部専門委託（推奨）<br><small>（AXIS総合セキュリティパック）</small></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td class="left-align">初期費用 / 月額</td>
-                    <td class="ok-text">0円 / 0円</td>
-                    <td>初期 0円 / 月額 1,800円<br><span class="ok-text">（補助金適用で実質月額 約600円）</span></td>
+                    <td class="left-align">貴社（スーパー様）への<br>安全性担保</td>
+                    <td class="ng-text">⚠️ 非常に低い（リスク残存）<br><small style="color:#64748b; font-weight:normal;">ヒューマンエラーが1回でもあると破綻し、貴社に影響が及ぶ</small></td>
+                    <td class="ok-text">🛡️ 極めて高い（推奨水準）<br><small style="color:#64748b; font-weight:normal;">国の安全ガイドライン（IPAお助け隊）に準拠した最高水準の防衛</small></td>
                 </tr>
                 <tr>
                     <td class="left-align">フィッシングメール<br>（詐欺サイト誘導）</td>
-                    <td class="ng-text">❌ 防げない<br><small style="color:#64748b; font-weight:normal;">社員が偽URLをクリックしIDを盗まれる行為は検知不可</small></td>
-                    <td class="ok-text">⭕ AIが強制ブロック<br><small style="color:#64748b; font-weight:normal;">URLクリックの瞬間にAIが危険を察知し接続遮断</small></td>
+                    <td class="ng-text">❌ 検知・防御不可<br><small style="color:#64748b; font-weight:normal;">従業員の目視に頼るため、巧妙な偽装URLを素通りさせる</small></td>
+                    <td class="ok-text">⭕ AIによる強制ブロック<br><small style="color:#64748b; font-weight:normal;">クリックの瞬間にAIが危険を察知し、接続を強制遮断</small></td>
                 </tr>
                 <tr>
                     <td class="left-align">新種ランサムウェア<br>（未知のウイルス）</td>
-                    <td class="ng-text">❌ すり抜ける確率高<br><small style="color:#64748b; font-weight:normal;">過去のデータにない「新種」の暗号化攻撃は見破れない</small></td>
-                    <td class="ok-text">⭕ 挙動検知で自動隔離<br><small style="color:#64748b; font-weight:normal;">AI（EDR）が「怪しい動き」を検知し暗号化前に強制終了</small></td>
+                    <td class="ng-text">❌ すり抜ける確率高<br><small style="color:#64748b; font-weight:normal;">過去のデータベースにない「新種」の暗号化攻撃は防げない</small></td>
+                    <td class="ok-text">⭕ 振る舞い検知で自動隔離<br><small style="color:#64748b; font-weight:normal;">AI（EDR）が「不審な挙動」を察知し、発病前にウイルスを強制終了</small></td>
                 </tr>
                 <tr>
-                    <td class="left-align">バックアップ管理</td>
-                    <td class="ng-text">⚠️ 毎日の手動運用<br><small style="color:#64748b; font-weight:normal;">手動でケーブルを抜き忘れた日に感染すれば全データ喪失</small></td>
-                    <td class="ok-text">⭕ プロによる遠隔保護<br><small style="color:#64748b; font-weight:normal;">万が一の場合もバックアップへの波及をシステム側で阻止</small></td>
+                    <td class="left-align">アクシデント発生時の<br>緊急対応（夜間・休日）</td>
+                    <td class="ng-text">❌ 迅速な対応は不可能<br><small style="color:#64748b; font-weight:normal;">社内に専門家がいないため、感染拡大防止（隔離）が遅れる</small></td>
+                    <td class="ok-text">⭕ 24時間365日のプロ監視<br><small style="color:#64748b; font-weight:normal;">世界大手の専門家チーム（MDR）が夜間でもリモートで自動対処</small></td>
                 </tr>
                 <tr>
-                    <td class="left-align">ウイルス感染時の<br>緊急対応（夜間など）</td>
-                    <td class="ng-text">❌ 自力で対応（不可能）<br><small style="color:#64748b; font-weight:normal;">社内に専門家がいないため、感染拡大を止められない</small></td>
-                    <td class="ok-text">⭕ 24時間365日のプロ監視<br><small style="color:#64748b; font-weight:normal;">世界大手の専門家が夜間でもリモートで攻撃を自動遮断</small></td>
-                </tr>
-                <tr>
-                    <td class="left-align">万が一の損害賠償・<br>システム復旧費用</td>
-                    <td class="ng-text">⚠️ すべて会社負担<br><small style="color:#64748b; font-weight:normal;">数百万円以上の復旧費用や、取引先への賠償はすべて自己負担</small></td>
-                    <td class="ok-text">⭕ 最高500万円の保険付帯<br><small style="color:#64748b; font-weight:normal;">三井住友海上のサイバー保険が【無料自動付帯】</small></td>
+                    <td class="left-align">万が一の事故時の<br>補償・賠償体制</td>
+                    <td class="ng-text">⚠️ 補償なし<br><small style="color:#64748b; font-weight:normal;">自己資本のみでの対応となり、事業継続および賠償の履行に懸念</small></td>
+                    <td class="ok-text">⭕ サイバー保険自動付帯<br><small style="color:#64748b; font-weight:normal;">三井住友海上のサイバー保険（最高500万円）により賠償資力を担保</small></td>
                 </tr>
             </tbody>
         </table>
     </section>
 
     <section>
-        <h2>3. 各プランの具体的な実施内容</h2>
+        <h2>3. 具体的なロードマップと実施内容</h2>
+        <p>弊社は貴社のサプライチェーンとしての責任を果たすため、以下の2段階でセキュリティを強化してまいります。</p>
         
-        <h3>【A案：予算ゼロ円プラン】を選ぶ場合の社内義務（本日より即時実施）</h3>
-        <ul>
