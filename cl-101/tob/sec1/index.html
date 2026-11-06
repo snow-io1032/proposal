@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>セキュリティ体制構築プラン（予算ゼロ円・自社運用案）</title>
+    <title>セキュリティ体制構築に関する比較提案書</title>
     <style>
         :root {
-            --primary-color: #334155;
+            --primary-color: #1e3a8a;
             --secondary-color: #475569;
-            --accent-color: #d97706;
+            --accent-color: #dc2626;
             --bg-color: #f8fafc;
             --card-bg: #ffffff;
             --text-color: #1e293b;
             --text-light: #64748b;
             --border-color: #cbd5e1;
-            --rule-bg: #f0fdf4;
-            --rule-border: #16a34a;
+            --success-color: #16a34a;
         }
 
         body {
@@ -28,7 +27,7 @@
         }
 
         .container {
-            max-width: 840px;
+            max-width: 900px;
             margin: 0 auto;
             background: var(--card-bg);
             padding: 40px;
@@ -58,53 +57,121 @@
         h2 {
             color: var(--primary-color);
             font-size: 18px;
-            border-left: 5px solid var(--secondary-color);
+            border-left: 5px solid var(--primary-color);
             padding-left: 12px;
-            margin-top: 35px;
+            margin-top: 40px;
             margin-bottom: 15px;
         }
 
-        .cost-box {
-            background-color: #eff6ff;
-            border: 1px solid #bfdbfe;
-            padding: 15px 20px;
+        .warning-box {
+            background-color: #fff5f5;
+            border: 2px solid #feb2b2;
+            padding: 20px;
             border-radius: 8px;
-            margin-bottom: 25px;
-            font-weight: bold;
-            color: #1e40af;
+            margin-bottom: 30px;
         }
 
-        .rule-card {
-            background-color: var(--rule-bg);
-            border-left: 5px solid var(--rule-border);
-            padding: 15px 20px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 20px;
-        }
-
-        .rule-title {
-            color: var(--rule-border);
+        .warning-title {
+            color: var(--accent-color);
             font-weight: bold;
             font-size: 16px;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
-        .warning-text {
-            background-color: #fffaf0;
+        /* 被害事例のスタイル */
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .case-card {
+            background: #fffaf0;
             border: 1px solid #feebc8;
-            padding: 15px;
-            border-radius: 6px;
-            font-size: 14px;
-            margin-top: 15px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
-        ol, ul {
-            padding-left: 20px;
-            margin-bottom: 20px;
+        .case-badge {
+            background-color: #dd6b20;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 10px;
         }
 
-        li {
+        .case-title {
+            font-weight: bold;
+            font-size: 15px;
+            color: #c05621;
             margin-bottom: 8px;
+        }
+
+        .case-impact {
+            background-color: #fff5f5;
+            color: var(--accent-color);
+            font-weight: bold;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-top: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        table.compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+
+        table.compare-table th, table.compare-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        table.compare-table th {
+            background-color: #f1f5f9;
+            color: var(--primary-color);
+        }
+
+        table.compare-table td.left-align {
+            text-align: left;
+            font-weight: bold;
+            background-color: #f8fafc;
+            width: 25%;
+        }
+
+        .ng-text {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .ok-text {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background-color: #f0fdf4;
+            border: 2px dashed var(--success-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .price-large {
+            font-size: 32px;
+            color: var(--success-color);
+            font-weight: bold;
+            margin: 10px 0;
         }
 
         footer {
@@ -122,72 +189,93 @@
 <div class="container">
     <header>
         <h1>情報セキュリティ体制構築に関するご提案</h1>
-        <p class="subtitle">【予算ゼロ円プラン】Windows標準機能の最大活用と社内運用の統制案</p>
+        <p class="subtitle">【経営判断用】予算ゼロ円（自社運用）プランの限界と、外部委託プランの比較</p>
     </header>
 
-    <div class="cost-box">
-        💰 対策費用：初期費用 0円 / 月額費用 0円（完全無料）
+    <p>現在、弊社は大手スーパー様との取引を行っていますが、社内サーバーPCのセキュリティは「Windows Defenderのみ」の運用となっております。本提案は、コストを一切かけない「予算ゼロ円案」の致命的な限界（すり抜けリスク）を明記し、実際の被害事例を基に最適な対策を比較検討するためのものです。</p>
+
+    <div class="warning-box">
+        <div class="warning-title">🚨 【重要】予算ゼロ円（Windows Defenderのみ）の致命的な限界</div>
+        <p style="margin: 0; font-size: 14px;">Windows Defenderは過去に発見された既知のウイルスには強いですが、<b>人間の心理を突くフィッシングメールや、日々作られる「新種のランサムウェア（未知の脅威）」には無力</b>であり、これらを踏み台にした大手スーパー様への二次被害（取引停止リスク）を防ぐことができません。</p>
     </div>
 
-    <p>外部の有料セキュリティ製品を導入せず、現有リソース（Windowsの標準機能）の徹底的な最適化と、全社的な運用ルールの厳格化によって、最低限必要な防御力を自社で構築するプランです。本日より即時実施が可能です。</p>
-
     <section>
-        <h2>1. サーバーPC（共有PC）の要塞化（今すぐ実施する技術対策）</h2>
-        <p>社内サーバーとして使用している一般PCについて、設定を以下のように変更・固定します。</p>
+        <h2>1. 他人事ではない：中小企業を襲った「実際のサイバー被害事例」</h2>
+        <p>「うちのような規模の会社が狙われるわけがない」という認識は非常に危険です。近年、ハッカーはセキュリティの甘い<b>取引先（中小企業）を踏み台にして、大企業（大手スーパーなど）を攻撃する「サプライチェーン攻撃」</b>を主流にしています[1]。</p>
         
-        <div class="rule-card">
-            <div class="rule-title">① サーバーPCでのWeb閲覧・メール利用の「絶対禁止」</div>
-            <p style="margin: 0; font-size: 14px;">サイバーウイルスの侵入経路の9割は「不審なWebサイト」か「メールの添付ファイル」です。サーバーPCはファイル共有の機能だけに徹し、人間が直接操作してインターネットサーフィンやメールチェックを行う行為を禁止します。</p>
-        </div>
+        <div class="case-grid">
+            <div class="case-card">
+                <span class="case-badge">事例 1：フィッシングメール</span>
+                <div class="case-title">取引先を騙るメールに騙され、アカウント乗っ取り</div>
+                <p style="font-size: 13px; margin: 0;">社員が本物そっくりの偽メールのURLをクリックし、ログイン情報を入力。乗っ取られた自社アカウントから、**大口の取引先へ大量のウイルスメールが自動配信**されてしまった。</p>
+                <div class="case-impact">💥 影響：取引先からの信用失墜・一時取引停止</div>
+            </div>
 
-        <div class="rule-card">
-            <div class="rule-title">② 接続中バックアップの廃止と「手動オフライン管理」</div>
-            <p style="margin: 0; font-size: 14px;">ランサムウェア（身代金要求ウイルス）に感染すると、PCに繋がっている外付けHDDも同時にすべて暗号化（破壊）されます。外付けHDDを2台用意し、日替わりでバックアップを取得。<strong>バックアップ終了後は必ず物理的にケーブルを抜いて隔離保管</strong>します。</p>
-        </div>
+            <div class="case-card">
+                <span class="case-badge">事例 2：サプライチェーン攻撃</span>
+                <div class="case-title">自社が踏み台にされ、親会社・取引先の工場が停止</div>
+                <p style="font-size: 13px; margin: 0;">部品製造の中小企業がランサムウェアに感染。繋がっていたネットワーク経由で**取引先（大企業）の全工場がストップ**する事態に発展[1]。自社の対策不足が原因となった[1]。</p>
+                <div class="case-impact">💥 影響：数千万円の損害賠償・サプライチェーン破綻</div>
+            </div>
 
-        <div class="rule-card">
-            <div class="rule-title">③ Windows UpdateおよびDefenderの強制自動更新</div>
-            <p style="margin: 0; font-size: 14px;">Windows標準の「Windows Defender」は、OSが最新状態に保たれて初めて本来の防御力を発揮します。自動更新スケジュールを毎週末に強制設定し、アップデートの未適用状態を無くします。</p>
+            <div class="case-card">
+                <span class="case-badge">事例 3：新種ランサムウェア</span>
+                <div class="case-title">一般PCを共有したサーバーが感染、全データ暗号化</div>
+                <p style="font-size: 13px; margin: 0;">セキュリティソフト未導入の共有PCが新型ウイルスに感染。繋ぎっぱなしだったバックアップ用の外付けHDDも同時に暗号化され破壊。**過去の顧客データや売上履歴がすべて消失**した。</p>
+                <div class="case-impact">💥 影響：復旧費用に数百万円、業務停止2週間</div>
+            </div>
         </div>
     </section>
 
     <section>
-        <h2>2. 社内運用ルールの統一と統制（人的対策）</h2>
-        <p>セキュリティソフトを購入しない代わりに、社員一人ひとりの運用の厳格化でカバーします。</p>
+        <h2>2. 2つのセキュリティ構築案の比較</h2>
+        <p>無料で行う自社運用と、国の補助金を活用した外部サービス（AXIS総合セキュリティパック）の比較表です。</p>
+
+        <table class="compare-table">
+            <thead>
+                <tr>
+                    <th>対策項目</th>
+                    <th style="width: 35%;">【A案】予算ゼロ円プラン<br><small>（Windows Defender＋手動ルール）</small></th>
+                    <th style="width: 40%; background-color: #eff6ff;">【B案】外部委託プラン（推奨）<br><small>（AXIS総合セキュリティパック）</small></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="left-align">初期費用 / 月額</td>
+                    <td class="ok-text">0円 / 0円</td>
+                    <td>初期 0円 / 月額 1,800円<br><span class="ok-text">（補助金適用で実質月額 約600円）</span></td>
+                </tr>
+                <tr>
+                    <td class="left-align">フィッシングメール<br>（詐欺サイト誘導）</td>
+                    <td class="ng-text">❌ 防げない<br><small style="color:#64748b; font-weight:normal;">社員が偽URLをクリックしIDを盗まれる行為は検知不可</small></td>
+                    <td class="ok-text">⭕ AIが強制ブロック<br><small style="color:#64748b; font-weight:normal;">URLクリックの瞬間にAIが危険を察知し接続遮断</small></td>
+                </tr>
+                <tr>
+                    <td class="left-align">新種ランサムウェア<br>（未知のウイルス）</td>
+                    <td class="ng-text">❌ すり抜ける確率高<br><small style="color:#64748b; font-weight:normal;">過去のデータにない「新種」の暗号化攻撃は見破れない</small></td>
+                    <td class="ok-text">⭕ 挙動検知で自動隔離<br><small style="color:#64748b; font-weight:normal;">AI（EDR）が「怪しい動き」を検知し暗号化前に強制終了</small></td>
+                </tr>
+                <tr>
+                    <td class="left-align">バックアップ管理</td>
+                    <td class="ng-text">⚠️ 毎日の手動運用<br><small style="color:#64748b; font-weight:normal;">手動でケーブルを抜き忘れた日に感染すれば全データ喪失</small></td>
+                    <td class="ok-text">⭕ プロによる遠隔保護<br><small style="color:#64748b; font-weight:normal;">万が一の場合もバックアップへの波及をシステム側で阻止</small></td>
+                </tr>
+                <tr>
+                    <td class="left-align">ウイルス感染時の<br>緊急対応（夜間など）</td>
+                    <td class="ng-text">❌ 自力で対応（不可能）<br><small style="color:#64748b; font-weight:normal;">社内に専門家がいないため、感染拡大を止められない</small></td>
+                    <td class="ok-text">⭕ 24時間365日のプロ監視<br><small style="color:#64748b; font-weight:normal;">世界大手の専門家が夜間でもリモートで攻撃を自動遮断</small></td>
+                </tr>
+                <tr>
+                    <td class="left-align">万が一の損害賠償・<br>システム復旧費用</td>
+                    <td class="ng-text">⚠️ すべて会社負担<br><small style="color:#64748b; font-weight:normal;">数百万円以上の復旧費用や、取引先への賠償はすべて自己負担</small></td>
+                    <td class="ok-text">⭕ 最高500万円の保険付帯<br><small style="color:#64748b; font-weight:normal;">三井住友海上のサイバー保険が【無料自動付帯】</small></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>3. 各プランの具体的な実施内容</h2>
         
+        <h3>【A案：予算ゼロ円プラン】を選ぶ場合の社内義務（本日より即時実施）</h3>
         <ul>
-            <li><strong>「個人持ち込みセキュリティソフト」の利用禁止</strong><br>
-            <span style="font-size: 14px; color: var(--text-light);">現在、善意で個人のソフトを入れている社員がいますが、Windows Defenderと競合して動作異常を起こしたり、保護がすり抜ける原因になります。全社で「Windows Defenderのみ」に統一します。</span></li>
-            
-            <li><strong>パスワードの総見直し（使い回し・初期設定の禁止）</strong><br>
-            <span style="font-size: 14px; color: var(--text-light);">共有ファイルへのアクセスパスワードやPCログインパスワードについて、推測されやすい単純なもの（例: 1234、password、会社名など）を禁止し、英数字・記号を組み合わせた12桁以上に変更を義務付けます。</span></li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>3. 自社運用プラン（無料）における限界と懸念点</h2>
-        <p>本プランは費用がかからない反面、以下の重大なデメリット・運用負荷が残ることを予め留意する必要があります。</p>
-        
-        <div class="warning-text">
-            <strong style="color: var(--accent-color);">⚠️ 自社運用の限界とリスク</strong>
-            <ol style="margin-top: 5px; margin-bottom: 0; font-size: 14px;">
-                <li><strong>ウイルス検知後の「対処」はすべて手探り：</strong> Windows Defenderはウイルスを検知・隔離するだけです。ネットワーク内のどこまで感染が広がったかの調査や、感染端末の安全な復旧は自力で行う必要があり、長期間の業務停止に陥るリスクがあります。</li>
-                <li><strong>人的ミスによる破綻：</strong> 「バックアップのケーブルを抜き忘れた日に感染する」「社員が不審なメールを開いてしまう」といった1つの人間ミスで、全社データが損失する脆さがあります。</li>
-                <li><strong>サイバー事故時の全額自己負担：</strong> 万が一、取引先（大手スーパー様）へ被害を及ぼして損害賠償を求められた場合、あるいはシステム復旧に専門業者を呼ぶ場合、<b>すべての費用（数百万円〜）が会社の自己負担</b>となります。</li>
-            </ol>
-        </div>
-    </section>
-
-    <section>
-        <h2>4. 結論とおすすめの進め方</h2>
-        <p>まずは<strong>「費用0円」でできる本プランのルール作り（サーバーPCでのネット禁止、バックアップの物理隔離）を本日より即座にスタート</strong>させます。</p>
-        <p>その運用を行いながら、やはり毎日の手動バックアップの手間や、万が一の損害賠償リスク（保険の有無）が経営上の懸念として残る場合は、先に提案いたしました「国の補助金を活用した月額実質600円の外部委託プラン」への切り替えを再検討することを推奨いたします。</p>
-    </section>
-
-    <footer>
-        <p>© 2026 セキュリティ体制構築プロジェクト</p>
-    </footer>
-</div>
-
-</body>
-</html>
