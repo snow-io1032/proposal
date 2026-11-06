@@ -158,13 +158,14 @@
             font-weight: bold;
         }
 
-        .highlight-box {
-            background-color: #f0fdf4;
-            border: 2px dashed var(--success-color);
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 25px;
-            text-align: center;
+        .product-link {
+            color: #2563eb;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .product-link:hover {
+            color: #1d4ed8;
         }
 
         footer {
@@ -185,44 +186,44 @@
         <p class="subtitle">【サプライチェーン安全報告】お取引先スーパー様（貴社）へのセキュリティシステム強化策の提言</p>
     </header>
 
-    <p>平素は格別のご高配を賜り、厚く御礼申し上げます。現在、弊社は貴社（お取引先大手スーパー様）との重要なデータ連携や業務運用において、社内共有サーバー（PCベース）を活用しております。本提案は、貴社の情報資産を預かるパートナーとして、現在のセキュリティにおける技術的な限界（すり抜けリスク）を真摯に明記し、今後のサプライチェーン全体の安全性を担保するための強固な対策を比較報告するためのものです。</p>
+    <p>平素は格別のご高配を賜り、厚く御礼申し上げます。弊社は貴社とのデータ連携において共有サーバーを活用しておりますが、サプライチェーン全体の安全性を担保するため、現在のセキュリティ体制の限界と強化策を比較報告いたします。</p>
 
     <div class="warning-box">
         <div class="warning-title">🟥 【重要】自社内運用のセキュリティ（Windows Defenderのみ）における致命的な限界</div>
-        <p style="margin: 0; font-size: 14px;">Windows Defenderは過去に発見された既知のウイルスには強いですが、<b>人間の心理を突くフィッシングメールや、日々作られる「新種のランサムウェア（未知の脅威）」には無力</b>であり、これらを踏み台にした貴社（大手スーパー様）への二次被害（ネットワーク侵入やデータ汚染などのリスク）を、従来の自社手動対策だけでは防ぐことができません。</p>
+        <p style="margin: 0; font-size: 14px;">Windows Defenderは既知のウイルスには有効ですが、フィッシングメールや新種のランサムウェアには対応しきれず、二次被害のリスクを防ぎきれません。</p>
     </div>
 
     <section>
         <h2>｜ 1. 他人事ではない：中小企業を襲った「実際のサイバー被害事例」と貴社への影響</h2>
-        <p>「うちのような規模の会社が狙われるわけがない」という認識は非常に危険です。近年、ハッカーはセキュリティの甘い取引先（中小企業）を最初の標的とし、そこを踏み台にして、接続されている大企業（お取引先スーパーなど）を攻撃する「サプライチェーン攻撃」を主流にしています。</p>
+        <p>サプライチェーン攻撃により、セキュリティ対策の甘い中小企業が踏み台にされ、取引先の大企業に深刻な影響を及ぼす事例が増加しています。</p>
         
         <div class="case-grid">
             <div class="case-card">
                 <span class="case-badge">事例 1：フィッシングメール</span>
-                <div class="case-title">取引先を騙るメールに騙され、アカウント乗っ取り</div>
-                <p style="font-size: 13px; margin: 0;">従業員が本物そっくりの偽メールのURLをクリックし、ログイン情報を入力。乗っ取られた自社アカウントから、**お取引先スーパー様（貴社）へ大量のウイルスメールが自動配信**されてしまうリスク。</p>
+                <div class="case-title">取引先を騙るメールによるアカウント乗っ取り</div>
+                <p style="font-size: 13px; margin: 0;">偽メールのクリックにより認証情報が奪われ、貴社へウイルスメールが自動配信されるリスクがあります。</p>
                 <div class="case-impact">💥 貴社への影響：業務の混乱、信頼関係への重大な損害</div>
             </div>
 
             <div class="case-card">
                 <span class="case-badge">事例 2：サプライチェーン攻撃</span>
-                <div class="case-title">自社が踏み台にされ、取引先スーパー様のシステムが停止</div>
-                <p style="font-size: 13px; margin: 0;">弊社がランサムウェアに感染。VPNやデータ連携用ネットワークを経由して、**貴社の基幹システムや店舗発注システムへウイルスが拡散・停止**を招く最大の懸念。</p>
-                <div class="case-impact">💥 貴社への影響：流通の寸断・数千万円規模の経済的損失</div>
+                <div class="case-title">自社が踏み台となり取引先システムが停止</div>
+                <p style="font-size: 13px; margin: 0;">ランサムウェア感染により、ネットワークを経由して貴社の基幹システムへウイルスが拡散する懸念があります。</p>
+                <div class="case-impact">💥 貴社への影響：流通の寸断・数千万円規模の経済적損失</div>
             </div>
 
             <div class="case-card">
                 <span class="case-badge">事例 3：新種ランサムウェア</span>
-                <div class="case-title">一般PCを共有したサーバーが感染、お取引データ全面暗号化</div>
-                <p style="font-size: 13px; margin: 0;">セキュリティ設定のみの共有PCが新型ウイルスに感染。常時接続されていたバックアップ用HDDも同時に暗号化され、**貴社との過去の売上履歴・納品データ・配送履歴が完全消失**する危険性。</p>
-                <div class="case-impact">💥 貴社への影響：お取引業務の停止、過去データの完全喪失</div>
+                <div class="case-title">共有サーバーの感染とデータ暗号化</div>
+                <p style="font-size: 13px; margin: 0;">新型ウイルスによりバックアップ用HDDも含めて暗号化され、過去の取引データが消失する危険性があります。</p>
+                <div class="case-impact">💥 貴社への影響：お取引業務の停止、過去データの完全消失</div>
             </div>
         </div>
     </section>
 
     <section>
         <h2>｜ 2. 2つのセキュリティ構築案の比較</h2>
-        <p>貴社への安全性を早期に担保するため、弊社内で検討・実践を進めている、無料の自社運用案と、国の安全基準を満たした外部専門サービス（AXIS総合セキュリティパック）の比較表です。</p>
+        <p>無料の自社運用案と、外部専門サービスによる対策の比較は以下の通りです。</p>
 
         <table class="compare-table">
             <thead>
@@ -239,29 +240,34 @@
                     <td>初期 0円 / 月額 1,800円<br><span class="ok-text">（補助金適用で実質月額 約600円）</span></td>
                 </tr>
                 <tr>
-                    <td class="left-align">フィッシングメール<br>（詐欺サイト誘導）</td>
-                    <td class="ng-text">❌ 防げない<br><small style="color:#64748b; font-weight:normal;">社員が偽URLをクリックしIDを盗まれる行為は検知不可</small></td>
-                    <td class="ok-text">⭕ AIが強制ブロック<br><small style="color:#64748b; font-weight:normal;">URLクリックの瞬間にAIが危険を察知し接続遮断</small></td>
+                    <td class="left-align">フィッシングメール対策</td>
+                    <td class="ng-text">❌ 防げない</td>
+                    <td class="ok-text">⭕ AIが強制ブロック</td>
                 </tr>
                 <tr>
-                    <td class="left-align">新種ランサムウェア<br>（未知のウイルス）</td>
-                    <td class="ng-text">❌ すり抜ける確率高<br><small style="color:#64748b; font-weight:normal;">過去のデータにない「新種」の暗号化攻撃は見破れない</small></td>
-                    <td class="ok-text">⭕ 挙動検知で自動隔離<br><small style="color:#64748b; font-weight:normal;">AI（EDR）が「怪しい動き」を検知し暗号化前に強制終了</small></td>
+                    <td class="left-align">新種ランサムウェア対策</td>
+                    <td class="ng-text">❌ すり抜ける確率高</td>
+                    <td class="ok-text">⭕ 挙動検知で自動隔離</td>
                 </tr>
                 <tr>
                     <td class="left-align">バックアップ管理</td>
-                    <td class="ng-text">⚠️ 毎日の手動運用<br><small style="color:#64748b; font-weight:normal;">手動でケーブルを抜き忘れた日に感染すれば全データ喪失</small></td>
-                    <td class="ok-text">⭕ プロによる遠隔保護<br><small style="color:#64748b; font-weight:normal;">万が一の場合もバックアップへの波及をシステム側で阻止</small></td>
+                    <td class="ng-text">⚠️ 毎日の手動運用</td>
+                    <td class="ok-text">⭕ プロによる遠隔保護</td>
                 </tr>
                 <tr>
-                    <td class="left-align">ウイルス感染時の<br>緊急対応（夜間など）</td>
-                    <td class="ng-text">❌ 自力で対応（不可能）<br><small style="color:#64748b; font-weight:normal;">社内に専門家がいないため、感染拡大を止められない</small></td>
-                    <td class="ok-text">⭕ 24時間365日のプロ監視<br><small style="color:#64748b; font-weight:normal;">世界大手の専門家が夜間でもリモートで攻撃を自動遮断</small></td>
+                    <td class="left-align">緊急対応体制</td>
+                    <td class="ng-text">❌ 自力で対応（不可能）</td>
+                    <td class="ok-text">⭕ 24時間365日のプロ監視</td>
                 </tr>
                 <tr>
-                    <td class="left-align">万が一の損害賠償・<br>システム復旧費用</td>
-                    <td class="ng-text">⚠️ すべて自社負担（上限あり）<br><small style="color:#64748b; font-weight:normal;">数百万円以上の復旧費用や、貴社への賠償はすべて自己負担</small></td>
-                    <td class="ok-text">⭕ 最高500万円の保険付帯<br><small style="color:#64748b; font-weight:normal;">三井住友海上のサイバー保険が【無料自動付帯】</small></td>
+                    <td class="left-align">損害賠償・復旧費用</td>
+                    <td class="ng-text">⚠️ すべて自社負担</td>
+                    <td class="ok-text">⭕ 最高500万円の保険付帯</td>
+                </tr>
+                <tr>
+                    <td class="left-align">詳細情報</td>
+                    <td>-</td>
+                    <td><a href="https://axisjp.co.jp" target="_blank" class="product-link">製品案内ページを開く ↗</a></td>
                 </tr>
             </tbody>
         </table>
@@ -269,3 +275,22 @@
 
     <section>
         <h2>｜ 3. サプライチェーンの責任を果たすための今後の進め方</h2>
+        <p>安全確保のため、暫定対策の徹底と次世代AI防衛システムの導入を段階的に進めます。</p>
+        <ul>
+            <li><strong>第1段階（即時実施の暫定対策）：</strong> 共有サーバーでのWeb閲覧およびメール送受信を禁止し、バックアップ後は物理的にケーブルを抜いて隔離する運用を徹底します。</li>
+            <li><strong>第2段階（本格的なシステム導入）：</strong> ヒューマンエラーを排除するため、次世代AI防衛システム（B案：<a href="https://axisjp.co.jp" target="_blank" class="product-link">AXIS総合セキュリティパック</a>）の導入を進めます。</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>｜ 4. 結論</h2>
+        <p>お取引先としてのサプライチェーン責任を最優先し、24時間プロ監視とサイバー保険を備えたB案の導入により、強固なセキュリティ体制を早急に確立します。</p>
+    </section>
+
+    <footer>
+        <p>© 2026 サプライチェーン安全確保プロジェクト</p>
+    </footer>
+</div>
+
+</body>
+</html>
