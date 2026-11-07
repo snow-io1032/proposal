@@ -32,7 +32,7 @@ a{color:var(--mint-deep)}
 .btn-deep{background:var(--mint-deep);color:#fff;border:0;font:inherit;font-weight:700;font-size:17px;cursor:pointer;width:100%}
 
 /* header */
-.hdr{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .4s ease}
+.hdr{position:fixed;inset:0 0 auto 0;z-index:60;transition:background .4s ease}
 .hdr.solid{background:rgba(11,38,38,.94)}
 .hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;padding-bottom:12px}
 .logo{color:#fff;text-decoration:none;display:flex;flex-direction:column;line-height:1.2}
@@ -40,13 +40,43 @@ a{color:var(--mint-deep)}
 .logo span{font-size:11px;color:#BFEAE4}
 .hdr .btn{min-height:44px;padding:8px 18px;font-size:14px;white-space:nowrap}
 
+
+/* global nav */
+.gnav{display:flex;gap:28px;margin-left:auto;margin-right:20px}
+.gnav a{color:#fff;text-decoration:none;display:flex;flex-direction:column;align-items:center;line-height:1.25;position:relative;padding:4px 0}
+.gnav em{font-family:var(--italic);font-style:italic;font-size:17px}
+.gnav span{font-size:10px;color:#BFEAE4;letter-spacing:.08em}
+.gnav a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--mint);transform:scaleX(0);transition:transform .3s ease}
+.gnav a:hover::after,.gnav a.cur::after{transform:scaleX(1)}
+.hdr-r{display:flex;align-items:center;gap:10px}
+.menu-btn{display:none;width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(255,255,255,.7);background:transparent;cursor:pointer;position:relative;z-index:61}
+.menu-btn i{position:absolute;left:14px;right:14px;height:1.5px;background:#fff;transition:transform .35s ease, top .35s ease}
+.menu-btn i:first-child{top:19px}.menu-btn i:last-child{top:27px}
+.menu-btn[aria-expanded="true"] i:first-child{top:23px;transform:rotate(45deg)}
+.menu-btn[aria-expanded="true"] i:last-child{top:23px;transform:rotate(-45deg)}
+.menu-panel{position:fixed;inset:0;z-index:45;background:
+  repeating-linear-gradient(90deg, rgba(0,0,0,.14) 0 14px, rgba(255,255,255,.03) 14px 28px),#0F3B3A;
+  color:#fff;display:flex;flex-direction:column;justify-content:center;padding:96px 28px 40px}
+.menu-panel[hidden]{display:none}
+.menu-panel nav{display:flex;flex-direction:column;gap:6px}
+.menu-panel nav a{color:#fff;text-decoration:none;font-family:var(--serif);font-size:22px;padding:12px 0;border-bottom:1px solid rgba(134,216,207,.25);display:flex;flex-direction:column;line-height:1.4}
+.menu-panel nav em{font-family:var(--italic);font-style:italic;font-size:15px;color:var(--mint)}
+.menu-tel{margin:28px 0 0;color:var(--sub);font-size:14px}
+.menu-tel a{color:#fff;font-weight:700}
+body.menu-open{overflow:hidden}
+@media (max-width:900px){
+  .gnav{display:none}
+  .menu-btn{display:block}
+  .hdr .btn{display:none}
+}
+
 /* curtain intro */
 .curtain{position:fixed;inset:0;z-index:100;pointer-events:none;display:flex}
 .curtain i{flex:1;background:
   repeating-linear-gradient(90deg, rgba(0,0,0,.18) 0 14px, rgba(255,255,255,.04) 14px 28px),
   #0F3B3A}
-.curtain i:first-child{box-shadow:inset -30px 0 40px rgba(0,0,0,.35)}
-.curtain i:last-child{box-shadow:inset 30px 0 40px rgba(0,0,0,.35)}
+.curtain i:nth-of-type(1){box-shadow:inset -30px 0 40px rgba(0,0,0,.35)}
+.curtain i:nth-of-type(2){box-shadow:inset 30px 0 40px rgba(0,0,0,.35)}
 .curtain .valance{position:absolute;left:0;right:0;top:0;height:9vh;min-height:48px;background:#0A2C2B;border-bottom:3px solid var(--mint)}
 
 /* hero */
@@ -182,9 +212,29 @@ footer p{margin:0 0 4px;font-family:var(--italic);font-style:italic;font-size:18
 <header class="hdr" id="hdr">
   <div class="wrap">
     <a class="logo" href="#top"><b>Eriko Abe Ballet Studio</b><span>札幌市西区八軒</span></a>
-    <a class="btn btn-mint" href="#trial">無料体験</a>
+    <nav class="gnav" aria-label="メインメニュー">
+      <a href="#steps"><em>Steps</em><span>はじめての方へ</span></a>
+      <a href="#recital"><em>Recital</em><span>発表会</span></a>
+      <a href="#teacher"><em>Teacher</em><span>講師</span></a>
+      <a href="#faq"><em>Q&amp;A</em><span>よくある質問</span></a>
+    </nav>
+    <div class="hdr-r">
+      <a class="btn btn-mint" href="#trial">無料体験</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel" aria-label="メニューを開く"><i></i><i></i></button>
+    </div>
   </div>
 </header>
+
+<div class="menu-panel" id="menuPanel" hidden>
+  <nav aria-label="メニュー">
+    <a href="#steps"><em>Steps</em>はじめての方へ</a>
+    <a href="#recital"><em>Recital</em>発表会</a>
+    <a href="#teacher"><em>Teacher</em>講師</a>
+    <a href="#faq"><em>Q&amp;A</em>よくある質問</a>
+    <a href="#trial"><em>Free trial</em>無料体験の申し込み</a>
+  </nav>
+  <p class="menu-tel">お電話　<a href="tel:08082891780">080-8289-1780</a></p>
+</div>
 
 <main>
 <section class="hero" id="top">
@@ -224,7 +274,7 @@ footer p{margin:0 0 4px;font-family:var(--italic);font-style:italic;font-size:18
   </div>
 </section>
 
-<section class="steps" aria-labelledby="steps-h">
+<section class="steps" id="steps" aria-labelledby="steps-h">
   <div class="steps-head">
     <p class="eyebrow">From the first step to the stage</p>
     <h2 class="h2" id="steps-h">舞台に立つまでの<br>3つのステップ</h2>
@@ -248,7 +298,7 @@ footer p{margin:0 0 4px;font-family:var(--italic);font-style:italic;font-size:18
   </div>
 </section>
 
-<section class="recital" aria-labelledby="rec-h">
+<section class="recital" id="recital" aria-labelledby="rec-h">
   <div class="wrap">
     <div class="head">
       <div><p class="eyebrow">Recital</p><h2 class="h2" id="rec-h">生徒たちが立った舞台</h2></div>
@@ -263,7 +313,7 @@ footer p{margin:0 0 4px;font-family:var(--italic);font-style:italic;font-size:18
   </div>
 </section>
 
-<section class="teacher" aria-labelledby="t-h">
+<section class="teacher" id="teacher" aria-labelledby="t-h">
   <div class="wrap">
     <div class="arch"><img src="images/teacher.jpg" alt="笑顔の講師"></div>
     <div class="txt">
@@ -275,7 +325,7 @@ footer p{margin:0 0 4px;font-family:var(--italic);font-style:italic;font-size:18
   </div>
 </section>
 
-<section class="faq" aria-label="よくある質問">
+<section class="faq" id="faq" aria-label="よくある質問">
   <div class="wrap grid">
     <div class="card"><b>何歳から？</b><p>3歳から。3〜6歳はエンジェルクラス（火曜16時／土曜10時）。</p></div>
     <div class="card"><b>月謝は？</b><p>エンジェルクラス 週1回 ¥6,000。小学生以上 週1回 ¥7,000〜。</p></div>
@@ -324,13 +374,36 @@ footer p{margin:0 0 4px;font-family:var(--italic);font-style:italic;font-size:18
   function onScroll(){var y=window.scrollY||0;hdr.classList.toggle('solid',y>60);flt.classList.toggle('on',y>window.innerHeight*0.8);}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 
+
+  // menu
+  var mBtn=document.getElementById('menuBtn'), mPanel=document.getElementById('menuPanel');
+  function setMenu(open){
+    mBtn.setAttribute('aria-expanded',open?'true':'false');
+    mBtn.setAttribute('aria-label',open?'メニューを閉じる':'メニューを開く');
+    document.body.classList.toggle('menu-open',open);
+    hdr.classList.toggle('solid',open||(window.scrollY>60));
+    if(open){
+      mPanel.hidden=false;
+      if(window.gsap&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+        gsap.fromTo(mPanel,{clipPath:'inset(0% 0% 100% 0%)'},{clipPath:'inset(0% 0% 0% 0%)',duration:0.6,ease:'power3.inOut'});
+        gsap.fromTo('.menu-panel nav a, .menu-tel',{autoAlpha:0,y:20},{autoAlpha:1,y:0,duration:0.5,stagger:0.06,delay:0.25,ease:'power3.out'});
+      }
+      if(window.__lenis)window.__lenis.stop();
+    } else {
+      mPanel.hidden=true;
+      if(window.__lenis)window.__lenis.start();
+    }
+  }
+  mBtn.addEventListener('click',function(){setMenu(mBtn.getAttribute('aria-expanded')!=='true');});
+  mPanel.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(){setMenu(false);});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&mBtn.getAttribute('aria-expanded')==='true'){setMenu(false);mBtn.focus();}});
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduce||!window.gsap||!window.ScrollTrigger){var c=document.querySelector('.curtain');if(c)c.remove();return;}
   gsap.registerPlugin(ScrollTrigger);
 
   // smooth scroll (desktop wheel only; touch stays native)
   if(window.Lenis){
-    var lenis=new Lenis({lerp:0.1});
+    var lenis=new Lenis({lerp:0.1});window.__lenis=lenis;
     lenis.on('scroll',ScrollTrigger.update);
     gsap.ticker.add(function(t){lenis.raf(t*1000);});
     gsap.ticker.lagSmoothing(0);
@@ -343,8 +416,8 @@ footer p{margin:0 0 4px;font-family:var(--italic);font-style:italic;font-size:18
        .set(['.hero .eyebrow','.hero .lead','.hero .ctas','.hero small'],{autoAlpha:0,y:20})
        .set('.hero-media img',{scale:1.18})
        .to('.curtain .valance',{yPercent:-100,duration:0.6,delay:0.25})
-       .to('.curtain i:first-child',{xPercent:-100,duration:1.4},'<0.1')
-       .to('.curtain i:last-child',{xPercent:100,duration:1.4},'<')
+       .to('.curtain i:nth-of-type(1)',{xPercent:-100,duration:1.4},'<0.1')
+       .to('.curtain i:nth-of-type(2)',{xPercent:100,duration:1.4},'<')
        .to('.hero-media img',{scale:1.04,duration:2.2,ease:'power2.out'},'<0.2')
        .from('.spot',{autoAlpha:0,scale:0.6,duration:1.6,ease:'power2.out'},'<0.3')
        .to('.hero .eyebrow',{autoAlpha:1,y:0,duration:0.7},'-=1.2')
@@ -416,6 +489,12 @@ footer p{margin:0 0 4px;font-family:var(--italic);font-style:italic;font-size:18
     gsap.from(el,{autoAlpha:0,y:28,duration:0.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});
   });
 
+
+  // highlight current section in nav
+  ['steps','recital','teacher','faq'].forEach(function(id){
+    var link=document.querySelector('.gnav a[href="#'+id+'"]');
+    ScrollTrigger.create({trigger:'#'+id,start:'top center',end:'bottom center',onToggle:function(st){link.classList.toggle('cur',st.isActive);}});
+  });
   window.addEventListener('load',function(){ScrollTrigger.refresh();});
 })();
 </script>
