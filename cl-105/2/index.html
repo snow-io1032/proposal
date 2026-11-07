@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Eriko Abe Ballet Studio｜札幌市西区八軒のバレエ教室</title>
+<meta name="description" content="札幌市西区八軒のバレエスタジオ。3歳から通えるクラシックバレエ教室。全クラス初回体験無料。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B2626; --ink2:#123636; --mint:#86D8CF; --mint-deep:#17625D; --teal:#5FC2C6;
+  --paper:#FFFCFA; --text:#2B3533; --sub:#D5EFEC;
+  --serif:'Shippori Mincho',serif; --sans:'Zen Kaku Gothic New',sans-serif; --italic:'Cormorant Garamond',serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--sans);color:var(--text);background:var(--paper);line-height:1.9;font-size:15px;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:var(--mint-deep)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+.eyebrow{font-family:var(--italic);font-style:italic;font-size:clamp(18px,2vw,22px);color:var(--mint-deep);margin:0}
+.h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px,3.8vw,42px);line-height:1.5;margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:14px 30px;border-radius:999px;font-weight:700;text-decoration:none;font-size:17px;transition:transform .25s ease, box-shadow .25s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-mint{background:var(--mint);color:var(--ink)}
+.btn-mint:hover{box-shadow:0 10px 30px rgba(134,216,207,.35);color:var(--ink)}
+.btn-ghost{border:1.5px solid #fff;color:#fff}
+.btn-ghost:hover{color:#fff;background:rgba(255,255,255,.08)}
+.btn-deep{background:var(--mint-deep);color:#fff;border:0;font:inherit;font-weight:700;font-size:17px;cursor:pointer;width:100%}
+
+/* header */
+.hdr{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .4s ease}
+.hdr.solid{background:rgba(11,38,38,.94)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;padding-bottom:12px}
+.logo{color:#fff;text-decoration:none;display:flex;flex-direction:column;line-height:1.2}
+.logo b{font-family:var(--italic);font-style:italic;font-weight:600;font-size:clamp(17px,4.4vw,22px);white-space:nowrap}
+.logo span{font-size:11px;color:#BFEAE4}
+.hdr .btn{min-height:44px;padding:8px 18px;font-size:14px;white-space:nowrap}
+
+/* curtain intro */
+.curtain{position:fixed;inset:0;z-index:100;pointer-events:none;display:flex}
+.curtain i{flex:1;background:
+  repeating-linear-gradient(90deg, rgba(0,0,0,.18) 0 14px, rgba(255,255,255,.04) 14px 28px),
+  #0F3B3A}
+.curtain i:first-child{box-shadow:inset -30px 0 40px rgba(0,0,0,.35)}
+.curtain i:last-child{box-shadow:inset 30px 0 40px rgba(0,0,0,.35)}
+.curtain .valance{position:absolute;left:0;right:0;top:0;height:9vh;min-height:48px;background:#0A2C2B;border-bottom:3px solid var(--mint)}
+
+/* hero */
+.hero{position:relative;height:100vh;min-height:620px;overflow:hidden;background:var(--ink);color:#fff}
+.hero-media{position:absolute;inset:0}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:50% 72%}
+.hero-shade{position:absolute;inset:0;background:rgba(8,28,28,.5)}
+.spot{position:absolute;left:50%;top:58%;width:70vmax;height:70vmax;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle, rgba(255,250,235,.22) 0%, rgba(255,250,235,0) 60%);mix-blend-mode:screen;pointer-events:none}
+.hero-copy{position:absolute;left:0;right:0;bottom:0;padding-bottom:clamp(40px,8vh,96px)}
+.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(36px,6.4vw,80px);line-height:1.35;letter-spacing:.03em;margin:8px 0 18px}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln>span{display:inline-block}
+.hero p.lead{max-width:32em;margin:0 0 22px;font-size:clamp(15px,1.6vw,18px)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero small{display:block;margin-top:14px;color:var(--sub);font-size:13px}
+.scroll-cue{position:absolute;right:20px;bottom:24px;font-family:var(--italic);font-style:italic;font-size:14px;color:#BFEAE4;writing-mode:vertical-rl;letter-spacing:.1em}
+.scroll-cue::after{content:"";display:block;width:1px;height:48px;margin:10px auto 0;background:#BFEAE4}
+
+/* stats */
+.stats{background:var(--ink);color:#fff}
+.stats .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding-top:28px;padding-bottom:28px;text-align:center}
+.stat b{display:block;font-family:var(--serif);font-weight:600;color:var(--mint);font-size:clamp(26px,4vw,40px);line-height:1.3}
+.stat span{font-size:clamp(11px,1.3vw,13px);color:var(--sub)}
+
+/* marquee */
+.marquee{background:var(--ink);color:rgba(134,216,207,.22);overflow:hidden;white-space:nowrap;padding:8px 0 28px}
+.marquee div{font-family:var(--italic);font-style:italic;font-size:clamp(56px,11vw,150px);line-height:1;display:inline-block;padding-right:.4em}
+
+/* expanding frame (night-shift style) */
+.expand{background:#000;color:#fff}
+.expand-pin{position:relative;height:100vh;min-height:560px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.ex-frame{position:relative;width:46vw;height:52vh;border-radius:14px;overflow:hidden;z-index:1}
+.ex-frame img{width:100%;height:100%;object-fit:cover}
+.ex-shade{position:absolute;inset:0;background:rgba(0,0,0,.38);opacity:0;pointer-events:none}
+.ex-note{position:absolute;z-index:2;font-size:12px;line-height:1.7;letter-spacing:.04em;color:#D5EFEC}
+.ex-l{left:20px;top:50%;transform:translateY(-50%);max-width:16em}
+.ex-r{right:20px;top:90px;text-align:right;font-family:var(--italic);font-style:italic;font-size:14px}
+.ex-title{position:absolute;z-index:2;left:0;right:0;bottom:17vh;margin:0;text-align:center;font-family:var(--serif);font-weight:700;font-size:clamp(26px,5.2vw,68px);line-height:1.3;text-shadow:0 2px 24px rgba(0,0,0,.55)}
+.ex-title span{display:block}
+
+/* steps (pinned) */
+.steps{background:var(--paper)}
+.steps-head{text-align:center;padding:clamp(72px,10vw,120px) 20px 24px}
+.steps-pin{height:100vh;display:flex;align-items:center}
+.steps-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,72px);align-items:center;width:100%}
+.steps-media{position:relative;aspect-ratio:4/5;max-height:72vh;width:100%;border-radius:999px 999px 24px 24px;overflow:hidden;background:#E8F4F2}
+.steps-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.steps-text{position:relative;min-height:260px}
+.step{position:absolute;inset:0 0 auto 0}
+.step .num{font-family:var(--italic);font-style:italic;font-size:clamp(64px,9vw,120px);line-height:1;color:var(--mint)}
+.step h3{font-family:var(--serif);font-weight:600;font-size:clamp(22px,2.8vw,32px);margin:8px 0 10px;color:#1E2A28}
+.step p{margin:0;max-width:26em}
+.step-img{display:none}
+.progress{display:flex;gap:8px;margin-top:22px}
+.progress i{width:36px;height:3px;background:#CFE6E3;border-radius:2px;overflow:hidden;position:relative}
+.progress i b{position:absolute;inset:0;background:var(--mint-deep);transform:scaleX(0);transform-origin:left}
+
+/* recital gallery */
+.recital{background:var(--ink);color:#fff;padding:clamp(72px,10vw,120px) 0}
+.recital .head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:32px}
+.recital .eyebrow{color:var(--mint)}
+.recital .head p{margin:0;color:var(--sub);font-size:14px}
+.gal{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
+.gal figure{margin:0;overflow:hidden;border-radius:14px;position:relative}
+.gal figure img{width:100%;height:100%;object-fit:cover;transform-origin:center}
+.g1{grid-column:1/8;aspect-ratio:4/3}
+.g2{grid-column:8/13;aspect-ratio:4/5;align-self:end}
+.g3{grid-column:3/11;aspect-ratio:16/9}
+.recital .center{display:flex;justify-content:center;margin-top:40px}
+
+/* teacher */
+.teacher .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(28px,5vw,64px);padding-top:clamp(72px,10vw,120px);padding-bottom:clamp(72px,10vw,120px)}
+.arch{flex:0 1 340px;margin:0 auto;border-radius:999px 999px 24px 24px;overflow:hidden;aspect-ratio:4/5;max-width:340px;width:100%}
+.arch img{width:100%;height:100%;object-fit:cover;object-position:top}
+.teacher .txt{flex:1 1 420px;display:flex;flex-direction:column;gap:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;font-size:13px}
+.chips span{background:#F2FAF9;border-radius:999px;padding:4px 12px}
+
+/* faq */
+.faq{background:#F2FAF9;padding:clamp(56px,8vw,96px) 0}
+.faq .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.faq .card{background:#fff;border-radius:16px;padding:20px}
+.faq .card p{margin:4px 0 0;font-size:14px}
+
+/* trial */
+.trial{background:var(--ink);color:#fff;padding:clamp(72px,10vw,120px) 0}
+.trial .wrap{display:flex;flex-wrap:wrap;gap:40px}
+.trial .l{flex:1 1 340px;display:flex;flex-direction:column;gap:14px}
+.trial .l .eyebrow{color:var(--mint)}
+.trial .l p{margin:0;color:var(--sub)}
+.trial .r{flex:1 1 420px;background:#fff;color:var(--text);border-radius:20px;padding:clamp(20px,4vw,36px)}
+.field{display:flex;flex-direction:column;gap:4px;margin-bottom:14px}
+.field label{font-size:14px;font-weight:700}
+.field input,.field select{min-height:48px;border:1.5px solid #B9DEDA;border-radius:10px;padding:10px 12px;font:inherit;background:#fff}
+.thanks{text-align:center;padding:32px 0}
+.thanks b{font-family:var(--serif);font-size:24px;color:var(--mint-deep)}
+
+footer{background:var(--teal);color:#0F3533;text-align:center;padding:28px 20px 100px;font-size:12px}
+footer p{margin:0 0 4px;font-family:var(--italic);font-style:italic;font-size:18px}
+
+/* floating CTA */
+.float{position:fixed;right:16px;bottom:16px;z-index:40;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .35s ease, transform .35s ease}
+.float.on{opacity:1;transform:none;pointer-events:auto}
+
+@media (max-width:760px){
+  .steps-pin{height:auto;display:block;padding-bottom:40px}
+  .steps-grid{grid-template-columns:1fr}
+  .steps-media{display:none}
+  .step-img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:999px 999px 18px 18px;margin-bottom:14px}
+  .steps-text{min-height:0}
+  .step{position:relative;margin-bottom:28px}
+  .progress{display:none}
+  .gal{grid-template-columns:1fr}
+  .g1,.g2,.g3{grid-column:auto;aspect-ratio:4/3}
+  .scroll-cue{display:none}
+  .expand-pin{height:auto;min-height:0;flex-direction:column;padding:72px 0 48px}
+  .ex-frame{width:88vw;height:62vw}
+  .ex-l{position:static;transform:none;max-width:none;padding:0 20px 20px;order:-1}
+  .ex-r{display:none}
+  .ex-title{position:static;padding:24px 20px 0}
+}
+@media (prefers-reduced-motion: reduce){
+  .curtain{display:none}
+  *{transition:none !important}
+}
+</style>
+</head>
+<body>
+
+<div class="curtain" aria-hidden="true"><i></i><i></i><div class="valance"></div></div>
+
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top"><b>Eriko Abe Ballet Studio</b><span>札幌市西区八軒</span></a>
+    <a class="btn btn-mint" href="#trial">無料体験</a>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="top">
+  <div class="hero-media"><img src="images/stage.jpg" alt="発表会の大きな舞台に並んで踊る生徒たち"></div>
+  <div class="hero-shade"></div>
+  <div class="spot" aria-hidden="true"></div>
+  <div class="hero-copy">
+    <div class="wrap">
+      <p class="eyebrow" style="color:#BFEAE4">— on the stage, someday</p>
+      <h1><span class="ln"><span>いつか、この舞台で</span></span><span class="ln"><span>わが子が輝く日。</span></span></h1>
+      <p class="lead">はじまりは、3歳のエンジェルクラスから。ヨーロッパの劇場で約10年踊った先生のもとで、基礎を育み、発表会の大きな舞台へ。</p>
+      <div class="ctas">
+        <a class="btn btn-mint" href="#trial">無料体験レッスンを予約する</a>
+        <a class="btn btn-ghost" href="tel:08082891780">電話で相談 080-8289-1780</a>
+      </div>
+      <small>全クラス初回体験無料／駐車場あり／交番の隣で夜も安心</small>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">scroll</div>
+</section>
+
+<section class="stats" aria-label="スタジオの数字">
+  <div class="wrap">
+    <div class="stat"><b><span class="count" data-to="3">3</span>歳〜</b><span>3歳から通える</span></div>
+    <div class="stat"><b>約<span class="count" data-to="10">10</span>年</b><span>講師の欧州経験</span></div>
+    <div class="stat"><b><span class="count" data-to="10">10</span>周年</b><span>記念公演</span></div>
+  </div>
+</section>
+<div class="marquee" aria-hidden="true"><div class="mq">Angel · Pointe · Recital · Angel · Pointe · Recital · </div></div>
+
+<section class="expand" aria-labelledby="ex-h">
+  <div class="expand-pin" id="expandPin">
+    <div class="ex-note ex-l">3歳のエンジェルクラスは、<br>音楽に合わせて踊る楽しさから。<br>火曜16時・土曜10時。</div>
+    <div class="ex-note ex-r">STAGE<br>— Sapporo, Hachiken</div>
+    <div class="ex-frame" id="exFrame"><img src="images/kids.jpg" alt="発表会の舞台でポーズをとる小さな生徒たち"><div class="ex-shade"></div></div>
+    <h2 class="ex-title" id="ex-h"><span>はじめてのチュチュから、</span><span>ライトを浴びる日まで。</span></h2>
+  </div>
+</section>
+
+<section class="steps" aria-labelledby="steps-h">
+  <div class="steps-head">
+    <p class="eyebrow">From the first step to the stage</p>
+    <h2 class="h2" id="steps-h">舞台に立つまでの<br>3つのステップ</h2>
+  </div>
+  <div class="steps-pin" id="stepsPin">
+    <div class="wrap steps-grid">
+      <div class="steps-media">
+        <img class="sm sm1" src="images/studio.jpg" alt="光の入る明るいスタジオ">
+        <img class="sm sm2" src="images/kids.jpg" alt="ポーズをとる小さな生徒たち">
+        <img class="sm sm3" src="images/bluetutu.jpg" alt="青いチュチュで舞台に立つ生徒たち">
+      </div>
+      <div>
+        <div class="steps-text">
+          <div class="step st1"><img class="step-img" src="images/studio.jpg" alt="" aria-hidden="true"><div class="num">01</div><h3>無料体験レッスン</h3><p>全クラス、初回は無料。自然光の入る明るいスタジオで、まずはバレエの楽しさにふれてください。</p></div>
+          <div class="step st2"><img class="step-img" src="images/kids.jpg" alt="" aria-hidden="true"><div class="num">02</div><h3>年齢に合わせたクラスで基礎を</h3><p>音楽を身体で感じる楽しさ、バランス感覚、正しい姿勢。ひとりひとりの個性を大切に指導します。</p></div>
+          <div class="step st3"><img class="step-img" src="images/bluetutu.jpg" alt="" aria-hidden="true"><div class="num">03</div><h3>発表会の舞台へ</h3><p>衣装を着て、ライトを浴びて。感動を伝える表現力を、本番の舞台で育てます。</p></div>
+        </div>
+        <div class="progress" aria-hidden="true"><i><b class="pb1"></b></i><i><b class="pb2"></b></i><i><b class="pb3"></b></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="recital" aria-labelledby="rec-h">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow">Recital</p><h2 class="h2" id="rec-h">生徒たちが立った舞台</h2></div>
+      <p>スタジオ発表会・10周年記念公演より</p>
+    </div>
+    <div class="gal">
+      <figure class="g1"><img src="images/recital1.jpg" alt="発表会の舞台"></figure>
+      <figure class="g2"><img src="images/bluetutu.jpg" alt="青いチュチュの生徒たち"></figure>
+      <figure class="g3"><img src="images/recital2.jpg" alt="スペインの踊りの群舞"></figure>
+    </div>
+    <div class="center"><a class="btn btn-mint" href="#trial">わが子も体験してみる（無料）</a></div>
+  </div>
+</section>
+
+<section class="teacher" aria-labelledby="t-h">
+  <div class="wrap">
+    <div class="arch"><img src="images/teacher.jpg" alt="笑顔の講師"></div>
+    <div class="txt">
+      <p class="eyebrow">Teacher</p>
+      <h2 class="h2" id="t-h" style="font-size:clamp(24px,3.4vw,34px)">大舞台を知る先生だから、<br>舞台に立つまでを導けます。</h2>
+      <p style="margin:0">阿部 衣梨子 先生。英国セントラルスクールオブバレエを首席で卒業後、ザルツブルグ州立劇場などヨーロッパのバレエ団で「くるみ割り人形」「白鳥の湖」などに出演。2015年に札幌でスタジオを開設し、北海道内コンクールで指導者最優秀賞を受賞しています。</p>
+      <div class="chips"><span>日本バレエ協会 正会員</span><span>BESJ マットピラティストレーナー</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" aria-label="よくある質問">
+  <div class="wrap grid">
+    <div class="card"><b>何歳から？</b><p>3歳から。3〜6歳はエンジェルクラス（火曜16時／土曜10時）。</p></div>
+    <div class="card"><b>月謝は？</b><p>エンジェルクラス 週1回 ¥6,000。小学生以上 週1回 ¥7,000〜。</p></div>
+    <div class="card"><b>送り迎えは？</b><p>駐車場あり。バス停から徒歩0分、交番の隣です。</p></div>
+    <div class="card"><b>体験は？</b><p>全クラス、初回の体験レッスンは無料です。</p></div>
+  </div>
+</section>
+
+<section class="trial" id="trial" aria-labelledby="tr-h">
+  <div class="wrap">
+    <div class="l">
+      <p class="eyebrow">Free trial lesson</p>
+      <h2 class="h2" id="tr-h">最初の一歩は、<br>無料体験から。</h2>
+      <p>フォームに入力いただくと、スタジオから体験日のご案内をお送りします。お電話でもお気軽にどうぞ。</p>
+      <a class="btn btn-ghost" style="align-self:flex-start" href="tel:08082891780">電話 080-8289-1780</a>
+      <p style="font-size:13px;color:#BFEAE4">札幌市西区八軒6条西6丁目1番10号<br>ドコモショップ札幌八軒店 2F</p>
+    </div>
+    <div class="r">
+      <div class="thanks" id="thanks" hidden><b>お申し込みありがとうございます</b><p>スタジオより、体験日のご案内をお送りします。</p></div>
+      <form id="form">
+        <div class="field"><label for="f-name">保護者さまのお名前</label><input id="f-name" type="text" placeholder="例）八軒 花子" autocomplete="name"></div>
+        <div class="field"><label for="f-age">お子さまの年齢</label><select id="f-age"><option>3〜6歳</option><option>小学1〜3年生</option><option>小学4〜6年生</option><option>中学生</option><option>高校生以上</option><option>大人（ご本人）</option></select></div>
+        <div class="field"><label for="f-tel">電話番号またはメール</label><input id="f-tel" type="text" placeholder="ご連絡先"></div>
+        <div class="field"><label for="f-day">ご希望の曜日（任意）</label><input id="f-day" type="text" placeholder="例）土曜の午前"></div>
+        <button class="btn btn-deep" type="submit">無料体験を申し込む</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><p>Eriko Abe Ballet Studio</p><small>© ERIKO ABE BALLET STUDIO. All Rights Reserved.</small></footer>
+
+<a class="btn btn-mint float" id="float" href="#trial">無料体験を予約</a>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script>
+(function(){
+  // form (demo only: no backend)
+  var form=document.getElementById('form');
+  form.addEventListener('submit',function(e){e.preventDefault();form.hidden=true;document.getElementById('thanks').hidden=false;});
+
+  var hdr=document.getElementById('hdr'), flt=document.getElementById('float');
+  function onScroll(){var y=window.scrollY||0;hdr.classList.toggle('solid',y>60);flt.classList.toggle('on',y>window.innerHeight*0.8);}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce||!window.gsap||!window.ScrollTrigger){var c=document.querySelector('.curtain');if(c)c.remove();return;}
+  gsap.registerPlugin(ScrollTrigger);
+
+  // smooth scroll (desktop wheel only; touch stays native)
+  if(window.Lenis){
+    var lenis=new Lenis({lerp:0.1});
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(function(t){lenis.raf(t*1000);});
+    gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var id=a.getAttribute('href');var el=id==='#top'?0:document.querySelector(id);if(el!==null){e.preventDefault();lenis.scrollTo(el,{offset:-60});}});});
+  }
+
+  // 1) curtain call intro
+  var intro=gsap.timeline({defaults:{ease:'power3.inOut'}});
+  intro.set('.hero h1 .ln>span',{yPercent:110})
+       .set(['.hero .eyebrow','.hero .lead','.hero .ctas','.hero small'],{autoAlpha:0,y:20})
+       .set('.hero-media img',{scale:1.18})
+       .to('.curtain .valance',{yPercent:-100,duration:0.6,delay:0.25})
+       .to('.curtain i:first-child',{xPercent:-100,duration:1.4},'<0.1')
+       .to('.curtain i:last-child',{xPercent:100,duration:1.4},'<')
+       .to('.hero-media img',{scale:1.04,duration:2.2,ease:'power2.out'},'<0.2')
+       .from('.spot',{autoAlpha:0,scale:0.6,duration:1.6,ease:'power2.out'},'<0.3')
+       .to('.hero .eyebrow',{autoAlpha:1,y:0,duration:0.7},'-=1.2')
+       .to('.hero h1 .ln>span',{yPercent:0,duration:1,stagger:0.14,ease:'power4.out'},'-=0.9')
+       .to(['.hero .lead','.hero .ctas','.hero small'],{autoAlpha:1,y:0,duration:0.7,stagger:0.1},'-=0.5')
+       .add(function(){var c=document.querySelector('.curtain');if(c)c.remove();});
+
+  // 2) hero parallax on scroll
+  gsap.to('.hero-media img',{yPercent:12,scale:1.12,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.hero-copy',{yPercent:-25,autoAlpha:0.2,ease:'none',scrollTrigger:{trigger:'.hero',start:'center center',end:'bottom top',scrub:true}});
+
+  // 3) count up
+  document.querySelectorAll('.count').forEach(function(el){
+    var to=+el.dataset.to, o={v:0};
+    gsap.to(o,{v:to,duration:1.4,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 90%',once:true},onUpdate:function(){el.textContent=Math.round(o.v);}});
+  });
+
+  // 4) marquee drift
+  gsap.fromTo('.mq',{xPercent:0},{xPercent:-30,ease:'none',scrollTrigger:{trigger:'.marquee',start:'top bottom',end:'bottom top',scrub:true}});
+
+  var mm=gsap.matchMedia();
+  // 4b) expanding frame
+  mm.add('(min-width: 761px)',function(){
+    var t=gsap.timeline({scrollTrigger:{trigger:'#expandPin',start:'top top',end:'+=140%',pin:true,scrub:0.6}});
+    t.to('#exFrame',{width:'100vw',height:'100vh',borderRadius:0,ease:'none',duration:1})
+     .to('#exFrame img',{scale:1.06,ease:'none',duration:1},'<')
+     .to('.ex-note',{autoAlpha:0,duration:0.3},'<')
+     .to('.ex-shade',{opacity:1,duration:0.4},'-=0.4')
+     .from('.ex-title span',{yPercent:60,autoAlpha:0,stagger:0.15,duration:0.5},'-=0.45');
+  });
+  mm.add('(max-width: 760px)',function(){
+    gsap.fromTo('#exFrame',{width:'72vw',borderRadius:18},{width:'100vw',borderRadius:0,ease:'none',scrollTrigger:{trigger:'#exFrame',start:'top 90%',end:'center center',scrub:true}});
+    gsap.from('.ex-title span',{yPercent:40,autoAlpha:0,stagger:0.15,duration:0.8,ease:'power3.out',scrollTrigger:{trigger:'.ex-title',start:'top 90%'}});
+  });
+  // 5) steps: pinned crossfade on wide screens
+  mm.add('(min-width: 761px)',function(){
+    gsap.set(['.sm2','.sm3'],{clipPath:'inset(100% 0% 0% 0%)'});
+    gsap.set(['.st2','.st3'],{autoAlpha:0,y:30});
+    var tl=gsap.timeline({scrollTrigger:{trigger:'#stepsPin',start:'top top',end:'+=220%',pin:true,scrub:0.6}});
+    tl.to('.pb1',{scaleX:1,duration:1})
+      .to('.st1',{autoAlpha:0,y:-30,duration:0.4})
+      .to('.sm2',{clipPath:'inset(0% 0% 0% 0%)',duration:0.8},'<')
+      .to('.st2',{autoAlpha:1,y:0,duration:0.4},'<0.3')
+      .to('.pb2',{scaleX:1,duration:1})
+      .to('.st2',{autoAlpha:0,y:-30,duration:0.4})
+      .to('.sm3',{clipPath:'inset(0% 0% 0% 0%)',duration:0.8},'<')
+      .to('.st3',{autoAlpha:1,y:0,duration:0.4},'<0.3')
+      .to('.pb3',{scaleX:1,duration:1});
+  });
+  // phones: simple reveal per step (no pinning)
+  mm.add('(max-width: 760px)',function(){
+    document.querySelectorAll('.step').forEach(function(s){
+      gsap.from(s,{autoAlpha:0,y:30,duration:0.8,ease:'power3.out',scrollTrigger:{trigger:s,start:'top 85%'}});
+    });
+  });
+
+  // 6) gallery: mask wipe + inner zoom
+  gsap.utils.toArray('.gal figure').forEach(function(f){
+    gsap.from(f,{clipPath:'inset(18% 10% 18% 10% round 14px)',duration:1.2,ease:'power3.out',scrollTrigger:{trigger:f,start:'top 85%'}});
+    gsap.fromTo(f.querySelector('img'),{scale:1.25},{scale:1,ease:'none',scrollTrigger:{trigger:f,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+
+  // 7) teacher arch reveal
+  gsap.from('.arch',{clipPath:'inset(100% 0% 0% 0% round 999px 999px 24px 24px)',duration:1.3,ease:'power3.out',scrollTrigger:{trigger:'.arch',start:'top 80%'}});
+  gsap.from('.teacher .txt > *',{autoAlpha:0,y:24,duration:0.8,stagger:0.12,ease:'power3.out',scrollTrigger:{trigger:'.teacher .txt',start:'top 80%'}});
+
+  // 8) fade-ups
+  gsap.utils.toArray(['.recital .head','.faq .card','.trial .l > *','.trial .r','.steps-head > *']).forEach(function(el){
+    gsap.from(el,{autoAlpha:0,y:28,duration:0.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});
+  });
+
+  window.addEventListener('load',function(){ScrollTrigger.refresh();});
+})();
+</script>
+</body>
+</html>
